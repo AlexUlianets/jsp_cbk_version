@@ -330,7 +330,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                   },
                   views: {
                       "": {
-                          templateUrl: "templates/html/front-page.html"
+                          templateUrl: "templates/html/front-page.jsp"
                       }
                   },
                   resolve: {
@@ -346,7 +346,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                   },
                   views: {
                       "": {
-                          templateUrl: "templates/html/widgets.html"
+                          templateUrl: "templates/html/widgets.jsp"
                       }
                   },
                   resolve: {
@@ -366,7 +366,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                   },
                   views: {
                       "": {
-                          templateUrl: "templates/html/front-page.html"
+                          templateUrl: "templates/html/front-page.jsp"
                       }
                   },
                   resolve: {
@@ -406,7 +406,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                   },
                   views: {
                       "": {
-                          templateUrl: "templates/html/today.html"
+                          templateUrl: "templates/html/today.jsp"
                       }
                   },
                   resolve: {
@@ -425,7 +425,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/tomorrow.html"
+                                templateUrl: "templates/html/tomorrow.jsp"
                             }
                         },
                         resolve: {
@@ -445,7 +445,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                           },
                         views: {
                             "": {
-                                templateUrl: "templates/html/past-weather.html"
+                                templateUrl: "templates/html/past-weather.jsp"
                             }
                         },
                         resolve: {
@@ -465,7 +465,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                           },
                         views: {
                             "": {
-                                templateUrl: "templates/html/past-weather.html"
+                                templateUrl: "templates/html/past-weather.jsp"
                             }
                         },
                         resolve: {
@@ -487,7 +487,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/universal-days.html"
+                                templateUrl: "templates/html/universal-days.jsp"
                             }
                         },
                         resolve: {
@@ -509,7 +509,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/universal-days.html"
+                                templateUrl: "templates/html/universal-days.jsp"
                             }
                         },
                         resolve: {
@@ -531,7 +531,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/not-universal-days.html"
+                                templateUrl: "templates/html/not-universal-days.jsp"
                             }
                         },
                         resolve: {
@@ -552,7 +552,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/not-universal-days.html"
+                                templateUrl: "templates/html/not-universal-days.jsp"
                             }
                         },
                         resolve: {
@@ -573,7 +573,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/hour-by-hour.html"
+                                templateUrl: "templates/html/hour-by-hour.jsp"
                             }
                         },
                         resolve: {
@@ -594,7 +594,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                         },
                         views: {
                             "": {
-                                templateUrl: "templates/html/hour-by-hour.html"
+                                templateUrl: "templates/html/hour-by-hour.jsp"
                             }
                         },
                         resolve: {
@@ -614,7 +614,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                           },
                           views: {
                               "": {
-                                  templateUrl: "templates/html/map.html"
+                                  templateUrl: "templates/html/map.jsp"
                               }
                           },
                           resolve: {
@@ -637,7 +637,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad', 'ngCookies']);
                           },
                         views: {
                             "": {
-                                templateUrl: "templates/html/universal-days.html"
+                                templateUrl: "templates/html/universal-days.jsp"
                             }
                         },
                         resolve: {

@@ -1,6 +1,6 @@
 var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
 
-  app.controller('outlookCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+  app.controller(' ', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
       var slav = ["ua", "by", "ru"];
       $scope.climate=[];
       $scope.graph = slav.includes(location.pathname.split("/")[1])?"weatherFourteen":$scope.$state.params.graph;
@@ -11,7 +11,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
       }else{
           $scope.outTable = "enTable"
       }
-
+console.log($scope.outTable);
       $scope.dayTrans = ["Day", "der Tag", "Giorno", "Jour"];
       $scope.nightTrans = ["Night", "die Nacht", "Notte", "Nuit"];
       $scope.dayTransSlav = ["День", "Дзень"];
