@@ -49,11 +49,10 @@
     <link rel="stylesheet" href="../../css/slick.css">
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700' rel='stylesheet'>
     <link rel="stylesheet" href="../../scss/widget.css">
-    <script src="../../assets/plugins/angularJS/angular.min.js"></script>
-    <script src="../../assets/plugins/angularJS/angular-ui-router.min.js"></script>
-    <script src="../../assets/plugins/angularJS/ocLazyLoad.min.js"></script>
-    <script src="../../assets/plugins/other/angular-cookies.min.js"></script>
-    <script src="../../app.js?n=1"></script>
+    <script src="/assets/plugins/angularJS/angular.min.js"></script>
+    <script src="/assets/plugins/angularJS/angular-ui-router.min.js"></script>
+    <script src="/assets/plugins/angularJS/ocLazyLoad.min.js"></script>
+    <script src="/assets/plugins/other/angular-cookies.min.js"></script>
     <script src="/assets/js/outlook.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqRjBmS8aGyPsZqxDpZg9KsG9xiqgi95o"></script>
     <style>

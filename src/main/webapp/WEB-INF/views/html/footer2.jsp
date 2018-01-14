@@ -132,15 +132,16 @@
     </div>
 </div>
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/charts.js"></script>
-<script src="../../js/charts_init.js"></script>
-<script src="../../js/popup.js"></script>
-<script src="../../js/scripts.js"></script>
-<script src="../../js/slick.min.js"></script>
-<script src="../../js/jquery-ui.min.js"></script>
-<script src="../../js/jquery.formstyler.min.js"></script>
-<script type="text/javascript" src="../../assets/js/map.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/charts.js"></script>
+<script src="/js/charts_init.js"></script>
+<script src="/js/popup.js"></script>
+<script src="/js/scripts.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/jquery.formstyler.min.js"></script>
+<script src="app.js?n=1"></script>
+<script type="text/javascript" src="assets/js/map.js"></script>
 <script type="text/javascript">
     window.doorbellOptions = {
         hideButton: true,

@@ -1,11 +1,13 @@
 var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
 
-  app.controller(' ', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+  app.controller('outlookCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
       var slav = ["ua", "by", "ru"];
       $scope.climate=[];
-      $scope.graph = slav.includes(location.pathname.split("/")[1])?"weatherFourteen":$scope.$state.params.graph;
-      $scope.day=$scope.$state.params.day;
+      console.log('outlookcjta;as')
+      //$scope.graph = slav.includes(location.pathname.split("/")[1])?"weatherFourteen":$scope.$state.params.graph;
+      // $scope.day=$scope.$state.params.day;
       // $scope.graphTitle=$scope.$state.params.graphTitle;
+      $scope.local.typeTemp = $rootScope.local.typeTemp;
       if(slav.includes(location.pathname.split("/")[1])){
           $scope.outTable = "slavTable";
       }else{
