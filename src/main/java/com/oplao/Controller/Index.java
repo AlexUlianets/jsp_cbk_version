@@ -3,12 +3,10 @@ package com.oplao.Controller;
 
 import com.oplao.service.SearchService;
 import com.oplao.service.SitemapService;
-import com.oplao.service.WeatherService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +25,6 @@ public class Index {
         SearchService searchService;
         @Autowired
         SitemapService sitemapService;
-        @Autowired
-        WeatherService weatherService;
         @RequestMapping({
                 "/",
                 "/weather",
@@ -109,10 +105,10 @@ public class Index {
                 "/forecast/hour-by-hour3/{locationRequest:.+}",
                 "/weather/hour-by-hour3/{locationRequest:.+}",
         })
-        public ModelAndView index(@PathVariable(value = "locationRequest") String locationRequest,
-                                  @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
-                                  HttpServletRequest request, HttpServletResponse response,
-                                  @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode) {
+        public String index(@PathVariable(value = "locationRequest") String locationRequest,
+                            @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
+                            HttpServletRequest request, HttpServletResponse response,
+                            @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode) {
             String reqUrl = request.getRequestURI();
             try {
                 locationRequest = URLDecoder.decode(locationRequest, "UTF-8");
@@ -120,18 +116,16 @@ public class Index {
                 e.printStackTrace();
             }
             JSONObject generatedCity = searchService.generateUrlRequestWeather(locationRequest, currentCookieValue, request, response, reqUrl.split("/")[1]);
+            try {
+                sitemapService.addToSitemap(request.getRequestURI());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if(reqUrl.contains("forecast")){
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.setHeader("Location", reqUrl.replace("forecast", "weather"));
             }
-
-            ModelAndView modelAndView = new ModelAndView("html/outlook");
-
-            modelAndView.addObject("currentCountryCode", languageCookieCode);
-            modelAndView.addObject("selectedCity", generatedCity.getString("name").toUpperCase() + "_" + generatedCity.getString("countryCode").toUpperCase());
-            modelAndView.addObject("temperature", weatherService.getRemoteData(generatedCity, languageCookieCode));
-            modelAndView.addObject("pageName", "outlook");
-            return modelAndView;
+            return "forward:/index.html";
         }
     }
 }
