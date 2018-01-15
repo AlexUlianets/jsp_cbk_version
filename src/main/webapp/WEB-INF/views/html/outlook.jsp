@@ -1,3 +1,4 @@
+<%@include file="header.jsp"%>
 <div ng-controller="outlookCtrl">
     <div class="container section-margin-top">
         <div class="wrapper">
@@ -114,7 +115,7 @@
                         </div>
                     </div>
                     <div class="btn-wrap">
-                        <a href="past-weather.html" class="btn-theme" ng-bind="pageContent.checkPastWeather"></a>
+                        <a href="past-weather.jsp" class="btn-theme" ng-bind="pageContent.checkPastWeather"></a>
                     </div>
                 </div>
                 <div class="v-year-wrap">
@@ -168,3 +169,4 @@
         </div>
     </section>
 </div>
+<%@include file="footer2.jsp"%>
