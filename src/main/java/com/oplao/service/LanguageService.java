@@ -358,4 +358,28 @@ public class LanguageService {
         }
         return desc;
     }
+
+    public HashMap genHeaderByPageName(ResourceBundle resourceBundle, String city, String countryName, String languageCode, String path, char hrIndex){
+        if (path.contains("widgets")) {
+            return generateWidgetContent(resourceBundle);
+        } else if (path.equals("/") || path.equals("%2F")||path.split("/").length == 4 && !path.contains("widgets")) {
+            return generateFrontPageContent(resourceBundle, city, countryName, languageCode);
+        } else if (path.contains("outlook")) {
+            return generateOutlookContent(resourceBundle, city, countryName, languageCode);
+        } else if (path.contains("today") || path.contains("tomorrow")) {
+            return generateTodayTomorrowContent(resourceBundle, city, countryName, languageCode, path.contains("today"));
+        } else if (path.contains("history")) {
+            return generatePastWeatherContent(resourceBundle, city, countryName, languageCode, hrIndex);
+        } else if (path.contains("hour-by-hour")) {
+            return generateHourlyContent(resourceBundle, city, countryName, languageCode, hrIndex);
+        } else if (path.contains("3") || path.contains("7") || path.contains("14")) {
+            return generateUniversalDaysContent(resourceBundle, path.contains("3"), path.contains("7"), city, countryName, languageCode);
+        } else if (path.contains("5") || path.contains("10")) {
+            return generateNotUniversalDaysContent(resourceBundle, path.contains("5"), city, countryName, languageCode);
+        } else if (path.contains("map")) {
+            return generateTemperatureMapContent(resourceBundle, city, countryName, languageCode);
+        }
+
+        return null;
+    }
 }

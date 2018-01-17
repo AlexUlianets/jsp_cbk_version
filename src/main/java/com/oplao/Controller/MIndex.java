@@ -1,26 +1,35 @@
 package com.oplao.Controller;
 
 
+import com.oplao.Utils.LanguageUtil;
+import com.oplao.service.LanguageService;
 import com.oplao.service.SearchService;
 import com.oplao.service.SitemapService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 @Controller
-public class Index {
+public class MIndex {
 
     @Controller
     @RequestMapping("/{lang}")
     static class Routes {
 
+        @Autowired
+        LanguageService languageService;
         @Autowired
         SearchService searchService;
         @Autowired
@@ -57,13 +66,15 @@ public class Index {
                 "/about",
                 "/weather/widgets"
         })
-        public String index(HttpServletRequest request, HttpServletResponse response, @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue, @CookieValue(value = SearchService.langCookieCode, defaultValue = "") String languageCookieCode) {
+        public ModelAndView index(HttpServletRequest request, HttpServletResponse response, @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue, @CookieValue(value = SearchService.langCookieCode, defaultValue = "") String languageCookieCode) {
             try {
                 sitemapService.addToSitemap(request.getRequestURI());
             } catch (Exception e) {
                 e.printStackTrace();
             }
             String reqUrl = request.getRequestURI();
+
+            JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);
 
             if(reqUrl.contains("forecast")) {
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
@@ -73,8 +84,31 @@ public class Index {
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.setHeader("Location", reqUrl+"/");
             }
-            searchService.selectLanguage(reqUrl, request, response, languageCookieCode, searchService.findSelectedCity(request, response, currentCookieValue), currentCookieValue);
-            return "forward:/index.html";
+            searchService.selectLanguage(reqUrl, request, response, languageCookieCode, generatedCity, currentCookieValue);
+            ModelAndView modelAndView = new ModelAndView("index");
+            String[] parsedUrl = reqUrl.split("/");
+
+            char hrIndex = 3;
+            if(parsedUrl.length >=3) {
+                hrIndex = parsedUrl[3].charAt(parsedUrl[3].length() - 1);
+            }
+
+            String pageName = reqUrl.split("/")[3];
+
+
+
+            if(languageCookieCode.equals("")){
+                languageCookieCode = parsedUrl[1];
+            }
+
+            Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
+
+
+            HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, pageName, hrIndex);
+
+            modelAndView.addObject("details", hashMap);
+            return modelAndView;
         }
         @RequestMapping({
                 "/",
@@ -105,7 +139,7 @@ public class Index {
                 "/forecast/hour-by-hour3/{locationRequest:.+}",
                 "/weather/hour-by-hour3/{locationRequest:.+}",
         })
-        public String index(@PathVariable(value = "locationRequest") String locationRequest,
+        public ModelAndView index(@PathVariable(value = "locationRequest") String locationRequest,
                             @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
                             HttpServletRequest request, HttpServletResponse response,
                             @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode) {
@@ -125,7 +159,33 @@ public class Index {
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.setHeader("Location", reqUrl.replace("forecast", "weather"));
             }
-            return "forward:/index.html";
+
+            ModelAndView modelAndView = new ModelAndView("index");
+
+            modelAndView.addObject("title", "Index");
+
+            String[] parsedUrl = reqUrl.split("/");
+
+            char hrIndex = 3;
+            if(parsedUrl.length >=3) {
+                hrIndex = parsedUrl[3].charAt(parsedUrl[3].length() - 1);
+            }
+
+
+            String pageName = parsedUrl[3];
+
+
+            if(languageCookieCode.equals("")){
+                languageCookieCode = parsedUrl[1];
+            }
+            Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
+
+            HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, pageName, hrIndex);
+
+            modelAndView.addObject("details", hashMap);
+
+            return modelAndView;
         }
     }
 }

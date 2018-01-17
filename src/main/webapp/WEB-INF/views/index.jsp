@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="main">
 <head>
+
     <base href="/" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,12 +28,12 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta name="description" content="{{pageContent.description}}">
+    <meta name="description" content="${details.description}">
     <meta property="og:title" content="Oplao"/>
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="{{pageContent.description}}"/>
     <meta property="og:image" content="https://simplesharebuttons.com/wp-content/uploads/2014/08/simple-share-buttons-logo-square.png"/>
-    <title ng-bind="pageContent.title"></title>
+    <title>${details.title}</title>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
