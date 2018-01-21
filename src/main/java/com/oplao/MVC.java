@@ -10,12 +10,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
-@EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = { "com.oplao" })
-public class MvcConfig extends WebMvcConfigurerAdapter {
-
+@EnableWebMvc
+@ComponentScan(basePackages = "com.oplao")
+public class MVC extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -27,16 +27,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public InternalResourceViewResolver jspViewResolver() {
-        InternalResourceViewResolver bean = new InternalResourceViewResolver();
-        bean.setPrefix("/WEB-INF/views/");
-        bean.setSuffix(".jsp");
-        return bean;
-    }
-
-    @Bean(name = "multipartResolver")
-    public CommonsMultipartResolver getMultipartResolver() {
-        return new CommonsMultipartResolver();
+    public InternalResourceViewResolver getInternalResourceViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        resolver.setViewClass(JstlView.class);
+        return resolver;
     }
 
     @Bean(name = "messageSource")
@@ -46,5 +42,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         resource.setDefaultEncoding("UTF-8");
         return resource;
     }
-
 }

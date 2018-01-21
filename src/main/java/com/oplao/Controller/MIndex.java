@@ -85,7 +85,7 @@ public class MIndex {
                 response.setHeader("Location", reqUrl+"/");
             }
             searchService.selectLanguage(reqUrl, request, response, languageCookieCode, generatedCity, currentCookieValue);
-            ModelAndView modelAndView = new ModelAndView("index");
+            ModelAndView modelAndView = new ModelAndView("main");
             String[] parsedUrl = reqUrl.split("/");
 
             char hrIndex = 3;
@@ -150,17 +150,17 @@ public class MIndex {
                 e.printStackTrace();
             }
             JSONObject generatedCity = searchService.generateUrlRequestWeather(locationRequest, currentCookieValue, request, response, reqUrl.split("/")[1]);
-            try {
-                sitemapService.addToSitemap(request.getRequestURI());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                sitemapService.addToSitemap(request.getRequestURI());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             if(reqUrl.contains("forecast")){
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.setHeader("Location", reqUrl.replace("forecast", "weather"));
             }
 
-            ModelAndView modelAndView = new ModelAndView("index");
+            ModelAndView modelAndView = new ModelAndView("main_jsp");
 
             modelAndView.addObject("title", "Index");
 

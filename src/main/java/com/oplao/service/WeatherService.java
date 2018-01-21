@@ -119,7 +119,6 @@ public class WeatherService {
             jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))) + "&cc=no&fx=yes&num_of_days=1&tp=24&showlocaltime=no");
         }catch (IOException e){
             e.printStackTrace();
-            Application.log.warning("Year summary data request error");
         }
 
         HashMap map = (HashMap) jsonObject.toMap().get("data");

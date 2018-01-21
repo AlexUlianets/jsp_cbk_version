@@ -23,32 +23,32 @@ public class SlashController {
     @Autowired
     LanguageService languageService;
 
-//    @RequestMapping("/")
-//    public String main(HttpServletRequest request, HttpServletResponse response,
-//                       @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
-//                       @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode){
-//
-//          searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
-////        String reqUrl = request.getRequestURI();
-//       // String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, city, currentCookieValue);
-//
-//        return "forward:/index.html";
-//    }
+    @RequestMapping("/")
+    public String main(HttpServletRequest request, HttpServletResponse response,
+                       @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
+                       @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode){
 
-//    @RequestMapping("/get_slash_data")
-//    @ResponseBody
-//    public HashMap getShashData(HttpServletRequest request, HttpServletResponse response,
-//                                @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
-//                                @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode){
-//        JSONObject city = searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
+          searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
 //        String reqUrl = request.getRequestURI();
-//        String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, city, currentCookieValue);
-//        HashMap map = new HashMap();
-//        map.put("langCode", selectedLang.toLowerCase());
-//        map.put("city", city.getString("asciiName"));
-//        map.put("countryCode", city.getString("countryCode"));
-//        return map;
-//    }
+       // String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, city, currentCookieValue);
+
+        return "forward:/index.html";
+    }
+
+    @RequestMapping("/get_slash_data")
+    @ResponseBody
+    public HashMap getShashData(HttpServletRequest request, HttpServletResponse response,
+                                @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
+                                @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode){
+        JSONObject city = searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
+        String reqUrl = request.getRequestURI();
+        String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, city, currentCookieValue);
+        HashMap map = new HashMap();
+        map.put("langCode", selectedLang.toLowerCase());
+        map.put("city", city.getString("asciiName"));
+        map.put("countryCode", city.getString("countryCode"));
+        return map;
+    }
 
     @RequestMapping("/generate_language_content")
     @ResponseBody
