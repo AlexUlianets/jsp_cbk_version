@@ -169,7 +169,7 @@ public class LanguageService {
         map.put("locationWeather", MessageFormat.format(locWeather, LanguageUtil.validateSlavCurrentCode(country, langCode)));
         map.put("holidayWeather", encode(bundle.getString("holidayWeather")));
         map.put("topHolidayDestinations", encode(bundle.getString("topHolidayDestinations")));
-        map.put("title", encode(bundle.getString("titleFront")));
+        map.put("title", langCode.equals("en")?encode(bundle.getString("titleFront")):formatLocation(bundle.getString("titleFront"), city, country, langCode));
         map.put("description", langCode.equals("it") || langCode.equals("en") ? encode(bundle.getString("descrFront")) : formatLocation(bundle.getString("descrFront"), city, country, langCode));
         return map;
     }
@@ -291,7 +291,7 @@ public class LanguageService {
     private String formatLocation(String content, String city, String country, String langCode) {
         String pattern = encode(content);
         String arg = LanguageUtil.validateSlavCurrentCode(city, langCode) + ", " + country;
-        return MessageFormat.format(pattern.replaceAll("'", ""), arg);
+        return MessageFormat.format(pattern.replaceAll("'", ""), arg).replace('+', ' ');
     }
 
     private String formatTwoLocations(String content, String city, String country, String langCode) {

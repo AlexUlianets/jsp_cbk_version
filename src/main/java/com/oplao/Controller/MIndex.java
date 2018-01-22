@@ -85,7 +85,7 @@ public class MIndex {
                 response.setHeader("Location", reqUrl+"/");
             }
             searchService.selectLanguage(reqUrl, request, response, languageCookieCode, generatedCity, currentCookieValue);
-            ModelAndView modelAndView = new ModelAndView("main");
+            ModelAndView modelAndView = new ModelAndView("main_jsp");
             String[] parsedUrl = reqUrl.split("/");
 
             char hrIndex = 3;
@@ -171,17 +171,13 @@ public class MIndex {
                 hrIndex = parsedUrl[3].charAt(parsedUrl[3].length() - 1);
             }
 
-
-            String pageName = parsedUrl[3];
-
-
             if(languageCookieCode.equals("")){
                 languageCookieCode = parsedUrl[1];
             }
             Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
             ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
 
-            HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, pageName, hrIndex);
+            HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, reqUrl, hrIndex);
 
             modelAndView.addObject("details", hashMap);
 

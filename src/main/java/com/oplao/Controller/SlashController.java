@@ -1,18 +1,22 @@
 package com.oplao.Controller;
 
 
+import com.oplao.Utils.LanguageUtil;
 import com.oplao.service.LanguageService;
 import com.oplao.service.SearchService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @Controller
 public class SlashController {
@@ -24,15 +28,23 @@ public class SlashController {
     LanguageService languageService;
 
     @RequestMapping("/")
-    public String main(HttpServletRequest request, HttpServletResponse response,
+    public ModelAndView main(HttpServletRequest request, HttpServletResponse response,
                        @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
                        @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode){
 
-          searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
-//        String reqUrl = request.getRequestURI();
-       // String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, city, currentCookieValue);
+        JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
+        String reqUrl = request.getRequestURI();
+        String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, generatedCity, currentCookieValue);
+        ModelAndView modelAndView = new ModelAndView("main_jsp");
 
-        return "forward:/index.html";
+        Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + selectedLang, locale);
+
+        HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, "/", '3');
+
+        modelAndView.addObject("details", hashMap);
+
+        return modelAndView;
     }
 
     @RequestMapping("/get_slash_data")
