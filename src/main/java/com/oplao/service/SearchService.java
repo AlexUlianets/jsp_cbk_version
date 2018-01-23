@@ -318,7 +318,7 @@ public class SearchService {
            }
 
            try {
-               String url = "https://bd.oplao.com/geoLocation/find.json?lang="+LanguageUtil.validateOldCountryCodes(langCode)+"&max=10&nameStarts=" + URLEncoder.encode(location.getString("city").replaceAll(" ", "%20"), "UTF-8");
+               String url = "https://bd.oplao.com/geoLocation/find.json?lang="+LanguageUtil.validateOldCountryCodes(langCode)+"&max=10&nameStarts=" + URLEncoder.encode(location.getString("city"), "UTF-8");
                list = SearchService.findByOccurences(url);
                JSONObject obj = list.get(0);
                obj.put("status", "selected");
