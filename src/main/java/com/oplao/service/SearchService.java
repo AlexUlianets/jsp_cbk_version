@@ -164,11 +164,13 @@ public class SearchService {
         InputStream is = null;
         try {
             is = new URL(url).openStream();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-            String jsonText = WeatherService.readAll(rd);
+
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, "UTF8"));
+            String myString = rd.readLine();
+//            String jsonText = WeatherService.readAll(rd);
             List<JSONObject> objects = new ArrayList<>();
 
-            JSONArray jsonArray = new JSONArray(new String(jsonText.getBytes(), "UTF-8"));
+            JSONArray jsonArray = new JSONArray(myString);
             for (int i = 0; i < jsonArray.length(); i++) {
                 objects.add((JSONObject)jsonArray.get(i));
             }
@@ -320,10 +322,16 @@ public class SearchService {
            try {
                String url = "https://bd.oplao.com/geoLocation/find.json?lang="+LanguageUtil.validateOldCountryCodes(langCode)+"&max=10&nameStarts=" + URLEncoder.encode(location.getString("city"), "UTF-8");
                list = SearchService.findByOccurences(url);
+
                JSONObject obj = list.get(0);
                obj.put("status", "selected");
                JSONArray arr = new JSONArray("["+obj.toString()+"]");
-               Cookie c = new Cookie(cookieName, URLEncoder.encode(new String(arr.toString().getBytes(), "UTF-8"), "UTF-8"));
+               Application.log.info(arr.toString());
+
+               Cookie c = new Cookie(cookieName, URLEncoder.encode(arr.toString(), "UTF8"));
+
+               Application.log.info(c.toString());
+
                c.setPath("/");
                c.setMaxAge(60 * 60 * 24 * 365 * 10);
                response.addCookie(c);

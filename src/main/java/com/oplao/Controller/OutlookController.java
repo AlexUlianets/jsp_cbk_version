@@ -54,9 +54,7 @@ public class OutlookController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String headerValue = CacheControl.maxAge(86400, TimeUnit.SECONDS)
-                .getHeaderValue();
-        response.addHeader("Cache-Control", headerValue);
+
 
         return weatherService.getRemoteData(searchService.findSelectedCity(request, response, currentCookieValue), langCode);
     }
