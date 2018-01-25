@@ -8,7 +8,6 @@ import org.joda.time.DateTimeZone;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.mozilla.universalchardet.UniversalDetector;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
