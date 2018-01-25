@@ -3396,5 +3396,12 @@ map-marker.active {
     background: #2b0001 none !important;
 }
 
-
+.country {
+    float: left;
+    width: 25%;
+    height: 44px;
+    padding-top: 8px;
+    overflow: auto;
+    font-size: 16px;
+}
 

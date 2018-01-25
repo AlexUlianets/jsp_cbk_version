@@ -222,4 +222,18 @@ public class OutlookController {
 
         return searchService.getHolidaysWeather(searchService.findSelectedCity(request, response, currentCookieValue), langCode);
     }
+
+    @RequestMapping(value = "/get_countries")
+    @ResponseBody
+    public List<List> getCountries(@CookieValue(value = "langCookieCode", defaultValue = "") String langCode) {
+
+        return searchService.getCountries(langCode);
     }
+
+    @RequestMapping(value = "/get_country_info/{countryName}")
+    @ResponseBody
+    public Map getCountryInfo(@CookieValue(value = "langCookieCode", defaultValue = "") String langCode, @PathVariable("countryName") String countryName) {
+
+        return searchService.getCountryInfo(countryName, langCookieCode);
+    }
+}

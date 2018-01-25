@@ -186,5 +186,65 @@ public class MIndex {
 
             return modelAndView;
         }
+
+
+
+        @RequestMapping("/countries")
+        @ResponseBody
+        public ModelAndView countries(@CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
+                                      @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode,
+                                      HttpServletRequest request, HttpServletResponse response){
+
+            String reqUrl = request.getRequestURI();
+            ModelAndView modelAndView = new ModelAndView("main_jsp");
+
+            JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);
+
+            modelAndView.addObject("title", "Index");
+
+            String[] parsedUrl = reqUrl.split("/");
+
+            if(languageCookieCode.equals("")){
+                languageCookieCode = parsedUrl[1];
+            }
+            Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
+
+            HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, reqUrl, '3');
+
+            modelAndView.addObject("details", hashMap);
+            modelAndView.addObject("pageName", reqUrl);
+
+            return modelAndView;
+        }
+
+        @RequestMapping("/countries/{city}")
+        @ResponseBody
+        public ModelAndView cityName(@CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
+                                      @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode,
+                                      HttpServletRequest request, HttpServletResponse response){
+
+            String reqUrl = request.getRequestURI();
+            ModelAndView modelAndView = new ModelAndView("main_jsp");
+
+            JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);
+
+            modelAndView.addObject("title", "Index");
+
+            String[] parsedUrl = reqUrl.split("/");
+
+            if(languageCookieCode.equals("")){
+                languageCookieCode = parsedUrl[1];
+            }
+            Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
+
+            HashMap hashMap = languageService.genHeaderByPageName(resourceBundle, generatedCity.getString("name"), generatedCity.getString("countryName"), languageCookieCode, reqUrl, '3');
+
+            modelAndView.addObject("details", hashMap);
+            modelAndView.addObject("pageName", reqUrl);
+
+            return modelAndView;
+        }
     }
 }
