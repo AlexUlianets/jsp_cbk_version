@@ -57,11 +57,11 @@
 
 <div ng-include="'templates/header.html'"></div>
 <div class="blur">
-    <section id="${pageName == '/' || fn:length(fn:split(pageName, "/")) == 3 ? 'top-main' : 'top-page'}">
+    <section id="${pageName == '/' || fn:length(fn:split(pageName, "/")) == 3 ? 'top-main' : 'top-page'}" >
         <span  style="text-align: center; display:block; margin-top: 90px;text-align: -webkit-center;" class="load_header">
               <svg xmlns="http://www.w3.org/2000/svg" width="100" height="25" viewBox="0 0 120 30" fill="#fff"><circle cx="15" cy="15" r="11.8022"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"/><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"/></circle><circle cx="60" cy="15" r="12.1978" fill-opacity="0.3"><animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite"/><animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite"/></circle><circle cx="105" cy="15" r="11.8022"><animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"/><animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"/></circle></svg>
         </span>
-        <div class="container" style="display: none">
+        <div class="container" style="visibility: hidden">
             <div class="head-top">
                 <div class="ht-search">
                     <form class="ht-search-wrap">
@@ -161,14 +161,14 @@
 
                     <div class="weather-time">
                         <div class="weather-time-block">
-                            <div class="wtb-img">
+                            <div class="wtb-img" style="height: 44px!important;">
                                 <span class="helper"></span>
                                 <img src="images/svg-sprite/sunrise-weather-symbol.svg" alt="" style="width: 35px;">
                             </div>
                             <div class="wt-time"  ng-bind="getTime(temperature.sunrise)">{{temperature.sunrise}}</div>
                         </div>
                         <div class="weather-time-block">
-                            <div class="wtb-img">
+                            <div class="wtb-img" style="height: 44px!important;">
                                 <span class="helper"></span>
                                 <!-- <i class="icon pm"></i> -->
                                 <img src="images/svg-sprite/sunset-fill-interface-symbol.svg" alt="" style="width: 35px;">
@@ -184,7 +184,7 @@
                 </div>
             </div>
         </div><!-- end container -->
-        <div class="head-bot-mini" style="display: none" id="head-bot-mini" >
+        <div class="head-bot-mini" style="display: none" id="head-bot-mini" ng-if="$state.params.day!='front-page'">
             <div class="hb-inner" ng-if="$state.params.day!='front-page'">
                 <div class="weather-now">
                     <img ng-src="svg/wicons_svg_white/{{temperature.weatherIconCode}}_{{(temperature.hours<=6 || temperature.hours>=18)?'night':'day'}}.svg">
