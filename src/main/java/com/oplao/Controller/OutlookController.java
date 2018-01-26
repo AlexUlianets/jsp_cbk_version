@@ -55,7 +55,6 @@ public class OutlookController {
             e.printStackTrace();
         }
 
-
         return weatherService.getRemoteData(searchService.findSelectedCity(request, response, currentCookieValue), langCode);
     }
 

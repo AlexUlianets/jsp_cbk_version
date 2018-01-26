@@ -669,6 +669,7 @@ map-marker.arrow_box img{display:inline-block;margin-top:6px;width: 28px;}
 .wrn-block:hover .wrn-top{border-bottom:1px solid #fff;}
 .wrn-bot{height:77px;}
 .wrn-img{height:45px;text-align:center;}
+/*//*/
 .wrn-temp{text-align:center;font:400 1.6em/1 "Fira Sans", sans-serif;color:#4c4c4c;}
 ul.tabs{margin:0;margin-bottom:20px;padding:0;float:left;list-style:none;width:100%;}
 ul.tabs li{float:left;margin:0;cursor:pointer;position:relative;width:14.285%;}
@@ -1894,7 +1895,7 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
 }
 
 .tb-tabs.tb-tabs-full .wrn-block .wrn-bot .wrn-temp >span{
-    display: block;
+    display: inline-block;
     line-height: 20px;
 }
 

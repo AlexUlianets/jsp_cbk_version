@@ -91,7 +91,6 @@ public class LanguageService {
                 ? formatThreeLocations(bundle.getString("descrHourly"), city, country, langCode)
                 : formatTwoLocations(bundle.getString("descrHourly"), city, country, langCode)
                 : formatTwoLocations(bundle.getString("descrHourly" + hrIndex), city, country, langCode));
-        map.put("canonical", hrIndex == '3' ? "https://oplao.com/en/forecast/hour-by-hour1/" : "");
         return map;
     }
 
@@ -106,7 +105,6 @@ public class LanguageService {
         map.put("threeHour", encode(bundle.getString("threeHour")));
         map.put("title", formatLocation(bundle.getString("titleHistory".concat(isSlav || langCode.equals("de") ? String.valueOf(hrIndex) : "")), city, country, langCode));
         map.put("description", generateHistoryDescription(bundle, city, country, langCode, hrIndex, isSlav));
-        map.put("canonical", hrIndex == '3' ? "https://oplao.com/en/weather/history1/" : "");
 
         return map;
     }
@@ -116,7 +114,6 @@ public class LanguageService {
         map.put("aboveTable", encode(bundle.getString("aboveTableTempMap")));
         map.put("title", encode(bundle.getString("titleMap")));
         map.put("description", formatLocation(bundle.getString("descrMap"), city, country, langCode));
-        map.put("canonical", "https://oplao.com/en/weather/outlook/");
         return map;
     }
 
@@ -130,7 +127,6 @@ public class LanguageService {
                 formatLocation(is5 ? bundle.getString("descr5Days") :
                         bundle.getString("descr10Days"), city, country, langCode) :
                 formatTwoLocations(is5 ? bundle.getString("descr5Days") : bundle.getString("descr10Days"), city, country, langCode));
-        map.put("canonical", "https://oplao.com/en/weather/outlook/");
         return map;
     }
 
@@ -149,7 +145,6 @@ public class LanguageService {
                 : is7 ? bundle.getString("title7Days")
                 : bundle.getString("title14Days"), city, country, langCode));
         map.put("description", generateUniversalDaysDescription(bundle, city, country, langCode, is3, is7));
-        map.put("canonical", is3 || is7 ? "https://oplao.com/en/forecast/10/" : "https://oplao.com/en/weather/outlook/");
         return map;
     }
 
@@ -162,7 +157,6 @@ public class LanguageService {
         map.put("aboveGraph", encode(isToday ? bundle.getString("aboveGraphToday") : ""));
         map.put("title", isToday ? formatLocation(bundle.getString("titleToday"), city, country, langCode) : formatLocation(bundle.getString("titleTomorrow"), city, country, langCode));
         map.put("description", isToday ? formatLocation(bundle.getString("descrToday"), city, country, langCode) : formatLocation(bundle.getString("descrTomorrow"), city, country, langCode));
-        map.put("canonical", isToday ? "https://oplao.com/en/forecast/hour-by-hour1/" : "https://oplao.com/en/forecast/today/");
         return map;
     }
 
@@ -279,6 +273,7 @@ public class LanguageService {
         map.put("feedbackShare", encode(bundle.getString("feedbackShare")));
         map.put("email", encode(bundle.getString("feedbackCommand.email.label")));
         map.put("send", encode(bundle.getString("send")));
+        map.put("countries", encode(bundle.getString("countries")));
         return map;
     }
 

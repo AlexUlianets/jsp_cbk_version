@@ -4,6 +4,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
     $rootScope.$stateParams = $stateParams;
     $rootScope.example = "";
     $rootScope.local = {};
+    $rootScope.currentUrl = window.location.href;
     $rootScope.currentCountryCode = $cookies.get('langCookieCode');
     if ($rootScope.currentCountryCode == undefined) {
         $http.get("http://freegeoip.net/json/").success(function (data) {
@@ -140,7 +141,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
             $('html, body').animate({scrollTop: $('body').offset().top}, 1000);
         })
     };
-    $rootScope.deleteCity = function (e, index) {
+    $rootScope.deleteCity = function (e, index, event) {
         $.ajax({cache: true, method: "POST", url: "/deleteCity/" + e}).done(function (msg) {
             var $this = $(this);
             var $item = $('.weather-block-favorite')[0] ? $('.weather-block-favorite') : $('.weather-block-width');
@@ -155,6 +156,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
                 $('#top-main').animate({height: '580px'});
             }
         })
+        event.stopPropagation();
     };
     $rootScope.selectLanguage = function (lan) {
         var curUrl = location.pathname.split('/');

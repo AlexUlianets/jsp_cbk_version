@@ -32,7 +32,6 @@
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/manifest.json">
-    <%--<link rel="canonical" href="{{pageContent.canonical}}{{selectedCity}}">--%>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -79,8 +78,8 @@
                         <div class="search-dropdown">
                             <img src="images/cloud_load.gif" style="width: 18%;margin-left: 41%;display: none;margin-right: 41%;" class="load_search">
                             <ul>
-                                <li ng-repeat="i in searchList" ng-if="searchInput.length>1 && result==1"><a  ng-class="{'active':i.geonameId==temperature.geonameId}" ng-click="selectCity(i.geonameId)">{{i.name}}, {{i.countryName}} <span ng-if="false"></span></a></li>
-                                <li ng-repeat="i in searchList track by $index" ng-if="searchInput.length<=1" class="w{{$index}}_li"><a id="w{{$index}}" ng-class="{'active':i.geonameId==temperature.geonameId}" ng-click="selectCity(i.geonameId)" >{{i.city}}</a><span ng-if="i.geonameId!=temperature.geonameId" ng-click="deleteCity(i.geonameId, $index)"></span></li>
+                                <li ng-repeat="i in searchList" ng-if="searchInput.length>1 && result==1" ng-click="selectCity(i.geonameId)"><a  ng-class="{'active':i.geonameId==temperature.geonameId}">{{i.name}}, {{i.countryName}} <span ng-if="false"></span></a></li>
+                                <li  ng-repeat="i in searchList track by $index" ng-if="searchInput.length<=1" ng-click="selectCity(i.geonameId)" class="w{{$index}}_li"><a id="w{{$index}}" ng-class="{'active':i.geonameId==temperature.geonameId}">{{i.city}}</a><span ng-if="i.geonameId!=temperature.geonameId" ng-click="deleteCity(i.geonameId, $index, $event)"></span></li>
                                 <li ng-if="searchList.length==0"><a>No results</a></li>
                             </ul>
                             <a href="#" class="dropdown-top"></a>
@@ -250,8 +249,6 @@
 
     </section><!-- end top page -->
 
-    {{temperature}}
-    <div class="temperature-heading" style="font-size:20px"><a href="/{{currentCountryCode}}/countries">Countries</a> -- <a href="/{{currentCountryCode}}/countries/{{temperature.country}}">{{temperature.country}}</a> -- <a href="/{{currentCountryCode}}/weather/{{selectedCity}}">{{temperature.city}}</a></div>
 
     <div ng-include="'templates/body.html'"></div>
 

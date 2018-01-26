@@ -278,7 +278,7 @@ public class SearchService {
 //               return obj;
 //           } catch (IOException e) {
 //               e.printStackTrace();
-//           }
+//           }get_
        }
        return null;
    }
@@ -389,7 +389,7 @@ public class SearchService {
         DateTime dateTime = new DateTime(DateTimeZone.forID((String)((JSONObject)city.get("timezone")).get("timeZoneId")));
         JSONObject jsonObject = null;
         try {
-            jsonObject = WeatherService.readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=1&date=" + dateTime.getYear() + "-" + dateTime.getMonthOfYear() + "-" + dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat") + "," + String.valueOf(city.get("lng"))));
+            jsonObject = WeatherService.readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=1&date=" + dateTime.getYear() + "-" + dateTime.getMonthOfYear() + "-" + dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat") + "," + String.valueOf(city.get("lng"))));
         } catch (IOException e) {
             e.printStackTrace();
         }

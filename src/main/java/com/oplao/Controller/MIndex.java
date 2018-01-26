@@ -214,7 +214,7 @@ public class MIndex {
 
             modelAndView.addObject("details", hashMap);
             modelAndView.addObject("pageName", reqUrl);
-
+            modelAndView.addObject("blockCrump", true );
             return modelAndView;
         }
 
@@ -243,6 +243,7 @@ public class MIndex {
 
             modelAndView.addObject("details", hashMap);
             modelAndView.addObject("pageName", reqUrl);
+            modelAndView.addObject("blockCrump", true );
 
             return modelAndView;
         }
