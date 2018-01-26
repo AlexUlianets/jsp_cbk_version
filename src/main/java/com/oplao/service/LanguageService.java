@@ -31,10 +31,15 @@ public class LanguageService {
         String countryName = currentCity.getString("countryName");
         String[] parsedUrl = path.split("/");
         char hrIndex = 3;
-        if(parsedUrl.length >=3) {
-            hrIndex = parsedUrl[3].charAt(parsedUrl[3].length() - 1);
+        if(!path.contains("countries")) {
+            if (parsedUrl.length >= 3) {
+                hrIndex = parsedUrl[3].charAt(parsedUrl[3].length() - 1);
+            }
         }
-        if (path.contains("widgets")) {
+
+        if(path.contains("countries")){
+           return generateFrontPageContent(resourceBundle, city, countryName, languageCode);
+        } else if (path.contains("widgets")) {
             return generateWidgetContent(resourceBundle);
         } else if (path.equals("/") || path.equals("%2F")||path.split("/").length == 4 && !path.contains("widgets")) {
             return generateFrontPageContent(resourceBundle, city, countryName, languageCode);

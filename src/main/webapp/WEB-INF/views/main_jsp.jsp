@@ -250,6 +250,9 @@
 
     </section><!-- end top page -->
 
+    {{temperature}}
+    <div class="temperature-heading" style="font-size:20px"><a href="/{{currentCountryCode}}/countries">Countries</a> -- <a href="/{{currentCountryCode}}/countries/{{temperature.country}}">{{temperature.country}}</a> -- <a href="/{{currentCountryCode}}/weather/{{selectedCity}}">{{temperature.city}}</a></div>
+
     <div ng-include="'templates/body.html'"></div>
 
     <div ng-include="'templates/footer.html'"></div>

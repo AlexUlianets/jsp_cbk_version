@@ -96,7 +96,7 @@ public class SearchService {
                 }
                 clearCookies(request, response);
 
-                Cookie c =new Cookie(cookieName, URLEncoder.encode(new String(arr.toString().getBytes(), "UTF-8"), "UTF-8"));
+                Cookie c = new Cookie(cookieName, URLEncoder.encode(arr.toString(), "UTF8"));
                 c.setPath("/");
                 c.setMaxAge(60 * 60 * 24 * 365 * 10);
                 response.addCookie(c);
@@ -134,7 +134,7 @@ public class SearchService {
 
                             Cookie c = null;
                             try {
-                                c = new Cookie(cookieName, URLEncoder.encode(new String(array.toString().getBytes(), "UTF-8"), "UTF-8"));
+                                 c = new Cookie(cookieName, URLEncoder.encode(array.toString(), "UTF8"));
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
@@ -415,7 +415,7 @@ public class SearchService {
                 clearCookies(request, response);
                 Cookie c = null;
                 try {
-                    c = new Cookie(cookieName, URLEncoder.encode(new String(array.toString().getBytes(), "UTF-8"), "UTF-8"));
+                     c = new Cookie(cookieName, URLEncoder.encode(array.toString(), "UTF8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -594,7 +594,83 @@ public class SearchService {
         return null;
     }
 
+public List<List> getCountries(String langCode){
 
+        if(langCode == ""){
+            langCode = "en";
+        }
+        langCode = LanguageUtil.validateOldCountryCodes(langCode);
+        List<JSONObject> data = null;
+    try {
+        data = findByOccurences("https://bd.oplao.com/country/index.json");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    List<Map<String, String>> res = new ArrayList<Map<String, String>>();
+
+    for (int i = 0; i < data.size(); i++){
+        HashMap currentMap = (HashMap) data.get(i).toMap();
+        for (int j = 0; j < ((ArrayList)currentMap.get("alternateNames")).size(); j++){
+            HashMap elem =  ((HashMap)((ArrayList) currentMap.get("alternateNames")).get(j));
+                if (elem.get("isoLanguage").equals(langCode)) {
+                    HashMap map2 = new HashMap();
+                    map2.put("name", elem.get("alternateName"));
+                    map2.put("asciiName", ((String)currentMap.get("name")).toLowerCase().replace(" ", "_"));
+                    res.add(map2);
+                    break;
+                }
+                continue;
+        }
+    }
+
+
+    Collections.sort(res, new Comparator<Map<String, String>>() {
+        public int compare(final Map<String, String> o1, final Map<String, String> o2) {
+            return o1.get("name").compareTo(o2.get("name"));
+        }
+    });
+
+    Iterator iterator = res.iterator();
+    List<List> result = new ArrayList<>();
+    List<HashMap> workList = new ArrayList<>();
+    char firstLet = ' ';
+    while (iterator.hasNext()){
+        HashMap country = (HashMap)iterator.next();
+        firstLet = ((String)country.get("name")).charAt(0);
+        if(res.get(0).equals(country)){
+            workList.add(country);
+        }else {
+            char sep;
+            try {
+               sep  = workList.get(workList.size() - 1).get("name").toString().charAt(0);
+            }catch (IndexOutOfBoundsException ex){
+                sep = country.get("name").toString().charAt(0);
+            }
+            if(firstLet == sep){
+                workList.add(country);
+            }else {
+                result.add(workList);
+                workList = new ArrayList<>();
+            }
+        }
+
+    }
+        return result;
+}
+
+public Map getCountryInfo(String countryName, String langCode){
+    countryName = countryName.substring(0,1).toUpperCase()+countryName.substring(1, countryName.length());
+    Map data = null;
+
+    try {
+        data = WeatherService.readJsonFromUrl("https://bd.oplao.com/country/find.json?name="+countryName+"&lang=" + langCode).toMap();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return data;
+}
 //    public HashMap<String, String> generateMetaTitle(String cookieValue, String path){
 //        List<String> values = Arrays.asList(path.split("/"));
 //        if(cookieValue.equals("")){
@@ -776,7 +852,7 @@ public class SearchService {
 
             Cookie cookie = null;
             try {
-                cookie = new Cookie(cookieName, URLEncoder.encode(new String(resArray.toString().getBytes(), "UTF-8"), "UTF-8"));
+                 cookie  = new Cookie(cookieName, URLEncoder.encode(resArray.toString(), "UTF8"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

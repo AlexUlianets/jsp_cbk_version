@@ -586,6 +586,7 @@ public class WeatherService {
         result.put("geonameId", city.getInt("geonameId"));
         result.put("langCode", langCode);
         result.put("city", cityName);
+        result.put("asciiName", city.getString("asciiName"));
 
         return result;
     }
