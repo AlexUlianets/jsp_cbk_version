@@ -303,5 +303,19 @@
     }
 
 </script>
+<script type="text/javascript">
+    <!--
+    document.write(VK.Share.button({
+        url: 'http://<%=request.getServerName()%>:<%=request.getServerPort()%>${requestScope['javax.servlet.forward.request_uri']}',
+        title: '${details.title}',
+        description: '${details.description}',
+        image: 'http://<%=request.getServerName()%>:<%=request.getServerPort()%>/images/share.jpg',
+        noparse: true
+    }));
+    -->
+</script>
+
+
+
 </body>
 </html>
