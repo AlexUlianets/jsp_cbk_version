@@ -18,6 +18,14 @@
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="${details.description}"/>
     <meta property="og:image" content="http://<%=request.getServerName()%>:<%=request.getServerPort()%>/images/share.jpg"/>
+
+
+    <meta name="twitter:card" content="http://<%=request.getServerName()%>:<%=request.getServerPort()%>/images/share.jpg">
+    <meta name="twitter:site" content="http://<%=request.getServerName()%>:<%=request.getServerPort()%>${requestScope['javax.servlet.forward.request_uri']}">
+    <meta name="twitter:title" content="${details.title}">
+    <meta name="twitter:description" content="${details.description}">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="http://<%=request.getServerName()%>:<%=request.getServerPort()%>/images/share.jpg">
     <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
