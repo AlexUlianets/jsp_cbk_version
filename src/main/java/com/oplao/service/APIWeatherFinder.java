@@ -11,7 +11,7 @@ import static com.oplao.service.WeatherService.readJsonFromUrl;
 public class APIWeatherFinder {
 
      static final String BASE_URL = "http://api.worldweatheronline.com/premium/v1/";
-    static final String KEY = "?key=gwad8rsbfr57wcbvwghcps26";
+    static final String KEY = "?key=kxz3zwcq55a7rkb48tqxjh9e";
     static final String FORMAT = "json";
 
     DateTime dateTime;

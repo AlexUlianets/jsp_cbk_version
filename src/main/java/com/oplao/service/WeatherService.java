@@ -116,7 +116,7 @@ public class WeatherService {
         JSONObject jsonObject = null;
 
         try{
-            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))) + "&cc=no&fx=yes&num_of_days=1&tp=24&showlocaltime=no");
+            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))) + "&cc=no&fx=yes&num_of_days=1&tp=24&showlocaltime=no");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -497,7 +497,7 @@ public class WeatherService {
         Locale locale = new Locale(langCode, LanguageUtil.getCountryCode(langCode));
         ResourceBundle bundle = ResourceBundle.getBundle("messages_"+langCode, locale);
         try{
-           jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=6&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+           jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=6&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
         }catch (IOException e){
             Application.log.warning("Astronomy request error");
             e.printStackTrace();
@@ -545,11 +545,17 @@ public class WeatherService {
             List<String> slavCodes = Arrays.asList("ua", "by", "ru");
             JSONObject jsonObject = null;
         try {
-          jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=1&date=" + dateTime.getYear() + "-" + dateTime.getMonthOfYear() + "-" + dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+          jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=1&date=" + dateTime.getYear() + "-" + dateTime.getMonthOfYear() + "-" + dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
         }catch (IOException e){
             Application.log.warning("Header data request error");
             e.printStackTrace();
         }
+            List<JSONObject> enArr = null;
+            try {
+               enArr = SearchService.findByOccurences("https://bd.oplao.com/geoLocation/find.json?lang=en&max=10&geonameId="+city.get("geonameId"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             HashMap map = (HashMap)jsonObject.toMap().get("data");
             ArrayList<HashMap> weather = (ArrayList<HashMap>)map.get("weather");
             HashMap weatherData = weather.get(0);
@@ -561,6 +567,7 @@ public class WeatherService {
 
             String locWeather = LanguageService.encode(bundle.getString("locationWeather"));
 
+        result.put("countryEn", enArr.get(0).getString("countryName"));
         result.put("cityWeather",  MessageFormat.format(locWeather, LanguageUtil.validateSlavCurrentCode(cityName.replaceAll("%20", " "), langCode)));
         result.put("country", city.get("countryName"));
         result.put("countryCode", Arrays.asList(SearchService.validCountryCodes).contains(countryCode)?countryCode:"en");
@@ -600,7 +607,7 @@ public class WeatherService {
             dateTime = new DateTime(date);
         }
         try {
-            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/".concat(past?"past-weather":"weather")+".ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/".concat(past?"past-weather":"weather")+".ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
         }catch (IOException e){
             e.printStackTrace();
             Application.log.warning("Detailed forecast request error");
@@ -638,7 +645,7 @@ public class WeatherService {
         JSONObject jsonObject = null;
         DateTime dateTime = new DateTime(DateTimeZone.forID((String)((JSONObject)city.get("timezone")).get("timeZoneId")));
         try {
-            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
         }catch (IOException e){
             e.printStackTrace();
             Application.log.warning("Detailed forecast request error");
@@ -670,7 +677,7 @@ public class WeatherService {
         
         JSONObject jsonObject = null;
         try {
-            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+            jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
         }catch (IOException e){
             e.printStackTrace();
             Application.log.warning("Detailed forecast request error");
@@ -713,7 +720,7 @@ public class WeatherService {
         JSONObject jsonObject = null;
 
             try {
-                jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=24&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q="+ String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+                jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=24&date="+dateTime.getYear()+"-" + dateTime.getMonthOfYear() + "-" +dateTime.getDayOfMonth() + "&q="+ String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
             }catch (IOException e){
                 e.printStackTrace();
                 Application.log.warning("Uv index request error");
@@ -805,7 +812,7 @@ public class WeatherService {
             }
             JSONObject jsonObject = null;
             try {
-                jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=gwad8rsbfr57wcbvwghcps26&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+ dt1.getYear() + "-" + dt1.getMonthOfYear() + "-" + dt1.getDayOfMonth()+ "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
+                jsonObject = readJsonFromUrl("http://api.worldweatheronline.com/premium/v1/weather.ashx?key=kxz3zwcq55a7rkb48tqxjh9e&format=json&show_comments=no&mca=no&cc=yes&tp=1&date="+ dt1.getYear() + "-" + dt1.getMonthOfYear() + "-" + dt1.getDayOfMonth()+ "&q=" + String.valueOf(city.get("lat")+ "," + String.valueOf(city.get("lng"))));
                 week.add(((HashMap)(((ArrayList)((JSONObject)jsonObject.get("data")).toMap().get("weather")).get(0))));
             }catch (IOException e){
                 e.printStackTrace();

@@ -11,18 +11,22 @@
                                 <li ng-repeat="i in dynamicTableData track by $index" class="{{$index==0?'active':''}} tabclass{{$index+1}}" rel="tab{{$index+1}}" ng-click="selectTab($index+1)">
                                     <div class="wrn-block">
                                         <div class="wrn-top">
-                                            <div class="wrn-today">{{$index==0?pageContent.today:''}}</div>
+                                            <div class="wrn-today"></div>
                                             {{i[1].dayOfMonth}} {{i[1].monthOfYear}}, {{i[1].dayOfWeek}}
+                                            <div class="wrn-temp" ng-if="page=='three-days'">
+                                                <span class="min-temperature">{{local.typeTemp=='C'?i[1].mintempC:i[1].mintempF}} {{local.typeTemp}}</span>
+                                                <span class="max-temperature">{{local.typeTemp=='C'?i[1].maxtempC:i[1].maxtempF}} {{local.typeTemp}}</span>
+                                            </div>
                                         </div>
                                         <div class="wrn-bot">
                                             <div class="wrn-img">
                                                 <img ng-src="svg/wicons_svg/{{i[1].weatherCode}}_night.svg" style="    width: 45px;    text-align: center;    margin: auto;"  ng-if="i[1].isDay== false ">
                                                 <img ng-src="svg/wicons_svg/{{i[1].weatherCode}}_day.svg" style="    width: 45px;    text-align: center;    margin: auto;"  ng-if="i[1].isDay== true ">
                                             </div>
-                                            <div class="wrn-temp">
-                                                <span class="min-temperature">{{local.typeTemp=='C'?i[1].mintempC:i[1].mintempF}} {{local.typeTemp}}</span>
-                                                <span class="max-temperature">{{local.typeTemp=='C'?i[1].maxtempC:i[1].maxtempF}} {{local.typeTemp}}</span>
-                                            </div>
+                                        </div>
+                                        <div class="wrn-temp" ng-if="page!='three-days'">
+                                            <span class="min-temperature">{{local.typeTemp=='C'?i[1].mintempC:i[1].mintempF}} {{local.typeTemp}}</span>
+                                            <span class="max-temperature">{{local.typeTemp=='C'?i[1].maxtempC:i[1].maxtempF}} {{local.typeTemp}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -38,7 +42,7 @@
                                 <li class="active tabclass1" rel="tab1" ng-click="selectTab(1)">
                                     <div class="wrn-block">
                                         <div class="wrn-top">
-                                            <div class="wrn-today" ng-bind="pateContent.today"></div>
+                                            <div class="wrn-today"></div>
                                             {{dynamicTableData[0][1].dayOfMonth}} {{dynamicTableData[0][1].monthOfYear}}, {{dynamicTableData[0][1].dayOfWeek}}
                                         </div>
                                         <div class="wrn-bot">
