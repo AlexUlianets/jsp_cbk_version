@@ -237,14 +237,14 @@
 
                 <div class="weather-time">
                     <div class="weather-time-block">
-                        <div class="wtb-img">
+                        <div class="wtb-img" style="height: 44px!important;">
                             <span class="helper"></span>
                             <img src="images/svg-sprite/sunrise-weather-symbol.svg" alt="" style="width: 35px;">
                         </div>
                         <div class="wt-time"  ng-bind="getTime(temperature.sunrise)"></div>
                     </div>
                     <div class="weather-time-block">
-                        <div class="wtb-img">
+                        <div class="wtb-img" style="height: 44px!important;">
                             <span class="helper"></span>
                             <!-- <i class="icon pm"></i> -->
                             <img src="images/svg-sprite/sunset-fill-interface-symbol.svg" alt="" style="width: 35px;">
@@ -303,19 +303,5 @@
     }
 
 </script>
-<script type="text/javascript">
-    <!--
-    document.write(VK.Share.button({
-        url: 'http://<%=request.getServerName()%>:<%=request.getServerPort()%>${requestScope['javax.servlet.forward.request_uri']}',
-        title: '${details.title}',
-        description: '${details.description}',
-        image: 'http://<%=request.getServerName()%>:<%=request.getServerPort()%>/images/share.jpg',
-        noparse: true
-    }));
-    -->
-</script>
-
-
-
 </body>
 </html>

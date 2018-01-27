@@ -15,7 +15,7 @@ app.controller('MapMarkerCtrl', function ($scope, $element, mapMarkerConstructor
         this.style = new setColor(location.temp_C)[0][2];
     };
     const setColor = function (temp) {
-        var tempList = [[-40, -31, "betweenM40andM30"], [-30, -21, "betweenM30andM20"], [-20, -16, "betweenM20andM15"], [-15, -10, "betweenM15andM10"], [-9, -5, "betweenM10andM5"], [-5, -1, "betweenM5and0"], [0, 4, "between0and5"], [5, 9, "between5and10"], [10, 14, "between10and15"], [15, 19, "between15and20"], [20, -24, "between20and25"], [25, 29, "between25and30"], [30, 39, "between30and40"], [40, 50, "between40and50"]];
+        var tempList = [[-40, -31, "betweenM40andM30"], [-30, -21, "betweenM30andM20"], [-20, -16, "betweenM20andM15"], [-15, -10, "betweenM15andM10"], [-9, -5, "betweenM10andM5"], [-4, 0, "betweenM5and0"], [-1, 5, "between0and5"], [5, 9, "between5and10"], [10, 14, "between10and15"], [15, 19, "between15and20"], [20, -24, "between20and25"], [25, 29, "between25and30"], [30, 39, "between30and40"], [40, 50, "between40and50"]];
         return tempList.filter(function (item) {
             return temp >= item[0] && temp <= item[1]
         })

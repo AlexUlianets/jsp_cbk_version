@@ -248,6 +248,13 @@ function loadScript() {
             $('#main-menu , #nav-toggle, #h-menu').removeClass('active');
             $(".blur").removeClass("the-blur");
         });
+        $('.h-lang').on('click', function (e) {
+            e.stopPropagation();
+            $(this).toggleClass('active');
+            $('.temp-wrap').removeClass('open');
+            $('#main-menu , #nav-toggle, #h-menu').removeClass('active');
+            $(".blur").removeClass("the-blur");
+        });
         $('body').on('click', function () {
             $('#h-share').removeClass('active');
             $('.ht-search-input input').val('')

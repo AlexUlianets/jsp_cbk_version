@@ -18,8 +18,6 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
       $scope.nightTransSlav = ["Ніч", "Ночь", "Ноч"];
 
       $http.post('/get_weekly_weather/'+location.pathname.split("/")[1]).then(function (response) {
-          console.log(response);
-          console.log($scope.outTable);
          $scope.$parent.temperatureWeekly = response;
       });
 

@@ -1058,7 +1058,7 @@ ul.tabs li.active .wrn-temp{color:#fff;}
 #weekly-report{padding-top:0px;}
 #nav-toggle em{position:absolute;width:5px;height:5px;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;background:#f30810;display:inline-block;top:2px;right:-9px;}
 }
-@media only screen and (max-width:750px){.oplao-time{float:none;clear:both;display:inline-block;}
+@media only screen and (max-width:750px){.footer-soc a i{margin-top: 28px;}.oplao-time{float:none;clear:both;display:inline-block;}
 .weather-time-block{float:left;}
 .weather-time{display:inline-block;height:auto;float:none;margin-bottom:120px;}
 .weather-time-block:nth-child(1){margin-bottom:0px;margin-right:30px;}
@@ -2876,8 +2876,20 @@ a{
         top: 99px;
     }
 }/*END 800*/
-
+.h-lang > a i{
+    margin-left: -4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 19px;
+}
 @media (max-width: 768px){
+    .h-lang > a i{
+        margin-top: -9px;
+        margin-left: -4px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 19px;
+    }
     .v-year-item img{
         vertical-align: middle;
         margin-top: 14px !important;
@@ -3242,6 +3254,8 @@ a{
 
 }/*END 380*/
 
+
+
 #gmap {
     position: relative;
     overflow: hidden;
@@ -3310,11 +3324,11 @@ map-marker.active {
 }
 
 .betweenM10andM5:after {
-    border-color: #635cb7 transparent transparent transparent;
+    border-color: #71e29c transparent transparent transparent;
 }
 
 .bbetweenM10andM5 {
-    background: #635cb7 none !important;
+    background: #71e29c none !important;
 }
 
 .betweenM5and0:after {
