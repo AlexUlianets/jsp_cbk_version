@@ -1874,7 +1874,7 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
     text-align: center;
 }
 .tb-tabs.tb-tabs-full .wrn-block .wrn-top{
-    margin: 0 5px;
+    margin-left: 17%;
     line-height: 22px;
     font-size:14px;
 }
@@ -1890,7 +1890,7 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
 
 .tb-tabs.tb-tabs-full .wrn-block .wrn-bot .wrn-img,
 .tb-tabs.tb-tabs-full .wrn-block .wrn-bot .wrn-temp{
-    display: inline-block;
+    /*display: inline-block;*/
     vertical-align: middle;
 }
 
@@ -2811,9 +2811,9 @@ a{
     .tb-without-bord .tb-head{
         border-top: none;
     }
-    .tb-tabs.tb-tabs-full .wrn-block .wrn-top{
-        margin: 0;
-    }
+    /*.tb-tabs.tb-tabs-full .wrn-block .wrn-top{*/
+        /*margin: 0;*/
+    /*}*/
     .tb-slider.tb-tabs-full li{
         min-width: 120px;
     }
