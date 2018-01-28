@@ -801,14 +801,17 @@ ul.tabs li.active .wrn-temp{color:#fff;}
 .tab-arrow{display:none;}
 #weatherYear:before{background:#01caa8;}
 #weatherThreeIcon, #weatherFiveIcon, #weatherDetailedIcon{display:block;margin:-10px 60px 40px 60px;}
-#weatherThreeIcon .wrp-icon, #weatherFiveIcon .wrp-icon, #weatherDetailedIcon .wrp-icon{width:100%;display:table;position:relative;}
+#weatherThreeIcon .wrp-icon, #weatherFiveIcon .wrp-icon, #weatherDetailedIcon .wrp-icon{width:100%;display:flex;position:relative;}
 .wrp-icon .icon{text-align:center;vertical-align:middle;}
 .wrp-icon .icon img{max-height:25px;max-width:30px;width:100%;height:auto;}
 #weatherThreeIcon .wrp-icon .icon:nth-child(4n+5){width:7.8%;}
 #weatherThreeIcon .wrp-icon .icon{width:7%;}
 #weatherFiveIcon .wrp-icon .icon:nth-child(4n+5){width:4.6%;}
-#weatherFiveIcon .wrp-icon .icon{width:4.05%;}
-#weatherDetailedIcon .wrp-icon .icon{width:4.167%;}
+#weatherFiveIcon .wrp-icon .icon{flex: 1;}
+#weatherDetailedIcon .wrp-icon .icon{padding: 5px;
+    padding-bottom: 0;
+    padding-top: 0;
+    flex: 1;}
 #ten-days-forecast h2{font:500 2.4em/33px "Fira Sans", sans-serif;padding-right:24px;color:#4c4c4c;}
 .forecast-table-head{margin-top:50px;width:100%;display:table;background:#eeeeee;}
 .forecast-table-head{z-index:999;}
@@ -1429,7 +1432,9 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
     margin: 0 60px 0 60px;
     display: flex;}
 #weatherThreeIcon .wrp-icon,
-#weatherDetailedIcon .wrp-icon{padding:20px 0 0 0;border-top:1px solid #3ad4ff;}
+#weatherDetailedIcon .wrp-icon{padding: 25px 0 0 0;
+    border-top: 1px solid #3ad4ff;
+    display: flex;}
 .mob_weater a{background:#00e3a9;color:#fff !important;}
 #ten-table .hri-block,
 #ten-table .hri-block-i{width:25%;}
