@@ -60,20 +60,25 @@ public class WidgetService {
 
         HashMap<String, Object> res = new HashMap<>();
         HashMap currentConditions = ((HashMap) ((ArrayList) map.get("current_condition")).get(0));
+
+        int tempC = Integer.parseInt(""+currentConditions.get("temp_C"));
+        int tempF = Integer.parseInt(""+currentConditions.get("temp_F"));
+        int feelsLikeC = Integer.parseInt(""+currentConditions.get("FeelsLikeC"));
+        int feelsLikeF = Integer.parseInt(""+currentConditions.get("FeelsLikeF"));
         res.put("hours", dateTime.getHourOfDay());
         res.put("time", dateTime.getHourOfDay() + ":" + dateTime.getMinuteOfHour());
         res.put("date", dateTime.getDayOfMonth() + " " + LanguageService.encode(DateConstants.convertMonthOfYearShort(dateTime.getMonthOfYear(), bundle)).toUpperCase());
         res.put("day", LanguageService.encode(DateConstants.convertDayOfWeek(dateTime.getDayOfWeek(), bundle)).substring(0,3).toLowerCase());
         res.put("city", currentCity.getString("name"));
         res.put("countryCode", currentCity.getString("countryCode"));
-        res.put("feelsLikeC", currentConditions.get("FeelsLikeC"));
-        res.put("feelsLikeF", currentConditions.get("FeelsLikeF"));
+        res.put("feelsLikeC", feelsLikeC>0?"+"+feelsLikeC:feelsLikeC);
+        res.put("feelsLikeF", feelsLikeF>0?"+"+feelsLikeF:feelsLikeF);
         res.put("weatherIconCode", EXT_STATES.get(Integer.parseInt("" + currentConditions.get("weatherCode"))));
         res.put("clarity", LanguageService.encode(bundle.getString("weatherState."+EXT_STATES.get(Integer.parseInt("" + currentConditions.get("weatherCode"))).toStringValue())));
         res.put("pressurehPa", currentConditions.get("pressure"));
         res.put("pressureInch", new BigDecimal(Integer.parseInt("" + currentConditions.get("pressure")) * 0.000296133971008484).setScale(2, BigDecimal.ROUND_UP).doubleValue());
-        res.put("temp_c", currentConditions.get("temp_C"));
-        res.put("temp_f", currentConditions.get("temp_F"));
+        res.put("temp_c", tempC>0?"+"+tempC:tempC);
+        res.put("temp_f", tempF>0?"+"+tempF:tempF);
         res.put("windMph", currentConditions.get("windspeedMiles"));
         res.put("windMs", (int) Math.round(Integer.parseInt("" + currentConditions.get("windspeedKmph")) * 0.27777777777778));
         res.put("windDegree", currentConditions.get("winddirDegree"));
@@ -97,12 +102,14 @@ public class WidgetService {
             HashMap map = apiWeatherFinder.findWeatherByDate();
             HashMap weather2Pm = ((HashMap) ((ArrayList) ((HashMap) ((ArrayList) map.get("weather")).get(0)).get("hourly")).get(14));
             HashMap<String, Object> res = new HashMap<>();
+            int tempC = Integer.parseInt(""+weather2Pm.get("tempC"));
+            int tempF = Integer.parseInt(""+weather2Pm.get("tempF"));
             res.put("date", dateTime.getDayOfMonth() + " " + LanguageService.encode(DateConstants.convertMonthOfYearShort(dateTime.getMonthOfYear(), bundle)).toUpperCase());
             res.put("day", LanguageService.encode(DateConstants.convertDayOfWeek(dateTime.getDayOfWeek(), bundle)).substring(0,3).toLowerCase());
             res.put("icon", EXT_STATES.get(Integer.parseInt("" + weather2Pm.get("weatherCode"))));
             res.put("clarity", splitCamelCase(EXT_STATES.get(Integer.parseInt("" + weather2Pm.get("weatherCode"))).toStringValue()));
-            res.put("temp_c", weather2Pm.get("tempC"));
-            res.put("temp_f", weather2Pm.get("tempF"));
+            res.put("temp_c", tempC>0?"+"+tempC:tempC);
+            res.put("temp_f", tempF>0?"+"+tempF:tempF);
             result.add(res);
         }
         return result;
@@ -121,14 +128,15 @@ public class WidgetService {
             HashMap<String, Object> dayMap = new HashMap<>();
             HashMap elem = (HashMap) hourly.get(dayTimesHours[dayTime]);
 
+            int tempC = Integer.parseInt("" + elem.get("tempC"));
+            int tempF = Integer.parseInt("" + elem.get("tempF"));
             dayMap.put("name", dayTimes[dayTime]);
-
             dayMap.put("date", dateTime.getDayOfMonth() + " " + LanguageService.encode(DateConstants.convertMonthOfYearShort(dateTime.getMonthOfYear(), bundle)).toUpperCase());
             dayMap.put("day", LanguageService.encode(DateConstants.convertDayOfWeek(dateTime.getDayOfWeek(), bundle)).substring(0,3).toLowerCase());
             dayMap.put("icon", EXT_STATES.get(Integer.parseInt("" + elem.get("weatherCode"))));
             dayMap.put("clarity", splitCamelCase(EXT_STATES.get(Integer.parseInt("" + elem.get("weatherCode"))).toStringValue()));
-            dayMap.put("temp_c", elem.get("tempC"));
-            dayMap.put("temp_f", elem.get("tempF"));
+            dayMap.put("temp_c", tempC>0?"+"+tempC:tempC);
+            dayMap.put("temp_f", tempF>0?"+"+tempF:tempF);
             result.add(dayMap);
         }
         return result;

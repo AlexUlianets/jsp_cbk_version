@@ -2,31 +2,31 @@ package com.oplao.model;
 
 public class TempMapping {
 
-    private int tempC;
-    private int tempF;
+    private String tempC;
+    private String tempF;
 
 
     public TempMapping(){
 
     }
-    public TempMapping(int tempC, int tempF) {
+    public TempMapping(String tempC, String tempF) {
         this.tempC = tempC;
         this.tempF = tempF;
     }
 
-    public int getTempC() {
+    public String getTempC() {
         return tempC;
     }
 
-    public void setTempC(int tempC) {
+    public void setTempC(String tempC) {
         this.tempC = tempC;
     }
 
-    public int getTempF() {
+    public String getTempF() {
         return tempF;
     }
 
-    public void setTempF(int tempF) {
+    public void setTempF(String tempF) {
         this.tempF = tempF;
     }
 }

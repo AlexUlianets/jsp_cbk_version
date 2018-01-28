@@ -7,7 +7,7 @@ public class DetailedForecastGraphMapping extends TempMapping{
     private double precipInch;
     private String weatherIcon;
 
-    public DetailedForecastGraphMapping(int tempC, int tempF, String date, double precipMM, double precipInch, String weatherIcon) {
+    public DetailedForecastGraphMapping(String tempC, String tempF, String date, double precipMM, double precipInch, String weatherIcon) {
         super(tempC, tempF);
         this.date = date;
         this.precipMM = precipMM;
@@ -32,19 +32,19 @@ public class DetailedForecastGraphMapping extends TempMapping{
         this.weatherIcon = weatherIcon;
     }
 
-    public int getTempC(){
+    public String getTempC(){
         return super.getTempC();
     }
 
-    public int getTempF(){
+    public String  getTempF(){
         return super.getTempF();
     }
 
-    public void setTempC(int tempC){
+    public void setTempC(String tempC){
         super.setTempC(tempC);
     }
 
-    public void setTempF(int tempF){
+    public void setTempF(String tempF){
          super.setTempF(tempF);
     }
 
