@@ -49,7 +49,9 @@ app.controller('not-universal-daysCtrl',['$scope', '$http', '$state','$statePara
             }
 
             $http(sendingTableRequest).success(function (data) {
-                readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+                setTimeout(function () {
+                    readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+                }, 2000);
             })
         }
     } else if($scope.$state.params.page === 'ten-days') {

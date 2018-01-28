@@ -74,7 +74,9 @@ app.controller('hour-by-hourCtrl',['$scope', '$http', '$state','$stateParams', '
         $http(sendingGraphRequest).success(function (data) {
             $scope.dynamicGraphData = data;
             var response=data[[[$scope.selectedTabGraph-1]]][0];
-            readyGet(response, [], $scope.local.typeTemp, 'hour-by-hour', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+            setTimeout(function () {
+                readyGet(response, [], $scope.local.typeTemp, 'hour-by-hour', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+            }, 1000);
         })
     }
 

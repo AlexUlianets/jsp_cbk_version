@@ -60,7 +60,10 @@ app.controller('three-daysCtrl',['$scope', '$http', '$state','$stateParams','$ro
 
             }
             if($scope.$state.params.page === 'three-days') {
-                readyGet($scope.dynamicTableData, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+                setTimeout(function () {
+                    readyGet($scope.dynamicTableData, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+                }, 2000)
+
             }
         })
 
