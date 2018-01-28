@@ -1836,12 +1836,15 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
 
 .tb-tabs .wrn-block .wrn-top{
     border-bottom: none;
-    margin: -17px 24px 0 0px;
     font-size: 20px;
     font-weight: 500;
     padding-top: 15px;
 }
 
+.tb-tabs-header {
+    display: none;
+    visibility: hidden;
+}
 .tb-tabs .wrn-block .wrn-today{
     display: block;
     position: absolute;
@@ -1874,9 +1877,10 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
     text-align: center;
 }
 .tb-tabs.tb-tabs-full .wrn-block .wrn-top{
-    margin-left: 17%;
     line-height: 22px;
-    font-size:14px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: -17px;
 }
 
 .tb-tabs.tb-tabs-full .wrn-block .wrn-bot{

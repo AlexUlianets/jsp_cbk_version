@@ -21,10 +21,15 @@
         </ul>
     </nav>
 </div><!-- end page-nav -->
-
+<div style="position: relative;">
 <!--<div class="temperature-heading" style="font-size:20px"><a href="/{{currentCountryCode}}/countries" ng-bind="pageContent.countries"></a> - <a href="/{{currentCountryCode}}/countries/{{temperature.countryEn}}" ng-bind="temperature.country"></a> - <a href="/{{currentCountryCode}}/weather/{{selectedCity}}">{{temperature.city.replace('%20', ' ')}}</a></div>-->
-
-<div ui-view></div>
+<span  style="text-align: center; display:block; margin-top: 30px;text-align: -webkit-center;position: absolute;
+                                                                                                 top: 30px;
+                                                                                                 width: 100%;" class="load_body">
+                            <img src="/images/cloud_load.gif" style="width: 18%;margin-left: 41%;margin-right: 41%;">
+        </span>
+<div ui-view style="visibility: hidden" class="body_wrapper"></div>
+</div>
 <script>
    function blockUrl(event) {
         event.preventDefault()
