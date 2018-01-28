@@ -2878,7 +2878,6 @@ a{
 }/*END 800*/
 .h-lang > a i{
     margin-left: -4px;
-    font-weight: bold;
     text-transform: uppercase;
     font-size: 19px;
 }
@@ -2886,7 +2885,6 @@ a{
     .h-lang > a i{
         margin-top: -9px;
         margin-left: -4px;
-        font-weight: bold;
         text-transform: uppercase;
         font-size: 19px;
     }
