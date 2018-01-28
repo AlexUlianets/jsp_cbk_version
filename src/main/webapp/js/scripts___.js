@@ -187,9 +187,6 @@ $(document).ready(function () {
         $this.parent().slideUp();
         var $menuIndex = $this.parent().parent().index();
         var block_weater = $('.weather-block-favorite')[0] ? $('.weather-block-favorite') : $('.weather-block-width');
-        if (!$('.weather-block-favorite')[0]) {
-            console.log('true');
-        }
         $('.w' + $menuIndex).remove();
         if ($(window).width() > 480) {
             block_weater.css("width", 100 / ($item.length - 1) + '%');

@@ -12,6 +12,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
             $rootScope.currentCountryCode = ccodes.includes(data.country_code.toLowerCase()) ? data.country_code.toLowerCase() : "en";
         })
     }
+    $rootScope.origin = window.location.origin;
     $rootScope.updateLang = function () {
         var langRequest = {
             method: 'GET',
@@ -67,7 +68,6 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
         $.ajax({cache: true, method: "POST", url: "/get_api_weather"}).done(function (msg) {
             if ($cookies.get("langCookieCode") === undefined || $cookies.get("langCookieCode") === "") {
                 $rootScope.currentCountryCode = msg.countryCode;
-                console.log($rootScope.currentCountryCode)
             }
             $rootScope.temperature = msg;
             $rootScope.get_recent_cities_tabs_func();
@@ -116,7 +116,6 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
         $rootScope.el = e;
         $rootScope.el1 = e1;
         $rootScope.el2 = e2;
-        console.log(e);
         $.ajax({cache: true, method: "POST", url: "/select_city/" + e}).done(function (msg) {
             var url = document.location.pathname.split("/");
             $rootScope.selectedCity = msg.asciiName + "_" + msg.countryCode;

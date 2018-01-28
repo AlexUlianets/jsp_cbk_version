@@ -30,7 +30,6 @@ app.controller('hour-by-hourCtrl',['$scope', '$http', '$state','$stateParams', '
         $scope.hrs = hours;
         var path = window.location.pathname;
         var url = path.split('/');
-        console.log(url)
         if(!path.includes('_')){
             window.location.pathname = path.replace(path.charAt(path.length-2), hours);
         }else{
@@ -80,15 +79,12 @@ app.controller('hour-by-hourCtrl',['$scope', '$http', '$state','$stateParams', '
     }
 
     $scope.selectTab = function (index) {
-        console.log(index);
         activateTab(index);
         $scope.selectedTab = index;
         $scope.getData();
     }
 
     $scope.selectTabGraph = function (index) {
-        // console.log(index);
-        // activateTab(index);
         $scope.selectedTabGraph = index;
         $scope.getDataForGraph();
     }

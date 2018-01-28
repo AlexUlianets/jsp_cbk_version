@@ -39,7 +39,6 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
 
       $http(sendingTableRequest).success(function (data) {
           $scope.$parent.dynamicTableData = data;
-          console.log($scope.$parent.dynamicTableData)
       })
 
 

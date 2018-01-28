@@ -26,7 +26,6 @@ app.controller('three-daysCtrl',['$scope', '$http', '$state','$stateParams','$ro
         }
         $http(sendingTableRequest).success(function (data) {
             $scope.dynamicTableData = data;
-            console.log($scope.dynamicTableData);
 
             if($scope.page=='fourteen-days'){
                 setTimeout(function () {

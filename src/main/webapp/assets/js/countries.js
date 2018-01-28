@@ -15,14 +15,11 @@ app.controller('countriesCtrl',['$scope','$rootScope', '$http', function($scope,
 
         $http(req).success(function (data) {
             $scope.countriesList = data;
-            console.log(data);
         })
 
     };
 
     $scope.initSelectedCountry = function () {
-
-        console.log(location.pathname.split("/"));
         var req = {
             method: 'GET',
             url: '/get_country_info/' + location.pathname.split("/")[location.pathname.split("/").length-1],

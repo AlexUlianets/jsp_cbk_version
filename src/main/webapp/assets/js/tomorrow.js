@@ -16,7 +16,6 @@ app.controller('tomorrowCtrl', function($scope, $http) {
 
     $http(sendingTableRequest).success(function (data) {
         $scope.$parent.dynamicTableData = data;
-        console.log($scope.$parent.dynamicTableData)
     })
 
 
