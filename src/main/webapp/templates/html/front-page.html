@@ -49,7 +49,7 @@
 				<section id="temperature-map">
 					<div class="temperature-heading">
 						<h2 ng-bind="pageContent.temperatureMap"></h2>
-						<a href="/{{currentCountryCode}}/weather/map/{{selectedCity}}" class="t-view-map" ng-bind="pageContent.viewMap"></a>
+						<a href="{{origin}}/{{currentCountryCode}}/weather/map/{{selectedCity}}" class="t-view-map" ng-bind="pageContent.viewMap"></a>
 					</div>
                     <figure id="map">
                       <div id="gmap"></div>
@@ -101,7 +101,7 @@
                                 <div class="wbl-temp">{{local.typeTemp=='C'?elem.temp_C:elem.temp_F}}° <span>{{local.typeTemp}}</span></div>
                             </div>
                             <div class="wb-right">
-                                <a href="/{{currentCountryCode}}/weather/outlook/{{elem.name+'_'+elem.countryCode}}">
+                                <a href="{{origin}}/{{currentCountryCode}}/weather/outlook/{{elem.name+'_'+elem.countryCode}}">
                                     <h3>{{elem.name}}</h3>
                                     <h4>{{elem.countryName}}</h4>
                                 </a>

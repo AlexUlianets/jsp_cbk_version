@@ -191,7 +191,7 @@
             </div>
             <div class="h-full-forecast" ng-if="$state.params.day=='front-page'">
                 <div class="container">
-                    <a href="/{{currentCountryCode}}/weather/outlook/{{selectedCity}}"> {{pageContent.fullForecast}}<span class="arr-right-white"></span></a>
+                    <a href="{{origin}}/{{currentCountryCode}}/weather/outlook/{{selectedCity}}"> {{pageContent.fullForecast}}<span class="arr-right-white"></span></a>
                 </div>
             </div>
         </div><!-- end container -->

@@ -30,7 +30,6 @@ app.controller('hour-by-hourCtrl',['$scope', '$http', '$state','$stateParams', '
         $scope.hrs = hours;
         var path = window.location.pathname;
         var url = path.split('/');
-        console.log(url)
         if(!path.includes('_')){
             window.location.pathname = path.replace(path.charAt(path.length-2), hours);
         }else{
@@ -75,20 +74,19 @@ app.controller('hour-by-hourCtrl',['$scope', '$http', '$state','$stateParams', '
         $http(sendingGraphRequest).success(function (data) {
             $scope.dynamicGraphData = data;
             var response=data[[[$scope.selectedTabGraph-1]]][0];
-            readyGet(response, [], $scope.local.typeTemp, 'hour-by-hour', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+            setTimeout(function () {
+                readyGet(response, [], $scope.local.typeTemp, 'hour-by-hour', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+            }, 1000);
         })
     }
 
     $scope.selectTab = function (index) {
-        console.log(index);
         activateTab(index);
         $scope.selectedTab = index;
         $scope.getData();
     }
 
     $scope.selectTabGraph = function (index) {
-        // console.log(index);
-        // activateTab(index);
         $scope.selectedTabGraph = index;
         $scope.getDataForGraph();
     }
