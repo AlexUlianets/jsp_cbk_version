@@ -78,7 +78,7 @@ public class WidgetService {
         res.put("pressurehPa", currentConditions.get("pressure"));
         res.put("pressureInch", new BigDecimal(Integer.parseInt("" + currentConditions.get("pressure")) * 0.000296133971008484).setScale(2, BigDecimal.ROUND_UP).doubleValue());
         res.put("temp_c", tempC>0?"+"+tempC:tempC);
-        res.put("temp_f", tempF>0?"+"+tempF:tempF);
+        res.put("temp_f", currentConditions.get("temp_F"));
         res.put("windMph", currentConditions.get("windspeedMiles"));
         res.put("windMs", (int) Math.round(Integer.parseInt("" + currentConditions.get("windspeedKmph")) * 0.27777777777778));
         res.put("windDegree", currentConditions.get("winddirDegree"));
@@ -109,7 +109,7 @@ public class WidgetService {
             res.put("icon", EXT_STATES.get(Integer.parseInt("" + weather2Pm.get("weatherCode"))));
             res.put("clarity", splitCamelCase(EXT_STATES.get(Integer.parseInt("" + weather2Pm.get("weatherCode"))).toStringValue()));
             res.put("temp_c", tempC>0?"+"+tempC:tempC);
-            res.put("temp_f", tempF>0?"+"+tempF:tempF);
+            res.put("temp_f", weather2Pm.get("temp_F"));
             result.add(res);
         }
         return result;
@@ -136,7 +136,7 @@ public class WidgetService {
             dayMap.put("icon", EXT_STATES.get(Integer.parseInt("" + elem.get("weatherCode"))));
             dayMap.put("clarity", splitCamelCase(EXT_STATES.get(Integer.parseInt("" + elem.get("weatherCode"))).toStringValue()));
             dayMap.put("temp_c", tempC>0?"+"+tempC:tempC);
-            dayMap.put("temp_f", tempF>0?"+"+tempF:tempF);
+            dayMap.put("temp_f", elem.get("temp_F"));
             result.add(dayMap);
         }
         return result;

@@ -401,7 +401,7 @@ public class SearchService {
         int tempF = Integer.parseInt("" + currentCondition.get("temp_F"));
         result.put("weatherCode",(WeatherService.EXT_STATES.get(Integer.parseInt((String)currentCondition.get("weatherCode")))));
         result.put("tempC", tempC>0?"+"+tempC:tempC);
-        result.put("tempF", tempF>0?"+"+tempF:tempF);
+        result.put("tempF", currentCondition.get("temp_F"));
         result.put("city", cityName.replace("%20", " "));
         result.put("countryCode", city.getString("countryCode"));
         result.put("countryName", city.getString("countryName"));
@@ -480,7 +480,7 @@ public class SearchService {
             int tempC = Integer.parseInt("" + currentConditions.get("temp_C"));
             int tempF = Integer.parseInt("" + currentConditions.get("temp_F"));
             map.put("temp_C", tempC > 0? "+"+tempC:tempC);
-            map.put("temp_F", tempF > 0?"+"+tempF:tempF);
+            map.put("temp_F", tempF);
             map.put("weatherCode", WeatherService.EXT_STATES.get(Integer.parseInt("" + (currentConditions.get("weatherCode")))));
             map.put("isDay", dateTime.getHourOfDay()>6 && dateTime.getHourOfDay()<18);
             result.add(map);
@@ -506,7 +506,7 @@ public class SearchService {
             int tempC = Integer.parseInt("" + currentConditions.get("temp_C"));
             int tempF = Integer.parseInt("" + currentConditions.get("temp_F"));
             hm.put("temp_C", tempC>0?"+"+tempC:tempC);
-            hm.put("temp_F", tempF>0?"+"+tempF:tempF);
+            hm.put("temp_F", weather.get("temp_F"));
             hm.put("weatherCode", WeatherService.EXT_STATES.get(Integer.parseInt("" + (currentConditions.get("weatherCode")))));
             hm.put("isDay", dateTime.getHourOfDay()>6 && dateTime.getHourOfDay()<18);
             result.add(hm);

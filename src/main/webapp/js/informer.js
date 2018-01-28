@@ -25,9 +25,6 @@ function LoadInformer(data) {
         document.getElementById('opFeel').innerHTML = "<span>"+opFeelNum+"</span><sup>°"+opFeel+"</sup>"
     }
 
-    if (document.getElementById('opClarity')) {
-        document.getElementById('opClarity').innerHTML = data.clarity
-    }
     if (document.getElementById('opPressure')) {
         var opPressure = document.getElementById('Oplao').getAttribute('data-pressure') == 'hPa' ? 'hPa' : 'in';
         var opPressureNum = document.getElementById('Oplao').getAttribute('data-pressure') == 'hPa' ? data.pressurehPa : data.pressureInch;
@@ -54,9 +51,6 @@ function LoadInformer(data) {
         document.getElementById('opImg').src = url1
         document.getElementById('opImg2').src = url2
         document.getElementById('opImg3').src = url3
-        document.getElementById('opClarity').innerHTML = data.threeDays[0].clarity
-        document.getElementById('opClarity2').innerHTML = data.threeDays[1].clarity
-        document.getElementById('opClarity3').innerHTML = data.threeDays[2].clarity
 
 
         var temp = document.getElementById('Oplao').getAttribute('data-temp') == 'F' ? 'F' : 'C';
@@ -89,9 +83,7 @@ function LoadInformer(data) {
         document.getElementById('opImg1').src = url1
         document.getElementById('opImg2').src = url2
         document.getElementById('opImg3').src = url3
-        document.getElementById('opClarity1').innerHTML = data.threeDays[0].clarity
-        document.getElementById('opClarity2').innerHTML = data.threeDays[1].clarity
-        document.getElementById('opClarity3').innerHTML = data.threeDays[2].clarity
+
 
 
         var temp1 = document.getElementById('Oplao').getAttribute('data-temp') == 'F' ? 'F' : 'C';

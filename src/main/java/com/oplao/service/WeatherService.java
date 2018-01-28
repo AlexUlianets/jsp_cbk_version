@@ -136,9 +136,9 @@ public class WeatherService {
             res.put("month", "" + String.valueOf(elem.get("name")).substring(0,3));
             res.put("fullMonthName", String.valueOf(elem.get("name")));
             res.put("maxtempC", maxTempC>0?"+"+maxTempC:maxTempC);
-            res.put("maxtempF", maxTempF>0?"+"+maxTempF:maxTempF);
+            res.put("maxtempF", maxTempF);
             res.put("mintempC", minTempC>0?"+"+minTempC:minTempC);
-            res.put("mintempF", minTempF>0?"+"+minTempF:minTempF);
+            res.put("mintempF", minTempF);
             res.put("precipMM", elem.get("avgMonthlyRainfall"));
             res.put("precipInch", elem.get("avgMonthlyRainfall_inch"));
             result.add(res);
@@ -585,7 +585,7 @@ public class WeatherService {
         result.put("hours", dateTime.getHourOfDay());
         result.put("minutes", dateTime.getMinuteOfHour());
         result.put("temp_c", tempC> 0? "+ " + tempC:tempC);
-        result.put("temp_f", tempF >  0 ?  "+ " + tempF:tempF);
+        result.put("temp_f", tempF);
         result.put("feelsLikeC", feelsLikeC > 0? "+ "+ feelsLikeC: feelsLikeC);
         result.put("feelsLikeF", feelsLikeF>0?"+ " + feelsLikeF: feelsLikeF);
         result.put("humidity", currentConditions.get("humidity"));
@@ -642,7 +642,7 @@ public class WeatherService {
             int tempC = Integer.parseInt("" + aHourly.get("tempC"));
             int tempF = Integer.parseInt("" + aHourly.get("tempF"));
             m.put("tempC", tempC> 0?"+"+tempC:tempC);
-            m.put("tempF", tempF>0?"+"+tempF:tempF);
+            m.put("tempF", aHourly.get("temp_F"));
             m.put("date", date);
             m.put("precipMM", aHourly.get("precipMM"));
             m.put("precipInch", new BigDecimal(parseDouble(aHourly.get("precipMM")) * 0.0393700787).setScale(2, BigDecimal.ROUND_UP).doubleValue());
@@ -769,7 +769,7 @@ public class WeatherService {
             HashMap result = new HashMap();
             result.put("year", dateTime.minusYears(i).getYear());
             result.put("tempC", tempC>0?"+"+tempC:tempC);
-            result.put("tempF", tempF>0?"+"+tempF:tempF);
+            result.put("tempF", tempF);
             result.put("weatherCode", weatherCode);
 
             output.add(result);
@@ -866,13 +866,13 @@ public class WeatherService {
        HashMap<String, Object> results = new HashMap<>();
 
        results.put("maxTempC", maxTempC>0?"+"+maxTempC:maxTempC);
-       results.put("maxTempF", maxTempF>0?"+"+maxTempF:maxTempF);
+       results.put("maxTempF", maxTempF);
        results.put("avgMaxTempC", avgMaxTempC>0?"+"+avgMaxTempC:avgMaxTempC);
-       results.put("avgMaxTempF", avgMaxTempF>0?"+"+avgMaxTempF:avgMaxTempF);
+       results.put("avgMaxTempF", avgMaxTempF);
        results.put("minTempC", minTempC>0?"+"+minTempC:minTempC);
-       results.put("minTempF", minTempF>0?"+"+minTempF:minTempF);
+       results.put("minTempF", minTempF);
        results.put("avgMinTempC", avgMinTempC > 0?"+"+avgMinTempC:avgMinTempC);
-       results.put("avgMinTempF", avgMinTempF>0?"+"+avgMinTempF:avgMinTempF);
+       results.put("avgMinTempF", avgMinTempF);
        results.put("totalRainfallMM", totalRainfallMM);
        results.put("totalRainfallInch", totalRainfallInch);
        results.put("windiestMiles", windiestMiles);
@@ -987,8 +987,8 @@ public class WeatherService {
                     LanguageService.encode(bundle.getString("tomorrow")));
             wholeDayMap.put("maxtempC", maxTempC>0?"+"+maxTempC:maxTempC);
             wholeDayMap.put("mintempC", minTempC>0?"+"+minTempC:minTempC);
-            wholeDayMap.put("maxtempF", maxTempF>0?"+"+maxTempF:maxTempF);
-            wholeDayMap.put("mintempF", minTempF>0?"+"+minTempF:minTempF);
+            wholeDayMap.put("maxtempF", maxTempF);
+            wholeDayMap.put("mintempF", minTempF);
             wholeDayMap.put("sunrise", ((HashMap)((ArrayList)weather.get("astronomy")).get(0)).get("sunrise"));
             wholeDayMap.put("sunset", ((HashMap)((ArrayList)weather.get("astronomy")).get(0)).get("sunset"));
             wholeDayMap.put("weatherCode", "" + EXT_STATES.get(parseInt(hourly.size()==8?(((HashMap)hourly.get(5)).get("weatherCode")):(((HashMap)hourly.get(15)).get("weatherCode")))));
@@ -1011,7 +1011,7 @@ public class WeatherService {
                 dayMap.put("time", DateConstants.convertTimeToAmPm(parseInt(elem.get("time"))));
                 dayMap.put("weatherCode", "" + EXT_STATES.get(parseInt(elem.get("weatherCode"))));
                 dayMap.put("tempC", tempC>0?"+"+tempC:tempC);
-                dayMap.put("tempF", tempF>0?"+"+tempF:tempF);
+                dayMap.put("tempF", weather.get("temp_F"));
                 dayMap.put("feelsLikeC", feelsLikeC>0?"+"+feelsLikeC:feelsLikeC);
                 dayMap.put("feelsLikeF", feelsLikeF>0?"+"+feelsLikeF:feelsLikeF);
                 dayMap.put("precipChance", pastWeather?"0":elem.get("chanceofrain"));
@@ -1089,8 +1089,8 @@ public class WeatherService {
             wholeDayMap.put("dayOfWeek", LanguageService.encode(DateConstants.convertDayOfWeek(dateTime.getDayOfWeek(), bundle)).substring(0,3));
             wholeDayMap.put("maxtempC", maxTempC> 0? "+"+maxTempC:maxTempC);
             wholeDayMap.put("mintempC", minTempC>0?"+"+minTempC:minTempC);
-            wholeDayMap.put("maxtempF", maxTempF> 0?"+"+maxTempF:maxTempF);
-            wholeDayMap.put("mintempF", minTempF>0?"+"+minTempF:minTempF);
+            wholeDayMap.put("maxtempF", maxTempF);
+            wholeDayMap.put("mintempF", minTempF);
             wholeDayMap.put("weatherCode", "" + EXT_STATES.get(parseInt(((HashMap)hourly.get(8)).get("weatherCode"))));
             wholeDayMap.put("isDay", dateTime.getHourOfDay()>6 && dateTime.getHourOfDay()<18);
 
@@ -1111,7 +1111,7 @@ public class WeatherService {
                 dayMap.put("time", dayTimes[dayTime]);
                 dayMap.put("weatherCode", "" + EXT_STATES.get(parseInt(elem.get("weatherCode"))));
                 dayMap.put("tempC", tempC > 0? "+"+tempC:tempC);
-                dayMap.put("tempF", tempF>0? "+"+tempF:tempF);
+                dayMap.put("tempF", tempF);
                 dayMap.put("feelsLikeC", feelsLikeC>0?"+"+feelsLikeC:feelsLikeC);
                 dayMap.put("feelsLikeF", feelsLikeF>0?"+"+feelsLikeF:feelsLikeF);
                 dayMap.put("precipChance", elem.get("chanceofrain"));

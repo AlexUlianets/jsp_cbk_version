@@ -1,4 +1,16 @@
-User-agent: *
+User-Agent: Yandex
+
 Disallow: /admin/
 Disallow: /login/
-sitemap:localhost:8080/sitemap.xml
+Disallow: */en_US/*
+Disallow: */en/*
+Disallow: */de/*
+Disallow: */fr/*
+Disallow: */it/*
+Disallow: */de/*
+Host: https://new.oplao.com
+
+User-Agent: *
+Disallow: /admin/
+Disallow: /login/
+sitemap: https://new.oplao.com/sitemap/sitemap.xml
