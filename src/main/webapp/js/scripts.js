@@ -15,6 +15,18 @@ function loadScript() {
                 // $('.tb-contant').removeClass('inner-html')
             })
         }, 100)
+
+        setTimeout(function () {
+            $('.load_body').fadeOut("slow", function () {
+                $(this).css({'display': 'none'});
+                $('.body_wrapper').css({'visibility': 'visible'});
+                $('.main-bot-banner').css({'visibility': 'visible'});
+
+            })
+        }, 500)
+        setTimeout(function () {
+                $('.tb-tabs-header').css({'display': 'inline-block!important'});
+        }, 1000)
         $('.mob_weater').click(function (e) {
             e.preventDefault()
         });
