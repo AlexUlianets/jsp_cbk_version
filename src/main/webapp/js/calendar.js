@@ -1,7 +1,6 @@
 //CALENDAR
 
 $(function () {
-console.log($('#calendar').length);
     if ($('#calendar').length) {
         if(!$.datepicker.initialized) {
             $.datepicker._updateDatepicker_original = $.datepicker._updateDatepicker;

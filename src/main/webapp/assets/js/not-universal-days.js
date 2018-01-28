@@ -29,7 +29,6 @@ app.controller('not-universal-daysCtrl',['$scope', '$http', '$state','$statePara
         };
 
         $http(sendingTableRequest).then(function (response) {
-            console.log(response);
             $scope.$parent.temperatureWeekly = response;
         })
     }
@@ -50,7 +49,6 @@ app.controller('not-universal-daysCtrl',['$scope', '$http', '$state','$statePara
             }
 
             $http(sendingTableRequest).success(function (data) {
-                console.log(1)
                 readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
             })
         }
