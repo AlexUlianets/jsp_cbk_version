@@ -21,8 +21,8 @@ import java.util.Date;
 
 @Service
 public final class SitemapService {
-    private static final String BASE_URL = "https://localhost:8080";
-    private static final String FILE_LOC = System.getProperty("user.dir") + "\\src\\main\\webapp\\sitemap.xml";
+    private static final String BASE_URL = "https://new.oplao.com";
+    private static final String FILE_LOC = System.getProperty("user.dir") + "\\src\\main\\webapp\\sitemap\\sitemap.xml";
 
 
     public String addToSitemap(String requestUrl) throws Exception {
