@@ -1,26 +1,34 @@
 <div ng-controller="countriesCtrl">
-    <div class="container" ng-init = "initSelectedCountry()">
-        <h1 style="font-size : 24px; margin-top:40px; margin-bottom:40px">{{selectedCountry.name}}</h1>
-
-
-        <div style="margin: 0 auto; width: 960px;">
-
-            <img src="images/flags/{{selectedCountry.name.toLowerCase()}}.png" style="width:16px" height="11px" alt="">
-            {{selectedCountry.phone}}
-            {{selectedCountry.currencyCode}}
-            {{selectedCountry.capital.name}}
-
-            <div ng-repeat="city in selectedCountry.largestCities"><a href="/{{currentCountryCode}}/weather/{{city.name}}_{{city.countryCode}}">{{city.name}}</a></div>
-
-
-            <!--<div ng-repeat="letter in countriesList">-->
-                <!--<div style="clear: both"></div>-->
-                <!--<div style="margin-bottom:20px">-->
-                    <!--<span style="font-size: 20px;">{{letter[0].name.charAt(0)}}</span>-->
-                <!--</div>-->
-                <!--<span class="country" ng-repeat="country in letter"><img src="images/flags/{{country.asciiName}}.png" style="width:16px" height="11px" alt=""><a href="" style="text-decoration: none; color: #484E4F; outline: none;">{{country.name}}</a></span>-->
-            <!--</div>-->
-            <br>
-        </div>
-    </div>
+   <section id="climate-in" ng-init="initSelectedCountry()">
+      <div class="container">
+         <h2 ng-bind="selectedCountry.name"></h2>
+         <div style="clear: both; margin: 10px 10px 10px 0">
+            <div class="glance-row">
+               <div class="glance-left">Phone code: {{selectedCountry.phone}}</div>
+            </div>
+            <div class="glance-row">
+               <div class="glance-left">Currency: {{selectedCountry.currencyCode}}</div>
+            </div>
+            <div class="glance-row">
+               <div class="glance-left">Capital: {{selectedCountry.capital.name}}</div>
+            </div>
+            <div class="glance-row" style="border-bottom: 0!important;">
+               <div class="glance-left">Largest cities:</div>
+               <br>
+               <br>
+               <br>
+               <br>
+               <br>
+               <div style="display: block; margin: 20px 10px 10px 0">
+                  <ul  style="display: block; margin-top: 20px;">
+                     <li  ng-repeat="city in selectedCountry.largestCities">
+                        <span class="country2 search-text1 destination1" ><a href="/{{currentCountryCode}}/weather/{{city.name}}_{{city.countryCode}}" style="text-decoration: none; color: #484E4F; outline: none;">{{city.name}}</a></span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!-- end coordinates -->
 </div>

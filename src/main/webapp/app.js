@@ -301,7 +301,8 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
     }).state('countries', {
         url: "/:lang/countries",
         params: {
-            lang: {squash: true, value: null}
+            lang: {squash: true, value: null},
+            day: "Countries"
         },
         views: {"": {templateUrl: "templates/html/countries.html"}},
         resolve: {
@@ -313,7 +314,8 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
         url: "/:lang/countries/:city",
         params: {
             city: {squash: true, value: null},
-            lang: {squash: true, value: null}
+            lang: {squash: true, value: null},
+            day:  "Countries"
         },
         views: {"": {templateUrl: "templates/html/country.html"}},
         resolve: {

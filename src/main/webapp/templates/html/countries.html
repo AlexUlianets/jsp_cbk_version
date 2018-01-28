@@ -1,17 +1,16 @@
 <div ng-controller="countriesCtrl">
-    <div class="container" ng-init="initCountriesList()">
-    <h1 style="font-size : 24px; margin-top:40px; margin-bottom:40px">{{pageContent.countries}}</h1>
-    <br>
-
-    <div style="margin: 0 auto; width: 960px;">
-        <div ng-repeat="letter in countriesList">
-            <div style="clear: both"></div>
-            <div style="margin-bottom:20px">
-            <span style="font-size: 20px;">{{letter[0].name.charAt(0)}}</span>
-            </div>
-            <span class="country" ng-repeat="country in letter"><img src="images/flags/{{country.asciiName}}.png" style="width:16px" height="11px" alt=""><a href="/{{currentCountryCode}}/countries/{{country.asciiName}}" style="text-decoration: none; color: #484E4F; outline: none;">{{country.name}}</a></span>
-        </div>
-        <br>
-    </div>
-</div>
+   <section id="climate-in" ng-init="initCountriesList()">
+      <div class="container">
+         <h2 ng-bind="pageContent.countries"></h2>
+         <div ng-repeat="letter in countriesList" style="clear: both; margin: 10px 10px 10px 0">
+            <h2 style="font-size: 15px;">{{letter[0].name.charAt(0)}}</h2>
+            <ul  style="display: block">
+               <li ng-repeat="country in letter">
+                  <span class="country search-text1 destination1" ><a href="/{{currentCountryCode}}/countries/{{country.asciiName}}" style="text-decoration: none; color: #484E4F; outline: none;">{{country.name}}</a></span>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </section>
+   <!-- end coordinates -->
 </div>
