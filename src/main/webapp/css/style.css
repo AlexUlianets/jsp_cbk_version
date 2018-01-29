@@ -660,7 +660,7 @@ map-marker.arrow_box img{display:inline-block;margin-top:6px;width: 28px;}
 #hour-by-hour-top,
 #ten-days-forecast,
 #weekly-report{padding-top:35px;}
-#weekly-report h2{font:500 2.4em/33px "Fira Sans", sans-serif;height:33px;padding-right:24px;color:#4c4c4c;margin-bottom:40px;}
+#weekly-report h1{font:500 2.4em/33px "Fira Sans", sans-serif;height:33px;padding-right:24px;color:#4c4c4c;margin-bottom:40px;}
 .weekly-report-nav{margin-top:50px;}
 .weekly-report-nav:after{content:"";display:table;clear:both;}
 .wrn-block{display:block;border-top:1px solid #ebebeb;border-left:1px solid #ebebeb;border-bottom:1px solid #ebebeb;}
@@ -869,7 +869,7 @@ ul.tabs li.active .wrn-temp{color:#fff;}
 .fri-block-i:nth-child(even){background:#fafafa;}
 .forecast-row-inner-wrap{margin-bottom:90px;position:relative;}
 .for-arr-top{position:absolute;left:50%;margin-left:-11px;bottom:-50px;cursor:pointer;}
-#temperature-map-tab h2{font:500 2.4em/1 "Fira Sans", sans-serif;color:#4c4c4c;margin-bottom:32px;}
+#temperature-map-tab h1{font:500 2.4em/1 "Fira Sans", sans-serif;color:#4c4c4c;margin-bottom:32px;}
 .map-tabs{position:relative;}
 .map-tabs ul li{width:25%;float:left;height:78px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 .map-tabs ul li:first-child{border-left:1px solid #ebebeb;}
@@ -936,7 +936,7 @@ ul.tabs li.active .wrn-temp{color:#fff;}
 .dp-right h4{font:500 2em/120px "Fira Sans", sans-serif;color:#4c4c4c;}
 @media only screen and (max-width:480px){.dp-right h4{font-size:1.3em;}
 }
-#hour-by-hour-top h2{font:500 2.4em/1 "Fira Sans", sans-serif;color:#4c4c4c;margin-bottom:45px;}
+#hour-by-hour-top h1{font:500 2.4em/1 "Fira Sans", sans-serif;color:#4c4c4c;margin-bottom:45px;}
 .ht-nav{margin-bottom:20px;}
 .hour-row{width:100%;display:table;border-top:1px solid #ebebeb;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 .hour-row:last-child{border-bottom:1px solid #ebebeb;}

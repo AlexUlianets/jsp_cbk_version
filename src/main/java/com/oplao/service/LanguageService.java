@@ -82,7 +82,7 @@ public class LanguageService {
         boolean isSlav = LanguageUtil.isSlav(langCode);
         HashMap<String, String> map = generateMainContent(bundle);
         map.put("aboveGraph", encode(bundle.getString("aboveGraphHourly")));
-        map.put("aboveTable", encode(bundle.getString("aboveTableHourly")));
+        map.put("aboveTable", langCode.equals("ru")? MessageFormat.format(encode(bundle.getString("aboveTableHourly")), LanguageUtil.validateSlavCurrentCode(city, langCode)):encode(bundle.getString("aboveTableHourly")));
         map.put("oneHour", encode(bundle.getString("oneHour")));
         map.put("threeHour", encode(bundle.getString("threeHour")));
         map.put("inGraphTitle", encode(bundle.getString("aboveGraphHourly")));
@@ -97,7 +97,7 @@ public class LanguageService {
     private HashMap generatePastWeatherContent(ResourceBundle bundle, String city, String country, String langCode, char hrIndex) {
         boolean isSlav = LanguageUtil.isSlav(langCode);
         HashMap<String, String> map = generateMainContent(bundle);
-        map.put("aboveTable", encode(bundle.getString("aboveTablePastWeather")));
+        map.put("aboveTable", langCode.equals("ru")?formatLocation(bundle.getString("aboveTablePastWeather"), city, country, langCode):encode(bundle.getString("aboveTablePastWeather")));
         map.put("aboveGraph", encode(bundle.getString("aboveGraphPastWeather")));
         map.put("inGraphTitle", encode(bundle.getString("aboveGraphPastWeather")));
         map.put("pickADate", encode(bundle.getString("pickDate")));
@@ -119,7 +119,9 @@ public class LanguageService {
 
     private HashMap generateNotUniversalDaysContent(ResourceBundle bundle, boolean is5, String city, String country, String langCode) {
         HashMap<String, String> map = generateMainContent(bundle);
-        map.put("aboveTable", encode(is5 ? bundle.getString("aboveTable5Days") : bundle.getString("aboveTable10Days")));
+        String aboveTableRu = MessageFormat.format(encode(bundle.getString("aboveTable5Days")), LanguageUtil.validateSlavCurrentCode(city, langCode));
+        String aboveTableRu10 = MessageFormat.format(encode(bundle.getString("aboveTable10Days")), LanguageUtil.validateSlavCurrentCode(city, langCode));
+        map.put("aboveTable", is5 ? langCode.equals("ru")?aboveTableRu:encode(bundle.getString("aboveTable5Days")) : langCode.equals("ru")?aboveTableRu10:bundle.getString("aboveTable10Days"));
         map.put("aboveGraph", encode(is5 ? bundle.getString("aboveGraph5Days") : bundle.getString("aboveGraph10Days")));
         map.put("inGraphTitle", encode(is5 ? bundle.getString("aboveGraph5Days") : bundle.getString("aboveGraph10Days")));
         map.put("title", formatLocation(is5 ? bundle.getString("title5Days") : bundle.getString("title10Days"), city, country, langCode));
@@ -132,15 +134,21 @@ public class LanguageService {
 
     private HashMap generateUniversalDaysContent(ResourceBundle bundle, boolean is3, boolean is7, String city, String country, String langCode) {
         HashMap<String, String> map = generateMainContent(bundle);
-        map.put("aboveTable", encode(is3 ? bundle.getString("aboveTable3Days")
-                : is7 ? bundle.getString("aboveTable7Days")
-                : bundle.getString("aboveTable14Days")));
-        map.put("aboveGraph", encode(is3 ? bundle.getString("aboveGraph3Days")
-                : is7 ? bundle.getString("aboveGraph7Days")
-                : bundle.getString("aboveGraph14Days")));
-        map.put("inGraphTitle", encode(is3 ? bundle.getString("aboveGraph3Days")
-                : is7 ? bundle.getString("aboveGraph7Days")
-                : bundle.getString("aboveGraph14Days")));
+        String aboveTableRu = MessageFormat.format(encode(bundle.getString("aboveTable3Days")), LanguageUtil.validateSlavCurrentCode(city, langCode));
+        String aboveTableRu7 = MessageFormat.format(encode(bundle.getString("aboveTable7Days")), LanguageUtil.validateSlavCurrentCode(city, langCode));
+        String aboveTableRu14 = MessageFormat.format(encode(bundle.getString("aboveTable14Days")), LanguageUtil.validateSlavCurrentCode(city, langCode));
+
+        map.put("aboveTable", is3 ? langCode.equals("ru")?aboveTableRu:
+                encode(bundle.getString("aboveTable3Days"))
+                : is7 ? langCode.equals("ru")? aboveTableRu7: encode(bundle.getString("aboveTable7Days"))
+                : langCode.equals("ru")? aboveTableRu14: encode(bundle.getString("aboveTable14Days")));
+        String aboveGraph7Ru = formatLocation(bundle.getString("aboveGraph7Days"), city, country, langCode);
+        map.put("aboveGraph", is3 ?encode(bundle.getString("aboveGraph3Days"))
+                : is7 ? langCode.equals("ru")?aboveGraph7Ru:encode(bundle.getString("aboveGraph7Days"))
+                : encode(bundle.getString("aboveGraph14Days")));
+        map.put("inGraphTitle", is3 ? encode(bundle.getString("aboveGraph3Days"))
+                : is7 ? langCode.equals("ru")?aboveGraph7Ru: encode(bundle.getString("aboveGraph7Days"))
+                : encode(bundle.getString("aboveGraph14Days")));
         map.put("title", formatLocation(is3 ? bundle.getString("title3Days")
                 : is7 ? bundle.getString("title7Days")
                 : bundle.getString("title14Days"), city, country, langCode));
@@ -153,7 +161,8 @@ public class LanguageService {
         map.put("sunrise", encode(bundle.getString("sunrise")));
         map.put("sunset", encode(bundle.getString("sunset")));
         map.put("inGraphTitle", encode(bundle.getString("aboveGraphToday")));
-        map.put("aboveTable", encode(isToday ? bundle.getString("aboveTableToday") : bundle.getString("aboveTableTomorrow")));
+        String aboveTableRu = MessageFormat.format(encode(bundle.getString("aboveTableTomorrow")), LanguageUtil.validateSlavCurrentCode(city, langCode));
+        map.put("aboveTable", isToday ? formatLocation(bundle.getString("aboveTableToday"),city, country, langCode): langCode.equals("ru")?aboveTableRu: encode(bundle.getString("aboveTableTomorrow")));
         map.put("aboveGraph", encode(isToday ? bundle.getString("aboveGraphToday") : ""));
         map.put("title", isToday ? formatLocation(bundle.getString("titleToday"), city, country, langCode) : formatLocation(bundle.getString("titleTomorrow"), city, country, langCode));
         map.put("description", isToday ? formatLocation(bundle.getString("descrToday"), city, country, langCode) : formatLocation(bundle.getString("descrTomorrow"), city, country, langCode));
@@ -180,9 +189,11 @@ public class LanguageService {
         map.put("longTermForecast", encode(bundle.getString("longTermForecast")));
         map.put("date", encode(bundle.getString("date")));
         map.put("aboveGraph", isSlav ? encode(bundle.getString("aboveGraph14Days")) : encode(bundle.getString("aboveGraphOutlook")));
-        map.put("aboveTable", isSlav ? encode(bundle.getString("aboveTable14Days")) : encode(bundle.getString("aboveTableOutlook")));
+        String aboveTableRu = encode(bundle.getString("aboveTableOutlook"));
+        map.put("aboveTable", langCode.equals("ru")?MessageFormat.format(aboveTableRu, LanguageUtil.validateSlavCurrentCode(city, langCode)): isSlav ? encode(bundle.getString("aboveGraph14Days")) : encode(bundle.getString("aboveGraphOutlook")));
+   //     map.put("aboveTable", isSlav ? encode(bundle.getString("aboveTable14Days")) : encode(bundle.getString("aboveTableOutlook")));
         String climIn = encode(bundle.getString("climateInWeather"));
-        map.put("climateIn", MessageFormat.format(climIn, LanguageUtil.validateSlavCurrentCode(city, langCode)));
+        map.put("climateIn", formatLocation(bundle.getString("climateInWeather"), city, country, langCode));
         map.put("coordinates", encode(bundle.getString("coordinates")));
         map.put("last5YearWeatherData", encode(bundle.getString("last5YearWeatherData")));
         map.put("uvIndex", encode(bundle.getString("uvIndex")));
@@ -193,6 +204,7 @@ public class LanguageService {
         map.put("uvIndex5", encode(bundle.getString("uvIndex.5")));
         map.put("title", formatLocation(bundle.getString("titleOutlook"), city, country, langCode));
         map.put("description", generateOutlookDescription(bundle, city, country, langCode, isSlav));
+        map.put("weatherForYear", encode(bundle.getString("weatherForYear")));
 
         return map;
     }

@@ -66,6 +66,9 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
     }
     $rootScope.get_api_weather = function () {
         $.ajax({cache: true, method: "POST", url: "/get_api_weather"}).done(function (msg) {
+            if(msg.issue){
+                window.location.href = "/api_failed";
+            }
             if ($cookies.get("langCookieCode") === undefined || $cookies.get("langCookieCode") === "") {
                 $rootScope.currentCountryCode = msg.countryCode;
             }
@@ -134,7 +137,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
                 var newurl = window.location.protocol + "//" + window.location.host + url;
                 window.history.pushState({path: newurl}, '', newurl);
             }
-            window.location.href = url;
+            window.location.href = url.replace("'","");
             // $state.reload();
             // $rootScope.updateLang();
             // $rootScope.get_api_weather();

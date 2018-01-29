@@ -64,6 +64,24 @@ public class SlashController {
         return map;
     }
 
+    @RequestMapping({
+        "/en",
+        "/ru",
+        "/by",
+        "/fr",
+        "/it",
+        "/ua",
+        "/de"
+    })
+    public String countryHandler(HttpServletRequest request,
+                                       HttpServletResponse response,@CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue){
+        String reqUrl = request.getRequestURI();
+        JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);
+
+        ModelAndView modelAndView = new ModelAndView("main_jsp");
+
+        return "redirect:/" + reqUrl.split("/")[1]+"/weather/"+generatedCity.getString("asciiName") + "_" + generatedCity.getString("countryCode") ;
+    }
     @RequestMapping("/generate_language_content")
     @ResponseBody
     public HashMap generateLanguageContent(@RequestParam(value = "langCode", required = false) String langCode, @RequestParam(value = "path") String path, HttpServletRequest request, HttpServletResponse response, @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue){
