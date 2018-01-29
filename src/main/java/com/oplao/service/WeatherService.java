@@ -1,6 +1,7 @@
 package com.oplao.service;
 
 import com.oplao.Application;
+import com.oplao.Controller.OutlookController;
 import com.oplao.Utils.*;
 import com.oplao.model.*;
 import org.joda.time.DateTime;
@@ -542,6 +543,7 @@ public class WeatherService {
 
             String cityName = validateCityName((String)city.get("name"));
             String countryCode = city.getString("countryCode").toLowerCase();
+            HashMap<String, Object> result = new HashMap<>();
             if(langCode == null || langCode.equals("")){
                 langCode = Arrays.asList(SearchService.validCountryCodes).contains(countryCode)?countryCode:"en";
             }
@@ -553,6 +555,8 @@ public class WeatherService {
         }catch (IOException e){
             Application.log.warning("Header data request error");
             e.printStackTrace();
+            result.put("issue", true);
+            return result;
         }
             List<JSONObject> enArr = null;
             try {
@@ -567,7 +571,6 @@ public class WeatherService {
 
             Locale locale = new Locale(langCode, LanguageUtil.getCountryCode(langCode));
             ResourceBundle bundle = ResourceBundle.getBundle("messages_"+langCode, locale);
-            HashMap<String, Object> result = new HashMap<>();
 
             String locWeather = LanguageService.encode(bundle.getString("locationWeather"));
 

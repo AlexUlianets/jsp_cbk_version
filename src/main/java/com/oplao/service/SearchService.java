@@ -530,7 +530,7 @@ public class SearchService {
 
             JSONArray jsonArray = null;
             try {
-                String url = "https://bd.oplao.com/geoLocation/find.json?lang=" + LanguageUtil.validateOldCountryCodes(langCode) + "&max=10&nameStarts=" + URLEncoder.encode(city, "UTF-8").concat(airport ? "&featureClass=S" : "&countryCode=" + countryCode);
+                String url = "https://bd.oplao.com/geoLocation/find.json?lang=" + LanguageUtil.validateOldCountryCodes(langCode) + "&max=10&nameStarts=" + URLEncoder.encode(city.replaceAll("'",""), "UTF-8").concat(airport ? "&featureClass=S" : "&countryCode=" + countryCode);
                 jsonArray = WeatherService.readJsonArrayFromUrl(url);
             } catch (IOException e) {
                 e.printStackTrace();

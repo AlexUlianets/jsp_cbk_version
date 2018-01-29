@@ -35,7 +35,6 @@ public class MIndex {
         @Autowired
         SitemapService sitemapService;
         @RequestMapping({
-                "/",
                 "/weather",
                 "/forecast",
                 "/forecast/today",

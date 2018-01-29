@@ -3,9 +3,11 @@ package com.oplao.Controller;
 import com.oplao.model.*;
 import com.oplao.service.SearchService;
 import com.oplao.service.WeatherService;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +49,7 @@ public class OutlookController {
     public HashMap getApiWeather(@CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
                                  HttpServletRequest request,
                                  HttpServletResponse response,
-                                 @CookieValue(value = "langCookieCode", defaultValue = "") String langCode){
+                                 @CookieValue(value = "langCookieCode", defaultValue = "") String langCode) throws FileUploadException{
 
         try {
             currentCookieValue = URLDecoder.decode(currentCookieValue, "UTF-8");
@@ -203,6 +205,10 @@ public class OutlookController {
 
     }
 
+    @RequestMapping(value = "/api_failed")
+    public String issue(){
+        return "forward:/issue.html";
+    }
     @RequestMapping("get_country_weather")
     @ResponseBody
     public List<HashMap> getCountryWeather(@CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
