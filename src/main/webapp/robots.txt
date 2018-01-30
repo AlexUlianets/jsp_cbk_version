@@ -8,9 +8,9 @@ Disallow: */de/*
 Disallow: */fr/*
 Disallow: */it/*
 Disallow: */de/*
-Host: https://new.oplao.com
+Host: https://oplao.com
 
 User-Agent: *
 Disallow: /admin/
 Disallow: /login/
-sitemap: https://new.oplao.com/sitemap/sitemap.xml
+sitemap: https://oplao.com/sitemap/sitemap.xml

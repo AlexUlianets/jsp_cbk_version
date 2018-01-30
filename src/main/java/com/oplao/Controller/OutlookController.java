@@ -2,6 +2,7 @@ package com.oplao.Controller;
 
 import com.oplao.model.*;
 import com.oplao.service.SearchService;
+import com.oplao.service.SitemapService;
 import com.oplao.service.WeatherService;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLDecoder;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +30,8 @@ public class OutlookController {
     WeatherService weatherService;
     @Autowired
     SearchService searchService;
+    @Autowired
+    SitemapService sitemapService;
 
     @RequestMapping("/get_coordinates")
     @ResponseBody
@@ -240,5 +242,11 @@ public class OutlookController {
     public Map getCountryInfo(@CookieValue(value = "langCookieCode", defaultValue = "") String langCode, @PathVariable("countryName") String countryName) {
 
         return searchService.getCountryInfo(countryName, langCookieCode);
+    }
+
+    @RequestMapping("/generate_sitemap")
+    @ResponseBody
+    public String buildThisFuckingSitemap(){
+        return sitemapService.buildSitemap();
     }
 }
