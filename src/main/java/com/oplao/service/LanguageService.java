@@ -86,11 +86,12 @@ public class LanguageService {
         map.put("oneHour", encode(bundle.getString("oneHour")));
         map.put("threeHour", encode(bundle.getString("threeHour")));
         map.put("inGraphTitle", encode(bundle.getString("aboveGraphHourly")));
-        map.put("title", formatLocation(bundle.getString("titleHourly"), city, country, langCode));
+        map.put("title", langCode.equals("ru")?generateCityLocation(bundle.getString("titleHourly"), city) : formatLocation(bundle.getString("titleHourly"), city, country, langCode));
         map.put("description", !isSlav ? langCode.equals("fr") || langCode.equals("it")
                 ? formatThreeLocations(bundle.getString("descrHourly"), city, country, langCode)
                 : formatTwoLocations(bundle.getString("descrHourly"), city, country, langCode)
-                : formatTwoLocations(bundle.getString("descrHourly" + hrIndex), city, country, langCode));
+                : langCode.equals("ru")? generateCityLocation(bundle.getString("descrHourly" + hrIndex), city):
+                formatTwoLocations(bundle.getString("descrHourly" + hrIndex), city, country, langCode));
         return map;
     }
 
@@ -124,14 +125,18 @@ public class LanguageService {
         map.put("aboveTable", is5 ? langCode.equals("ru")?aboveTableRu:encode(bundle.getString("aboveTable5Days")) : langCode.equals("ru")?aboveTableRu10:bundle.getString("aboveTable10Days"));
         map.put("aboveGraph", encode(is5 ? bundle.getString("aboveGraph5Days") : bundle.getString("aboveGraph10Days")));
         map.put("inGraphTitle", encode(is5 ? bundle.getString("aboveGraph5Days") : bundle.getString("aboveGraph10Days")));
-        map.put("title", formatLocation(is5 ? bundle.getString("title5Days") : bundle.getString("title10Days"), city, country, langCode));
+        map.put("title", is5 ? langCode.equals("ru")?generateCityLocation(bundle.getString("title5Days"), city): formatLocation(bundle.getString("title5Days"),city,country,langCode) :langCode.equals("ru")?generateCityLocation(bundle.getString("title10Days"), city): formatLocation(bundle.getString("title10Days"), city, country, langCode));
         map.put("description", (!langCode.equals("fr") && !langCode.equals("it")) ?
-                formatLocation(is5 ? bundle.getString("descr5Days") :
-                        bundle.getString("descr10Days"), city, country, langCode) :
+                is5 ? langCode.equals("ru")?generateCityLocation(bundle.getString("descr5Days"), city): formatLocation(bundle.getString("descr5Days"),city,country,langCode) :
+                        langCode.equals("ru")?generateCityLocation(bundle.getString("descr10Days"), city):
+                        formatLocation(bundle.getString("descr10Days"), city, country, langCode) :
                 formatTwoLocations(is5 ? bundle.getString("descr5Days") : bundle.getString("descr10Days"), city, country, langCode));
         return map;
     }
 
+    private String generateCityLocation(String pattern, String city){
+        return MessageFormat.format(encode(pattern),LanguageUtil.validateSlavCurrentCode(city,"ru"));
+    }
     private HashMap generateUniversalDaysContent(ResourceBundle bundle, boolean is3, boolean is7, String city, String country, String langCode) {
         HashMap<String, String> map = generateMainContent(bundle);
         String aboveTableRu = MessageFormat.format(encode(bundle.getString("aboveTable3Days")), LanguageUtil.validateSlavCurrentCode(city, langCode));
@@ -149,10 +154,12 @@ public class LanguageService {
         map.put("inGraphTitle", is3 ? encode(bundle.getString("aboveGraph3Days"))
                 : is7 ? langCode.equals("ru")?aboveGraph7Ru: encode(bundle.getString("aboveGraph7Days"))
                 : encode(bundle.getString("aboveGraph14Days")));
-        map.put("title", formatLocation(is3 ? bundle.getString("title3Days")
-                : is7 ? bundle.getString("title7Days")
-                : bundle.getString("title14Days"), city, country, langCode));
-        map.put("description", generateUniversalDaysDescription(bundle, city, country, langCode, is3, is7));
+        map.put("title", is3 ? langCode.equals("ru")?generateCityLocation(bundle.getString("title3Days"), city):bundle.getString("title3Days")
+                : is7 ? langCode.equals("ru")?generateCityLocation(bundle.getString("title7Days"), city): formatLocation(bundle.getString("title7Days"), city, country,langCode)
+                : langCode.equals("ru")?generateCityLocation(bundle.getString("title14Days"), city):formatLocation(bundle.getString("title14Days"), city, country, langCode));
+        map.put("description", langCode.equals("ru") && is3?generateCityLocation(bundle.getString("descr3Days"), city)  :
+                langCode.equals("ru") && is7?generateCityLocation(bundle.getString("descr7Days"), city) :
+                generateUniversalDaysDescription(bundle, city, country, langCode, is3, is7));
         return map;
     }
 
@@ -164,8 +171,8 @@ public class LanguageService {
         String aboveTableRu = MessageFormat.format(encode(bundle.getString("aboveTableTomorrow")), LanguageUtil.validateSlavCurrentCode(city, langCode));
         map.put("aboveTable", isToday ? formatLocation(bundle.getString("aboveTableToday"),city, country, langCode): langCode.equals("ru")?aboveTableRu: encode(bundle.getString("aboveTableTomorrow")));
         map.put("aboveGraph", encode(isToday ? bundle.getString("aboveGraphToday") : ""));
-        map.put("title", isToday ? formatLocation(bundle.getString("titleToday"), city, country, langCode) : formatLocation(bundle.getString("titleTomorrow"), city, country, langCode));
-        map.put("description", isToday ? formatLocation(bundle.getString("descrToday"), city, country, langCode) : formatLocation(bundle.getString("descrTomorrow"), city, country, langCode));
+        map.put("title", isToday ? langCode.equals("ru")?generateCityLocation(bundle.getString("titleToday"), city):formatLocation(bundle.getString("titleToday"), city, country, langCode) : langCode.equals("ru") ? generateCityLocation(bundle.getString("titleTomorrow"), city):formatLocation(bundle.getString("titleTomorrow"), city, country, langCode));
+        map.put("description", isToday ? langCode.equals("ru")?generateCityLocation(bundle.getString("descrToday"),city): formatLocation(bundle.getString("descrToday"), city, country, langCode) : langCode.equals("ru")? generateCityLocation(bundle.getString("descrTomorrow"), city):formatLocation(bundle.getString("descrTomorrow"), city, country, langCode));
         return map;
     }
 
@@ -193,8 +200,8 @@ public class LanguageService {
         map.put("weatherForYear", encode(bundle.getString("weatherForYear")));
 
         map.put("topHolidayDestinations", encode(bundle.getString("topHolidayDestinations")));
-        map.put("title", langCode.equals("en")?encode(bundle.getString("titleFront")):formatLocation(bundle.getString("titleFront"), city, country, langCode));
-        map.put("description", langCode.equals("it") || langCode.equals("en") ? encode(bundle.getString("descrFront")) : formatLocation(bundle.getString("descrFront"), city, country, langCode));
+        map.put("title", langCode.equals("en")?encode(bundle.getString("titleFront")):langCode.equals("ru")?generateCityLocation(bundle.getString("titleFront"), city):formatLocation(bundle.getString("titleFront"), city, country, langCode));
+        map.put("description", langCode.equals("it") || langCode.equals("en") ? encode(bundle.getString("descrFront")) : langCode.equals("ru")?generateCityLocation(bundle.getString("descrFront"), city) : formatLocation(bundle.getString("descrFront"), city, country, langCode));
         return map;
     }
 
@@ -367,7 +374,7 @@ public class LanguageService {
                 desc = formatLocation(is3 ? bundle.getString("descr3Days")
                         : bundle.getString("descr7Days"), city, country, langCode);
             } else {
-                desc = formatTwoLocations(bundle.getString("descr14Days"), city, country, langCode);
+                desc = langCode.equals("ru")?generateCityLocation(bundle.getString("descr14Days"), city):formatTwoLocations(bundle.getString("descr14Days"), city, country, langCode);
             }
         } else if (langCode.equals("de") || langCode.equals("en")) {
             desc = formatLocation(is3 ? bundle.getString("descr3Days") : is7 ? bundle.getString("descr7Days") : bundle.getString("descr14Days"), city, country, langCode);
