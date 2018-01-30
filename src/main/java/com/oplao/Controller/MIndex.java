@@ -66,11 +66,6 @@ public class MIndex {
                 "/weather/widgets"
         })
         public ModelAndView index(HttpServletRequest request, HttpServletResponse response, @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue, @CookieValue(value = SearchService.langCookieCode, defaultValue = "") String languageCookieCode) {
-            try {
-                sitemapService.addToSitemap(request.getRequestURI());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             String reqUrl = request.getRequestURI();
 
             JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);

@@ -666,7 +666,7 @@ public List<List> getCountries(String langCode){
         return result;
 }
 
-public Map getCountryInfo(String countryName, String langCode){
+public static Map getCountryInfo(String countryName, String langCode){
     countryName = countryName.substring(0,1).toUpperCase()+countryName.substring(1, countryName.length());
     Map data = null;
 
