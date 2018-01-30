@@ -26,7 +26,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
           $http.post('/get_year_summary').then(function (responseYear) {
               $scope.$parent.get_year_summary = responseYear;
               $scope.getActiveClimate(-1);
-              readyGet(response, responseYear, $scope.local.typeTemp, 'fourteen-days', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange, $rootScope.pageContent.weatherForYear)
+              readyGet(false, responseYear, $scope.local.typeTemp, false, "www", $scope.local.timeRange, $rootScope.pageContent.weatherForYear)
           });
       });
 

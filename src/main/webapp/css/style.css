@@ -501,7 +501,7 @@ img.mfp-img{width:auto;max-width:100%;height:auto;display:block;line-height:0;bo
 .weather-block-width{width:20%;float:left;padding-top:11px;text-align:left;height:71px;vertical-align:middle;border-right:1px solid #ebebeb;border-top:1px solid #ebebeb;border-bottom:1px solid #ebebeb;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 .weather-block-width:first-child{border-left:1px solid #ebebeb;}
 .wb-wrap{width:100%;display:table;}
-#temperature-map h2{font:500 2.4em/33px "Fira Sans", sans-serif;height:33px;padding-right:24px;color:#4c4c4c;float:left;border-right:1px solid #ebebeb;}
+#temperature-map h1{font:500 2.4em/33px "Fira Sans", sans-serif;height:33px;padding-right:24px;color:#4c4c4c;float:left;border-right:1px solid #ebebeb;}
 .temperature-heading:after{content:"";display:table;clear:both;}
 .t-view-map{display:block;float:left;margin-left:24px;color:#9c9c9c;font:400 1.4em/33px "FiraSans-Book", sans-serif;text-transform:uppercase;padding-left:26px;position:relative;}
 .t-view-map:after{content:'';display:block;position:absolute;left:0;top:10px;width:15px;height:10px;}
