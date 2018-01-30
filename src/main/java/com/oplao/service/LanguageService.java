@@ -176,6 +176,22 @@ public class LanguageService {
         String locWeather = encode(bundle.getString("locationWeather"));
         map.put("locationWeather", MessageFormat.format(locWeather, LanguageUtil.validateSlavCurrentCode(country, langCode)));
         map.put("holidayWeather", encode(bundle.getString("holidayWeather")));
+        map.put("longTermForecast", encode(bundle.getString("longTermForecast")));
+        map.put("date", encode(bundle.getString("date")));
+        String aboveTableRu = encode(bundle.getString("aboveTableOutlook"));
+        //     map.put("aboveTable", isSlav ? encode(bundle.getString("aboveTable14Days")) : encode(bundle.getString("aboveTableOutlook")));
+        String climIn = encode(bundle.getString("climateInWeather"));
+        map.put("climateIn", formatLocation(bundle.getString("climateInWeather"), city, country, langCode));
+        map.put("coordinates", encode(bundle.getString("coordinates")));
+        map.put("last5YearWeatherData", encode(bundle.getString("last5YearWeatherData")));
+        map.put("uvIndex", encode(bundle.getString("uvIndex")));
+        map.put("uvIndex1", encode(bundle.getString("uvIndex.1")));
+        map.put("uvIndex2", encode(bundle.getString("uvIndex.2")));
+        map.put("uvIndex3", encode(bundle.getString("uvIndex.3")));
+        map.put("uvIndex4", encode(bundle.getString("uvIndex.4")));
+        map.put("uvIndex5", encode(bundle.getString("uvIndex.5")));
+        map.put("weatherForYear", encode(bundle.getString("weatherForYear")));
+
         map.put("topHolidayDestinations", encode(bundle.getString("topHolidayDestinations")));
         map.put("title", langCode.equals("en")?encode(bundle.getString("titleFront")):formatLocation(bundle.getString("titleFront"), city, country, langCode));
         map.put("description", langCode.equals("it") || langCode.equals("en") ? encode(bundle.getString("descrFront")) : formatLocation(bundle.getString("descrFront"), city, country, langCode));

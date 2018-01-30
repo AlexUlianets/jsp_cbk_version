@@ -205,7 +205,6 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
         'debug': false,
         'events': false,
         'modules': [
-            {name: 'outlook', files: ['assets/js/outlook.js']},
             {name: 'today', files: ['assets/js/today.js']},
             {name: 'tomorrow', files: ['assets/js/tomorrow.js']},
             {name: 'past-weather', files: ['assets/js/past-weather.js']},
@@ -248,27 +247,13 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
             city: {squash: true, value: null},
             "graph": "",
             "day": "front-page",
-            "pos": "main"
+            "pos": "main",
+            "graphTitle": "Detailed weather for 10 days"
         },
         views: {"": {templateUrl: "templates/html/front-page.html"}},
         resolve: {
             loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load('front-page');
-            }]
-        }
-    }).state('outlook', {
-        url: "/:lang/weather/outlook/:city",
-        params: {
-            lang: {squash: true, value: null},
-            city: {squash: true, value: null},
-            "graph": "weatherTen",
-            "day": "Outlook",
-            "graphTitle": "Detailed weather for 10 days"
-        },
-        views: {"": {templateUrl: "templates/html/outlook.html"}},
-        resolve: {
-            loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-                return $ocLazyLoad.load('outlook');
             }]
         }
     }).state('today', {
@@ -303,7 +288,8 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
     }).state('countries', {
         url: "/:lang/countries",
         params: {
-            lang: {squash: true, value: null}
+            lang: {squash: true, value: null},
+            "day": "Countries"
         },
         views: {"": {templateUrl: "templates/html/countries.html"}},
         resolve: {

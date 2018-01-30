@@ -1,4 +1,5 @@
 function readyGet(response, responseYear, type, page, graphTitle, timeRange, year_title) {
+
     $(document).ready(function () {
         Highcharts.createElement('link', {
             rel: 'stylesheet',
@@ -135,7 +136,6 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
     if (page === 'outlook' || page === 'today' || page === 'ten-days' || page === 'seven-days' || page === 'fourteen-days') {
         var dateStart = response.data[0].date
         var temp = response.data;
-        var tempYear = responseYear.data;
         temp.forEach(function (temp) {
             type === 'C' ? tempArray.push(parseInt(temp.tempC)) : tempArray.push(parseInt(temp.tempF))
             type === 'C' ? precipArray.push(parseFloat(temp.precipMM)) : precipArray.push(parseFloat(temp.precipInch))
@@ -157,7 +157,9 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
     } else if (page === 'five-days') {
         var temp = response;
     }
+var tempYear=responseYear.data;
     if (tempYear != undefined) {
+        console.log(tempYear)
         tempYear.forEach(function (tempYear) {
             type === 'C' ? tempMinDateYearArray.push(parseFloat(tempYear.mintempC)) : tempMinDateYearArray.push(parseFloat(tempYear.mintempF))
             type === 'C' ? tempMaxDateYearArray.push(parseFloat(tempYear.maxtempC)) : tempMaxDateYearArray.push(parseFloat(tempYear.maxtempF))
