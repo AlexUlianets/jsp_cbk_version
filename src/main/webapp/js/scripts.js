@@ -114,7 +114,6 @@ function loadScript() {
         $('.for-arr-top').on('click', function () {
             $(this).parent().slideUp();
         });
-        $(".tab_content").hide();
         if ($(window).width() > 700) {
             $(".tab_drawer_heading[rel^='tab1']").addClass("d_active");
             $(".tab_drawer_heading[rel^='hov-tab1']").addClass("d_active");
