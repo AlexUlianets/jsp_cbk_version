@@ -241,7 +241,7 @@ public class OutlookController {
     @ResponseBody
     public Map getCountryInfo(@CookieValue(value = "langCookieCode", defaultValue = "") String langCode, @PathVariable("countryName") String countryName) {
 
-        return searchService.getCountryInfo(countryName, langCookieCode);
+        return searchService.getCountryInfo(countryName, langCode);
     }
 
     @RequestMapping("/generate_sitemap")

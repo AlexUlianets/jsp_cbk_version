@@ -99,7 +99,7 @@
                 </div>
                 <div class="ht-location">
                     <dl>
-                        <dt style="font-size: 16px;color: white;    padding: 10px 15px 15px 0;"><a href="/{{currentCountryCode}}/countries" class="search-text1" style="color: white;text-decoration: underline" ng-bind="pageContent.countries"></a> - <a href="/{{currentCountryCode}}/countries/{{temperature.countryEn}}" class="search-text1" style="color: white;text-decoration: underline" ng-bind="temperature.country"></a> - <a href="/{{currentCountryCode}}/weather/{{selectedCity}}" class="search-text1" style="color: white;text-decoration: underline">{{temperature.city.replace('%20', ' ')}}</a></dt>
+                        <dt style="font-size: 16px;color: white;    padding: 10px 15px 15px 0;"><a href="/{{currentCountryCode}}/countries" class="search-text1" style="color: white;text-decoration: underline" ng-bind="pageContent.countries"></a> - <a href="/{{currentCountryCode}}/countries/{{temperature.countryEn}}" class="search-text1" style="color: white;text-decoration: underline" ng-bind="temperature.country"></a> - <span class="search-text1" style="color: white;">{{temperature.city.replace('%20', ' ')}}</span></dt>
                         <dt><i class="icon location"></i><span class="search-text1">{{temperature.cityWeather}}</span>  <span
                                 class="search-text2">{{temperature.country}}</span></dt>
                         <dd>{{pageContent.today}} {{temperature.month}} {{temperature.day}}. {{temperature.dayOfWeek}}. <span  ng-bind="getTime(('0' + temperature.hours).slice(-2)+':'+('0' + temperature.minutes).slice(-2))"></span></dd>
