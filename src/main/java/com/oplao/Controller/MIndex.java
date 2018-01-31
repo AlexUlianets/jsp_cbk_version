@@ -56,9 +56,12 @@ public class MIndex {
                 "/weather/10",
                 "/forecast/14",
                 "/weather/14",
-                "/forecast/hour-by-hour1",
+                "/forecast/detailed1",
+                "/weather/detailed1",
                 "/weather/hour-by-hour1",
                 "/forecast/hour-by-hour3",
+                "/forecast/detailed3",
+                "/weather/detailed3",
                 "/weather/hour-by-hour3",
                 "/weather/map",
                 "/about",
@@ -68,7 +71,22 @@ public class MIndex {
             String reqUrl = request.getRequestURI();
 
             JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);
-
+            if(reqUrl.contains("detailed3")) {
+                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                reqUrl=reqUrl.replace("detailed3", "hour-by-hour3");
+                if(reqUrl.contains("forecast")) {
+                    reqUrl=reqUrl.replace("forecast", "weather");
+                }
+                response.setHeader("Location", reqUrl);
+            }
+            if(reqUrl.contains("detailed1")) {
+                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                reqUrl=reqUrl.replace("detailed1", "hour-by-hour1");
+                if(reqUrl.contains("forecast")) {
+                    reqUrl=reqUrl.replace("forecast", "weather");
+                }
+                response.setHeader("Location", reqUrl);
+            }
             if(reqUrl.contains("forecast")) {
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.setHeader("Location", reqUrl.replace("forecast", "weather"));
@@ -130,6 +148,9 @@ public class MIndex {
                 "/forecast/hour-by-hour1/{locationRequest:.+}",
                 "/weather/hour-by-hour1/{locationRequest:.+}",
                 "/forecast/hour-by-hour3/{locationRequest:.+}",
+                "/forecast/detailed3/{locationRequest:.+}",
+                "/weather/detailed1/{locationRequest:.+}",
+                "/weather/detailed3/{locationRequest:.+}",
                 "/weather/hour-by-hour3/{locationRequest:.+}",
         })
         public ModelAndView index(@PathVariable(value = "locationRequest") String locationRequest,
@@ -148,6 +169,22 @@ public class MIndex {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
+            if(reqUrl.contains("detailed3")) {
+                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                reqUrl=reqUrl.replace("detailed3", "hour-by-hour3");
+                if(reqUrl.contains("forecast")) {
+                    reqUrl=reqUrl.replace("forecast", "weather");
+                }
+                response.setHeader("Location", reqUrl);
+            }
+            if(reqUrl.contains("detailed1")) {
+                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                reqUrl=reqUrl.replace("detailed1", "hour-by-hour1");
+                if(reqUrl.contains("forecast")) {
+                    reqUrl=reqUrl.replace("forecast", "weather");
+                }
+                response.setHeader("Location", reqUrl);
+            }
             if(reqUrl.contains("forecast")){
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.setHeader("Location", reqUrl.replace("forecast", "weather"));

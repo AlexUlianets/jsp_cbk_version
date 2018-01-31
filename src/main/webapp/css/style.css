@@ -437,11 +437,11 @@ img.mfp-img{width:auto;max-width:100%;height:auto;display:block;line-height:0;bo
 .weather-now:after{content:"";display:table;clear:both;}
 .weather-now > img{float:left;margin-right:40px;}
 .weather-now div{float:left;}
-.weather-now div b{font:500 102.5px/102.5px "Fira Sans", sans-serif;color:#fff;text-shadow:0 11px 9px rgba(0, 0, 0, 0.13);}
-.weather-now div em{font:400 30px/30px "Fira Sans", sans-serif;color:#fff;margin-left:30px;position:relative;top:-49px;}
+.weather-now div b{vertical-align: bottom;    font: 500 96.5px/75.5px "Fira Sans", sans-serif;color:#fff;text-shadow:0 11px 9px rgba(0, 0, 0, 0.13);}
+.weather-now div em{font:400 30px/30px "Fira Sans", sans-serif;color:#fff;margin-left:30px;position:relative;top:-37px;}
 .weather-now div em:after{content:'';position:absolute;width:6px;height:5px;border:2px solid #fff;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;top:0;left:-10px;}
-.weather-now div span{font:400 30px/30px "Fira Sans", sans-serif;color:#fff;color:rgba(255, 255, 255, 0.4);margin-left:8px;position:relative;top:-49px;}
-.weather-now div span strong{margin:0 14px 0px 6px;position:relative;}
+.weather-now div span{font:400 30px/30px "Fira Sans", sans-serif;color:#fff;color:rgba(255, 255, 255, 0.4);margin-left:8px;position:relative;top:-37px;}
+.weather-now div span strong{margin:0 10px 0px 6px;position:relative;}
 .weather-now div span strong:after{content:'';position:absolute;width:6px;height:5px;border:2px solid #fff;border:2px solid rgba(255, 255, 255, 0.4);-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;top:0;right:-10px;}
 .weather-info{height:150px;padding:0px 15px;margin-left:40px;display:table;float:left;border-left:1px solid #2690d2;border-right:1px solid #2690d2;border-left:1px solid rgba(255, 255, 255, 0.15);border-right:1px solid rgba(255, 255, 255, 0.15);}
 .weather-info-block{display:table-cell;height:150px;vertical-align:middle;padding:0 25px;}
@@ -1866,10 +1866,6 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
     padding-top: 15px;
 }
 
-.tb-tabs-header {
-    display: none;
-    visibility: hidden;
-}
 .tb-tabs .wrn-block .wrn-today{
     display: block;
     position: absolute;
@@ -2482,7 +2478,6 @@ ul.tb-tabs-full li{
     left: 0;
     right: 0;
     margin: auto;
-    background: url('../img/calendar_logo.png') no-repeat;
     height: 25px;
     width: 110px;
 }
@@ -2676,7 +2671,7 @@ ul.tb-tabs-full li{
     font-weight: 600;
     font-size: 24px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    bottom: 6px;
+    bottom: 3px;
     right: 7px;
     width: 27px;
     height: 27px;

@@ -38,7 +38,7 @@ public class LanguageService {
         }
 
         if(path.contains("countries")){
-           return generateFrontPageContent(resourceBundle, city, countryName, languageCode);
+           return generateCountryContent(resourceBundle, city, countryName, languageCode);
         } else if (path.contains("widgets")) {
             return generateWidgetContent(resourceBundle);
         } else if (path.equals("/") || path.equals("%2F")||path.split("/").length == 4 && !path.contains("widgets")) {
@@ -115,6 +115,13 @@ public class LanguageService {
         map.put("aboveTable", encode(bundle.getString("aboveTableTempMap")));
         map.put("title", encode(bundle.getString("titleMap")));
         map.put("description", formatLocation(bundle.getString("descrMap"), city, country, langCode));
+        return map;
+    }
+
+    private HashMap generateCountryContent(ResourceBundle bundle, String city, String country, String langCode) {
+        HashMap map = generateMainContent(bundle);
+        map.put("title", "OPLAO - " + map.get("countries"));
+        map.put("description", "OPLAO - "+ map.get("countries"));
         return map;
     }
 
@@ -395,7 +402,9 @@ public class LanguageService {
     }
 
     public HashMap genHeaderByPageName(ResourceBundle resourceBundle, String city, String countryName, String languageCode, String path, char hrIndex){
-        if (path.contains("widgets")) {
+        if(path.contains("countries")){
+            return generateCountryContent(resourceBundle, city, countryName, languageCode);
+        } else if (path.contains("widgets")) {
             return generateWidgetContent(resourceBundle);
         } else if (path.equals("/") || path.equals("%2F")||path.split("/").length == 4 && !path.contains("widgets")) {
             return generateFrontPageContent(resourceBundle, city, countryName, languageCode);
