@@ -81,7 +81,40 @@ input, textarea{outline:none;resize:none;}
 .blue-bg{background-color:#009AD0;padding:40px 0px 45px 0px;}
 @media only screen and (max-width:780px) {
     .blue-bg {
-        width: 1440px;
+        max-width: 1400px;
+        width: 100%;
+        padding: 30px 0px 9px 0px!important;
+    }
+    .highcharts-container {
+
+    }
+    #weatherFiveIcon,
+    #weatherThreeIcon,
+    #weatherDetailedIcon {
+        display: block;
+        margin:-13px 16px 40px 15px!important;
+    }
+    #weatherThreeIcon .wrp-icon .icon,
+    #weatherFiveIcon .wrp-icon .icon,
+    #weatherDetailedIcon .wrp-icon .icon {
+        padding: 1px!important;
+        padding-bottom: 0;
+        padding-top: 0;
+        flex: 1;
+    }
+    #weatherDetailedIcon .wrp-icon {
+        padding: 11px 0 0 0!important;
+        border-top: 1px solid #3ad4ff;
+        display: flex;
+    }
+    #weatherSevenIcon .wrp-icon, #weatherTenIcon .wrp-icon, #weatherFourteenIcon .wrp-icon {
+        padding: 16px 1px 27px 3px !important;
+        margin: 0 46px 0 47px!important;
+        display: flex;
+    }
+    #weatherTenIcon .wrp-icon .icon {
+        flex: 1;
+        padding: 3px;
     }
 }
 .padding-bottom {
@@ -894,7 +927,7 @@ ul.tabs li.active .wrn-temp{color:#fff;}
 .date-tabs ul li a{font:400 1.4em/78px "FiraSans-Book", sans-serif;text-transform:uppercase;text-align:center;}
 .date-tabs ul li a:hover{background:#eeeeee;color:#07d289;}
 
-.forecast-tabs{margin-top:38px;position:relative;}
+.forecast-tabs{margin-top:38px;position:relative;height: 79px;}
 .forecast-tabs ul{overflow:hidden;}
 .forecast-tabs ul li{width:14.2857%;float:left;height:78px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 .forecast-tabs ul li a{font:400 1.4em/78px "FiraSans-Book", sans-serif;text-transform:uppercase;text-align:center;}
@@ -3108,6 +3141,7 @@ a{
     #hour-by-hour-top.past-weather.past-weather .tb-top-nav {
         top: 0;
         margin: 4px 0 4px 0;
+        height: 46px;
     }
     .last-year5 .last-info-wrap, .last-year5 .v-year-wrap{
         width: 100%;

@@ -136,6 +136,7 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
     if (page === 'outlook' || page === 'today' || page === 'ten-days' || page === 'seven-days' || page === 'fourteen-days') {
         var dateStart = response.data[0].date
         var temp = response.data;
+        var tempYear = responseYear.data;
         temp.forEach(function (temp) {
             type === 'C' ? tempArray.push(parseInt(temp.tempC)) : tempArray.push(parseInt(temp.tempF))
             type === 'C' ? precipArray.push(parseFloat(temp.precipMM)) : precipArray.push(parseFloat(temp.precipInch))
@@ -157,7 +158,8 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
     } else if (page === 'five-days') {
         var temp = response;
     }
-var tempYear=responseYear.data;
+    var tempYear = responseYear.data;
+
     if (tempYear != undefined) {
         console.log(tempYear)
         tempYear.forEach(function (tempYear) {
@@ -299,172 +301,357 @@ var tempYear=responseYear.data;
         } else {
             zoomVar = 'xy';
         }
-        $('#weatherThree').highcharts({
-            chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
-            title: {text: graphTitle},
-            xAxis: [{
-                type: 'datetime',
-                categories: categoriesDate,
-                labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 12}, y: 30}
-            }, {
-                type: 'datetime',
-                linkedTo: 0,
-                opposite: true,
-                categories: deyDate,
-                labels: {align: 'right', y: -20, rotation: 0, style: {textOverflow: 'none'}},
-                hover: {fillColor: '#f00', radius: 4,}
-            }],
-            yAxis: [{
-                labels: {
-                    format: '{value}°' + type,
-                    style: {color: Highcharts.getOptions().colors[4], fontSize: 12},
-                },
-                title: {
-                    text: 'TEMP.',
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    x: -10,
-                    y: 10,
-                    style: {color: Highcharts.getOptions().colors[0], fontSize: 12, fontWeight: 700}
-                },
-                lineWidth: 1,
-                tickAmount: 6,
-                showLastLabel: false
-            }, {
-                title: {
-                    text: 'PRICIP.',
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    x: 15,
-                    y: 10,
-                    style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
-                },
-                labels: {format: '{value} ' + val_zn, style: {color: Highcharts.getOptions().colors[4], fontSize: 12}},
-                lineWidth: 1,
-                opposite: true,
-                tickAmount: 6,
-                showLastLabel: false
-            }],
-            tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
-            legend: false,
-            series: [{
-                connectNulls: true,
-                name: 'TEMP.',
-                type: 'line',
-                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1'},
-                data: tempDateThree,
-                tooltip: {valueSuffix: '°' + type},
-                zIndex: 3
-            }, {
-                name: 'PRICIP.',
-                type: 'column',
-                borderWidth: 0,
-                maxPointWidth: 10,
-                yAxis: 1,
-                data: precipDateThree,
-                tooltip: {valueSuffix: ' ' + val_zn},
-                zIndex: 2
-            }, {
-                connectNulls: true,
-                name: false,
-                type: 'area',
-                threshold: minTempThree,
-                lineWidth: 0,
-                fillColor: {
-                    linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
-                    stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
-                },
-                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
-                data: tempDateThree,
-                tooltip: {valueSuffix: '°' + type},
-                zIndex: 1
-            }]
-        });
-        $('#weatherFive').highcharts({
-            chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
-            title: {text: graphTitle},
-            xAxis: [{
-                type: 'datetime',
-                categories: categoriesDate,
-                labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 12}, y: 30}
-            }, {
-                type: 'datetime',
-                linkedTo: 0,
-                opposite: true,
-                categories: deyDate,
-                crosshair: true,
-                labels: {align: 'right', rotation: 0, y: -20, style: {textOverflow: 'none', whiteSpace: 'nowrap'}}
-            }],
-            yAxis: [{
-                labels: {
-                    format: '{value}°' + type,
-                    style: {color: Highcharts.getOptions().colors[4], fontSize: 12}
-                },
-                title: {
-                    text: 'TEMP.',
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    x: -10,
-                    y: 10,
-                    style: {color: Highcharts.getOptions().colors[0], fontSize: 12, fontWeight: 700}
-                },
-                lineWidth: 1,
-                tickAmount: 6,
-                showLastLabel: false
-            }, {
-                title: {
-                    text: 'PRICIP.',
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    x: 15,
-                    y: 10,
-                    style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
-                },
-                labels: {format: '{value} ' + val_zn, style: {color: Highcharts.getOptions().colors[4], fontSize: 12}},
-                lineWidth: 1,
-                opposite: true,
-                tickAmount: 6,
-                showLastLabel: false
-            }],
-            tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
-            legend: false,
-            series: [{
-                connectNulls: true,
-                name: 'TEMP.',
-                type: 'line',
-                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1',},
-                data: tempDateFive,
-                tooltip: {valueSuffix: '°' + type},
-                zIndex: 3
-            }, {
-                name: 'PRICIP.',
-                type: 'column',
-                borderWidth: 0,
-                maxPointWidth: 10,
-                yAxis: 1,
-                data: precipDateFive,
-                tooltip: {valueSuffix: ' ' + val_zn},
-                zIndex: 2
-            }, {
-                connectNulls: true,
-                name: false,
-                type: 'area',
-                threshold: minTempFive,
-                lineWidth: 0,
-                fillColor: {
-                    linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
-                    stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
-                },
-                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
-                data: tempDateFive,
-                tooltip: {valueSuffix: '°' + type},
-                zIndex: 1
-            }]
-        });
+        if ($(document).width() <= 700) {
+            $('#weatherThree').highcharts({
+                chart: {zoomType: zoomVar, marginLeft: 17, marginRight: 17},
+                title: {text: graphTitle},
+                xAxis: [{
+                    type: 'datetime',
+                    categories: categoriesDate,
+                    labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 8}, y: 30}
+                }, {
+                    type: 'datetime',
+                    linkedTo: 0,
+                    opposite: true,
+                    categories: deyDate,
+                    labels: {align: 'right', rotation: 0, y: -10, x: 20, style: {textOverflow: 'none', whiteSpace: 'nowrap', fontSize: 9}},
+                    hover: {fillColor: '#f00', radius: 4}
+                }],
+                yAxis: [
+                    {
+
+                        labels: {
+                            format: '{value}',
+                            style: {color: Highcharts.getOptions().colors[4], fontSize: 8},
+                            x: -5,
+                            y: 3
+                        },
+                        title: {
+                            text: '°'+type,
+                            align: 'high',
+                            offset: 0,
+                            rotation: 0,
+                            x: -3,
+                            y: 3,
+                            style: {color: Highcharts.getOptions().colors[0], fontSize: 7, fontWeight: 700}
+                        },
+                        lineWidth: 1,
+                        tickAmount: 6,
+                        showLastLabel: false
+                    }, {labels: {format: '{value} ', style: {color: Highcharts.getOptions().colors[4], fontSize: 7},
+                        x: 5,
+                        y: 3
+                    },
+                        title: {
+                            text: val_zn,
+                            align: 'high',
+                            offset: 0,
+                            rotation: 0,
+                            x: 3,
+                            y: 3,
+                            style: {color: Highcharts.getOptions().colors[1], fontSize: 7, fontWeight: 700}
+                        },
+
+                        lineWidth: 1,
+                        opposite: true,
+                        tickAmount: 6,
+                        showLastLabel: false
+                    }],
+                tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
+                legend: false,
+                series: [{
+                    connectNulls: true,
+                    name: 'TEMP.',
+                    type: 'line',
+                    marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#fff6af'},
+                    data: tempDateThree,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 3
+                }, {
+                    name: 'PRICIP.',
+                    type: 'column',
+                    borderWidth: 0,
+                    maxPointWidth: 10,
+                    yAxis: 1,
+                    data: precipDateThree,
+                    tooltip: {valueSuffix: ' ' + val_zn},
+                    zIndex: 2
+                }, {
+                    connectNulls: true,
+                    name: false,
+                    type: 'area',
+                    threshold: minTempThree,
+                    lineWidth: 0,
+                    fillColor: {
+                        linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
+                        stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
+                    },
+                    marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
+                    data: tempDateThree,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 1
+                }]
+            });
+
+            $('#weatherFive').highcharts({
+                chart: {zoomType: zoomVar, marginLeft: 17, marginRight: 17},
+                title: {text: graphTitle},
+                xAxis: [{
+                    type: 'datetime',
+                    categories: categoriesDate,
+                    labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 8}, y: 30}
+                }, {
+                    type: 'datetime',
+                    linkedTo: 0,
+                    opposite: true,
+                    categories: deyDate,
+                    crosshair: true,
+                    labels: {align: 'right', rotation: 0, y: -10, x: 20, style: {textOverflow: 'none', whiteSpace: 'nowrap', fontSize: 9}}
+                }],
+                yAxis: [
+                    {
+
+                        labels: {
+                            format: '{value}',
+                            style: {color: Highcharts.getOptions().colors[4], fontSize: 8},
+                            x: -5,
+                            y: 3
+                        },
+                        title: {
+                            text: '°'+type,
+                            align: 'high',
+                            offset: 0,
+                            rotation: 0,
+                            x: -3,
+                            y: 3,
+                            style: {color: Highcharts.getOptions().colors[0], fontSize: 7, fontWeight: 700}
+                        },
+                        lineWidth: 1,
+                        tickAmount: 6,
+                        showLastLabel: false
+                    }, {labels: {format: '{value} ', style: {color: Highcharts.getOptions().colors[4], fontSize: 7},
+                        x: 5,
+                        y: 3
+                    },
+                        title: {
+                            text: val_zn,
+                            align: 'high',
+                            offset: 0,
+                            rotation: 0,
+                            x: 3,
+                            y: 3,
+                            style: {color: Highcharts.getOptions().colors[1], fontSize: 7, fontWeight: 700}
+                        },
+
+                        lineWidth: 1,
+                        opposite: true,
+                        tickAmount: 6,
+                        showLastLabel: false
+                    }],
+                tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
+                legend: false,
+                series: [{
+                    connectNulls: true,
+                    name: 'TEMP.',
+                    type: 'line',
+                    marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#fff6af',},
+                    data: tempDateFive,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 3
+                }, {
+                    name: 'PRICIP.',
+                    type: 'column',
+                    borderWidth: 0,
+                    maxPointWidth: 10,
+                    yAxis: 1,
+                    data: precipDateFive,
+                    tooltip: {valueSuffix: ' ' + val_zn},
+                    zIndex: 2
+                }, {
+                    connectNulls: true,
+                    name: false,
+                    type: 'area',
+                    threshold: minTempFive,
+                    lineWidth: 0,
+                    fillColor: {
+                        linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
+                        stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
+                    },
+                    marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
+                    data: tempDateFive,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 1
+                }]
+            });
+
+        } else {
+            $('#weatherThree').highcharts({
+                chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
+                title: {text: graphTitle},
+                xAxis: [{
+                    type: 'datetime',
+                    categories: categoriesDate,
+                    labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 12}, y: 30}
+                }, {
+                    type: 'datetime',
+                    linkedTo: 0,
+                    opposite: true,
+                    categories: deyDate,
+                    labels: {align: 'right', y: -20, rotation: 0, style: {textOverflow: 'none'}},
+                    hover: {fillColor: '#f00', radius: 4,}
+                }],
+                yAxis: [{
+                    labels: {
+                        format: '{value}°' + type,
+                        style: {color: Highcharts.getOptions().colors[4], fontSize: 12},
+                    },
+                    title: {
+                        text: 'TEMP.',
+                        align: 'high',
+                        offset: 0,
+                        rotation: 0,
+                        x: -10,
+                        y: 10,
+                        style: {color: Highcharts.getOptions().colors[0], fontSize: 12, fontWeight: 700}
+                    },
+                    lineWidth: 1,
+                    tickAmount: 6,
+                    showLastLabel: false
+                }, {
+                    title: {
+                        text: 'PRICIP.',
+                        align: 'high',
+                        offset: 0,
+                        rotation: 0,
+                        x: 15,
+                        y: 10,
+                        style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
+                    },
+                    labels: {format: '{value} ' + val_zn, style: {color: Highcharts.getOptions().colors[4], fontSize: 12}},
+                    lineWidth: 1,
+                    opposite: true,
+                    tickAmount: 6,
+                    showLastLabel: false
+                }],
+                tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
+                legend: false,
+                series: [{
+                    connectNulls: true,
+                    name: 'TEMP.',
+                    type: 'line',
+                    marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1'},
+                    data: tempDateThree,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 3
+                }, {
+                    name: 'PRICIP.',
+                    type: 'column',
+                    borderWidth: 0,
+                    maxPointWidth: 10,
+                    yAxis: 1,
+                    data: precipDateThree,
+                    tooltip: {valueSuffix: ' ' + val_zn},
+                    zIndex: 2
+                }, {
+                    connectNulls: true,
+                    name: false,
+                    type: 'area',
+                    threshold: minTempThree,
+                    lineWidth: 0,
+                    fillColor: {
+                        linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
+                        stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
+                    },
+                    marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
+                    data: tempDateThree,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 1
+                }]
+            });
+            $('#weatherFive').highcharts({
+                chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
+                title: {text: graphTitle},
+                xAxis: [{
+                    type: 'datetime',
+                    categories: categoriesDate,
+                    labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 12}, y: 30}
+                }, {
+                    type: 'datetime',
+                    linkedTo: 0,
+                    opposite: true,
+                    categories: deyDate,
+                    crosshair: true,
+                    labels: {align: 'right', rotation: 0, y: -20, style: {textOverflow: 'none', whiteSpace: 'nowrap'}}
+                }],
+                yAxis: [{
+                    labels: {
+                        format: '{value}°' + type,
+                        style: {color: Highcharts.getOptions().colors[4], fontSize: 12}
+                    },
+                    title: {
+                        text: 'TEMP.',
+                        align: 'high',
+                        offset: 0,
+                        rotation: 0,
+                        x: -10,
+                        y: 10,
+                        style: {color: Highcharts.getOptions().colors[0], fontSize: 12, fontWeight: 700}
+                    },
+                    lineWidth: 1,
+                    tickAmount: 6,
+                    showLastLabel: false
+                }, {
+                    title: {
+                        text: 'PRICIP.',
+                        align: 'high',
+                        offset: 0,
+                        rotation: 0,
+                        x: 15,
+                        y: 10,
+                        style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
+                    },
+                    labels: {format: '{value} ' + val_zn, style: {color: Highcharts.getOptions().colors[4], fontSize: 12}},
+                    lineWidth: 1,
+                    opposite: true,
+                    tickAmount: 6,
+                    showLastLabel: false
+                }],
+                tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
+                legend: false,
+                series: [{
+                    connectNulls: true,
+                    name: 'TEMP.',
+                    type: 'line',
+                    marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1',},
+                    data: tempDateFive,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 3
+                }, {
+                    name: 'PRICIP.',
+                    type: 'column',
+                    borderWidth: 0,
+                    maxPointWidth: 10,
+                    yAxis: 1,
+                    data: precipDateFive,
+                    tooltip: {valueSuffix: ' ' + val_zn},
+                    zIndex: 2
+                }, {
+                    connectNulls: true,
+                    name: false,
+                    type: 'area',
+                    threshold: minTempFive,
+                    lineWidth: 0,
+                    fillColor: {
+                        linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
+                        stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
+                    },
+                    marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
+                    data: tempDateFive,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 1
+                }]
+            });
+        }
         $('#weatherSeven').highcharts({
             chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
             title: {text: graphTitle},
@@ -496,7 +683,7 @@ var tempYear=responseYear.data;
                     align: 'high',
                     offset: 0,
                     rotation: 0,
-                    x: 15,
+                    x: 6,
                     y: 10,
                     style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
                 },
@@ -513,7 +700,7 @@ var tempYear=responseYear.data;
                 name: 'TEMP.',
                 type: 'line',
                 lineWidth: 2,
-                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1'},
+                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#fff6af'},
                 data: tempDateSeven,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 3
@@ -523,6 +710,7 @@ var tempYear=responseYear.data;
                 borderWidth: 0,
                 maxPointWidth: 10,
                 yAxis: 1,
+                x: 10,
                 data: precipDateSeven,
                 tooltip: {valueSuffix: ' ' + val_zn},
                 zIndex: 2
@@ -536,11 +724,26 @@ var tempYear=responseYear.data;
                     linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
                     stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
                 },
-                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
+                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
                 data: tempDateSeven,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 1
-            }]
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 700
+                    },
+                    chartOptions: {
+                        chart: {zoomType: zoomVar, marginLeft: 50, marginRight: 50},
+                        xAxis: [{
+                            type: 'datetime',
+                            categories: categoriesDateSeven,
+                            labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 8}, y: 30, x: 10}
+                        }],
+                    }
+                }]
+            }
         });
         $('#weatherFourteen').highcharts({
             chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
@@ -573,7 +776,7 @@ var tempYear=responseYear.data;
                     align: 'high',
                     offset: 0,
                     rotation: 0,
-                    x: 15,
+                    x: 8,
                     y: 10,
                     style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
                 },
@@ -617,7 +820,26 @@ var tempYear=responseYear.data;
                 data: tempDateFourteen,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 1
-            }]
+            }],responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 700
+                    },
+                    chartOptions: {
+                        chart: {zoomType: zoomVar, marginLeft: 50, marginRight: 50},
+                        xAxis: [{
+                            type: 'datetime',
+                            categories: categoriesDateFourteen,
+                            labels: {
+                                format: '{value}',
+                                style: {color: Highcharts.getOptions().colors[4], fontSize: 7},
+                                y: 30,
+                                x: 10
+                            }
+                        }],
+                    }
+                }]
+            }
         });
         $('#weatherTen').highcharts({
             chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
@@ -650,7 +872,7 @@ var tempYear=responseYear.data;
                     align: 'high',
                     offset: 0,
                     rotation: 0,
-                    x: 15,
+                    x: 8,
                     y: 10,
                     style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
                 },
@@ -667,7 +889,7 @@ var tempYear=responseYear.data;
                 name: 'TEMP.',
                 type: 'line',
                 lineWidth: 2,
-                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1'},
+                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#fff6af'},
                 data: tempDateTen,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 3
@@ -690,89 +912,220 @@ var tempYear=responseYear.data;
                     linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
                     stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
                 },
-                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
+                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
                 data: tempDateTen,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 1
-            }]
-        });
-        $('#weatherDetailed').highcharts({
-            chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
-            title: {text: graphTitle},
-            xAxis: [{
-                type: 'datetime',
-                categories: categoriesDetailed,
-                labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 12}, y: 30}
             }],
-            yAxis: [{
-                labels: {
-                    format: '{value}°' + type,
-                    style: {color: Highcharts.getOptions().colors[4], fontSize: 12}
+            responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 700
                 },
-                title: {
-                    text: 'TEMP.',
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    x: -10,
-                    y: 10,
-                    style: {color: Highcharts.getOptions().colors[0], fontSize: 12, fontWeight: 700}
-                },
-                lineWidth: 1,
-                tickAmount: 6,
-                showLastLabel: false
-            }, {
-                title: {
-                    text: 'PRICIP.',
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    x: 15,
-                    y: 10,
-                    style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
-                },
-                labels: {format: '{value} ' + val_zn, style: {color: Highcharts.getOptions().colors[4], fontSize: 12}},
-                lineWidth: 1,
-                opposite: true,
-                tickAmount: 6,
-                showLastLabel: false
-            }],
-            tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
-            legend: false,
-            series: [{
-                connectNulls: true,
-                name: 'TEMP.',
-                type: 'line',
-                lineWidth: 2,
-                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1'},
-                data: tempDetailed,
-                tooltip: {valueSuffix: '°' + type},
-                zIndex: 3
-            }, {
-                name: 'PRICIP.',
-                type: 'column',
-                borderWidth: 0,
-                maxPointWidth: 10,
-                yAxis: 1,
-                data: precipDetailed,
-                tooltip: {valueSuffix: ' ' + val_zn},
-                zIndex: 2
-            }, {
-                connectNulls: true,
-                name: false,
-                type: 'area',
-                threshold: minTempDetailed,
-                lineWidth: 0,
-                fillColor: {
-                    linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
-                    stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
-                },
-                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
-                data: tempDetailed,
-                tooltip: {valueSuffix: '°' + type},
-                zIndex: 1
+                chartOptions: {
+                    chart: {zoomType: zoomVar, marginLeft: 50, marginRight: 50},
+                    xAxis: [{
+                        type: 'datetime',
+                        categories: categoriesDateTen,
+                        labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 8}, y: 30, x: 10}
+                    }],
+                }
             }]
+        }
         });
+        if ($(document).width() <= 700) {
+            $('#weatherDetailed').highcharts({
+                chart: {zoomType: zoomVar, marginLeft: 17, marginRight: 17},
+                title: {text: graphTitle},
+                xAxis: [{
+                    type: 'datetime',
+                    categories: categoriesDetailed,
+                    labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 8}, y: 10},
+                    gridLineWidth: 1,
+                    ordinal: false,
+                    min: 0,
+                    minPadding: 100,
+                    endOnTick: false
+                }],
+                yAxis: [
+                    {
+
+                        labels: {
+                            format: '{value}',
+                            style: {color: Highcharts.getOptions().colors[4], fontSize: 8},
+                            x: -5,
+                            y: 3
+                        },
+                        title: {
+                            text: '°'+type,
+                            align: 'high',
+                            offset: 0,
+                            rotation: 0,
+                            x: -3,
+                            y: 3,
+                            style: {color: Highcharts.getOptions().colors[0], fontSize: 7, fontWeight: 700}
+                        },
+                        lineWidth: 1,
+                        tickAmount: 6,
+                        showLastLabel: false
+                    }, {labels: {format: '{value} ', style: {color: Highcharts.getOptions().colors[4], fontSize: 7},
+                        x: 5,
+                        y: 3
+                    },
+                        title: {
+                            text: val_zn,
+                            align: 'high',
+                            offset: 0,
+                            rotation: 0,
+                            x: 3,
+                            y: 3,
+                            style: {color: Highcharts.getOptions().colors[1], fontSize: 7, fontWeight: 700}
+                        },
+
+                        lineWidth: 1,
+                        opposite: true,
+                        tickAmount: 6,
+                        showLastLabel: false
+                    }],
+                tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
+                legend: false,
+                scrollbar: {
+                    enabled: true
+                },
+                series: [{
+                    connectNulls: true,
+                    name: 'TEMP.',
+                    type: 'line',
+                    lineWidth: 2,
+                    marker: {lineWidth: 1, lineColor: '#fff6af', fillColor: '#fff6af'},
+                    data: tempDetailed,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 3
+                }, {
+                    name: 'PRICIP.',
+                    type: 'column',
+                    borderWidth: 0,
+                    maxPointWidth: 10,
+                    yAxis: 1,
+                    data: precipDetailed,
+                    tooltip: {valueSuffix: ' ' + val_zn},
+                    zIndex: 2
+                }, {
+                    connectNulls: true,
+                    name: false,
+                    type: 'area',
+                    threshold: minTempDetailed,
+                    lineWidth: 0,
+                    fillColor: {
+                        linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
+                        stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
+                    },
+                    marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
+                    data: tempDetailed,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 1
+                }],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                layout: 'horizontal'
+                            },
+                            subtitle: {
+                                text: null
+                            },
+                            credits: {
+                                enabled: false
+                            }
+                        }
+                    }]
+                }
+            });
+        } else {
+
+            $('#weatherDetailed').highcharts({
+                chart: {zoomType: zoomVar, marginLeft: 60, marginRight: 60},
+                title: {text: graphTitle},
+                xAxis: [{
+                    type: 'datetime',
+                    categories: categoriesDetailed,
+                    labels: {format: '{value}', style: {color: Highcharts.getOptions().colors[4], fontSize: 12}, y: 30}
+                }],
+                yAxis: [{
+                    labels: {
+                        format: '{value}°' + type,
+                        style: {color: Highcharts.getOptions().colors[4], fontSize: 12}
+                    },
+                    title: {
+                        text: 'TEMP.',
+                        align: 'high',
+                        offset: 0,
+                        rotation: 0,
+                        x: -10,
+                        y: 10,
+                        style: {color: Highcharts.getOptions().colors[0], fontSize: 12, fontWeight: 700}
+                    },
+                    lineWidth: 1,
+                    tickAmount: 6,
+                    showLastLabel: false
+                }, {
+                    title: {
+                        text: 'PRICIP.',
+                        align: 'high',
+                        offset: 0,
+                        rotation: 0,
+                        x: 15,
+                        y: 10,
+                        style: {color: Highcharts.getOptions().colors[1], fontSize: 12, fontWeight: 700}
+                    },
+                    labels: {format: '{value} ' + val_zn, style: {color: Highcharts.getOptions().colors[4], fontSize: 12}},
+                    lineWidth: 1,
+                    opposite: true,
+                    tickAmount: 6,
+                    showLastLabel: false
+                }],
+                tooltip: {borderColor: '#fff', headerFormat: '', pointFormat: '{point.y}'},
+                legend: false,
+                series: [{
+                    connectNulls: true,
+                    name: 'TEMP.',
+                    type: 'line',
+                    lineWidth: 2,
+                    marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#fff6af'},
+                    data: tempDetailed,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 3
+                }, {
+                    name: 'PRICIP.',
+                    type: 'column',
+                    borderWidth: 0,
+                    maxPointWidth: 10,
+                    yAxis: 1,
+                    data: precipDetailed,
+                    tooltip: {valueSuffix: ' ' + val_zn},
+                    zIndex: 2
+                }, {
+                    connectNulls: true,
+                    name: false,
+                    type: 'area',
+                    threshold: minTempDetailed,
+                    lineWidth: 0,
+                    fillColor: {
+                        linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
+                        stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
+                    },
+                    marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
+                    data: tempDetailed,
+                    tooltip: {valueSuffix: '°' + type},
+                    zIndex: 1
+                }]
+            });
+        }
         $('#weatherYear').highcharts({
             chart: {
                 zoomType: zoomVar,
