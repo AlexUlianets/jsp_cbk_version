@@ -793,7 +793,7 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
                 name: 'TEMP.',
                 type: 'line',
                 lineWidth: 2,
-                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#018ac1'},
+                marker: {lineWidth: 2, lineColor: '#fff6af', fillColor: '#fff6af'},
                 data: tempDateFourteen,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 3
@@ -816,7 +816,7 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
                     linearGradient: {x1: 1, y1: 0, x2: 1, y2: 1},
                     stops: [[0, 'rgba(255,245,174,0.3)'], [1, 'rgba(255,245,174,0)']]
                 },
-                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#018ac1',},
+                marker: {lineWidth: 0, lineColor: '#fff6af', fillColor: '#fff6af',},
                 data: tempDateFourteen,
                 tooltip: {valueSuffix: '°' + type},
                 zIndex: 1
@@ -996,8 +996,8 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
                     connectNulls: true,
                     name: 'TEMP.',
                     type: 'line',
-                    lineWidth: 2,
-                    marker: {lineWidth: 1, lineColor: '#fff6af', fillColor: '#fff6af'},
+                    lineWidth: 1,
+                    marker: {lineColor: '#fff6af', fillColor: '#fff6af', width: 4, height: 4},
                     data: tempDetailed,
                     tooltip: {valueSuffix: '°' + type},
                     zIndex: 3
