@@ -143,31 +143,31 @@ app.controller('widgets',['$scope', '$http', '$state','$stateParams', function($
 
     $scope.selectCityWidget = function(e, e1, e2){
         $('.wg_form_resault').removeClass('active_search')
-        if(e1===null){
-            if ($scope.$parent.temperature === undefined){
-                 $.ajax({
-                     method: "POST",
-                     url: "/get_current_city_object"
-                 }).done(function( msg ) {
-                     $scope.$parent.temperature = msg;
-                     $scope.searchInputWidget = $scope.$parent.temperature.name+", "+$scope.$parent.temperature.countryName;
-                     e=$scope.$parent.temperature.geonameId
-                     $scope.city = e;
-                 })
-            }else{
-                $scope.searchInputWidget = $scope.$parent.temperature.city+", "+$scope.$parent.temperature.country;
-                e=$scope.$parent.temperature.geonameId
+            if (e1 === null && e != 'lang') {
+                if ($scope.$parent.temperature === undefined) {
+                    $.ajax({
+                        method: "POST",
+                        url: "/get_current_city_object"
+                    }).done(function (msg) {
+                        $scope.$parent.temperature = msg;
+                        $scope.searchInputWidget = $scope.$parent.temperature.name + ", " + $scope.$parent.temperature.countryName;
+                        e = $scope.$parent.temperature.geonameId
+                        $scope.city = e;
+                    })
+                } else {
+                    // $scope.searchInputWidget = $scope.$parent.temperature.city + ", " + $scope.$parent.temperature.country;
+                    e = $scope.$parent.temperature.geonameId
+                    $scope.city = e;
+                }
+
+            } else if (e === 'lang') {
+                e=$scope.city
+            } else {
+                $scope.searchInputWidget = e1 + ", " + e2
                 $scope.city = e;
             }
 
-        }else if(e === 'lang'){
 
-        }else{
-            $scope.searchInputWidget = e1+", "+e2
-            $scope.city = e;
-        }
-
-        setTimeout(function () {
             $.ajax({
                 method: "POST",
                 url: "/get_info_widgets/",
@@ -179,14 +179,13 @@ app.controller('widgets',['$scope', '$http', '$state','$stateParams', function($
                 $scope.selectedCityWidget = msg;
                 $scope.$apply();
                 $scope.updateWidget();
+
+            }).complete(function(){
+                $('#widget_carusel').css({'visibility': 'visible'})
+                $('.wg_choice_wrap').css({'visibility': 'visible'})
             })
 
-        },700)
-        setTimeout(function () {
-            $('#widget_carusel').css({'visibility': 'visible'})
-            $('.wg_choice_wrap').css({'visibility': 'visible'})
 
-        }, 1200)
     };
 
 
@@ -230,7 +229,7 @@ app.controller('widgets',['$scope', '$http', '$state','$stateParams', function($
                 var curruntSlide = $(slick.$slides[currentSlide]).html();
                 currentWidget.html(curruntSlide);
             });
-        }, 1000)
+        }, 500)
     }
 
     $scope.copyText = function () {

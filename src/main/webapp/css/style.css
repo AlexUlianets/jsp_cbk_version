@@ -704,7 +704,7 @@ map-marker.arrow_box img{display:inline-block;margin-top:6px;width: 28px;}
 .wrn-img{height:45px;text-align:center;}
 /*//*/
 .wrn-temp{text-align:center;font:400 1.6em/1 "Fira Sans", sans-serif;color:#4c4c4c;}
-ul.tabs{margin:0;margin-bottom:20px;padding:0;float:left;list-style:none;width:100%;}
+ul.tabs{margin:0;margin-bottom:4px;padding:0;float:left;list-style:none;width:100%;}
 ul.tabs li{float:left;margin:0;cursor:pointer;position:relative;width:14.285%;}
 ul.tabs-three li{width:33.33%;}
 ul.tabs-five li{width:20%;}
@@ -944,7 +944,7 @@ ul.tabs li.active .wrn-temp{color:#fff;}
 
 .tabs-tr{position:relative;}
 .tabs-tr > div{display:none;}
-.tabs-tr > .active{display:block;height:100%;position:static;}
+.tabs-tr > .active{display:block;position:static;}
 #map-tab-one, #map-tab-two, #map-tab-three, #map-tab-four{height:522px;}
 @media only screen and (max-width:992px){.maps-sidebar-bot{overflow:hidden;}
 .maps-sidebar-bot:after{content:"";display:table;clear:both;}
@@ -1713,9 +1713,11 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
 
 .tb-head >div{
     font-weight: 300;
-    display: block;
     padding-top: 15px;
     padding-bottom: 9px;
+    word-wrap: break-word;
+    max-width: 120px;
+    flex: 1;
 }
 
 .tb-item .tb-row >div::after,
@@ -2999,7 +3001,7 @@ a{
         font-size: 12px;
     }
     .tb-item .tb-row >div, .tb-head >div{
-        min-width: 69px;
+        min-width: 80px;
     }
 
     .tb-more-info{
@@ -3160,9 +3162,8 @@ a{
         position: absolute;
         bottom: 0px;
         z-index: 1;
-        margin: 0;
+        margin: 7px;
         width: 100%;
-        text-align: center;
     }
 
     .last-year5 .btn-wrap .btn-theme{

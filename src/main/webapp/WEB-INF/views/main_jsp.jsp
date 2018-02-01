@@ -130,7 +130,7 @@
                 <div class="hb-inner">
                     <div class="weather-now">
                         <img width="90px" ng-src="svg/wicons_svg_white/{{temperature.weatherIconCode}}_{{(temperature.hours<=6 || temperature.hours>=18)?'night':'day'}}.svg" alt="img">
-                        <div><b ng-bind="local.typeTemp=='C'?temperature.temp_c:temperature.temp_f"></b><em ng-bind="local.typeTemp"></em>
+                        <div><b style="letter-spacing: -12px;" ng-bind="local.typeTemp=='C'?temperature.temp_c:temperature.temp_f"></b><em ng-bind="local.typeTemp"></em>
                             <span>/<strong ng-bind="local.typeTemp=='C'?temperature.temp_f:temperature.temp_c"></strong><abbr ng-bind="local.typeTemp!='C'?'C':'F'"></abbr></span></div>
                     </div>
 
