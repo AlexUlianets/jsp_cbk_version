@@ -587,7 +587,7 @@ public class WeatherService {
         result.put("dayOfWeek", LanguageService.encode(DateConstants.convertDayOfWeek(dateTime.getDayOfWeek(), bundle)));
         result.put("hours", dateTime.getHourOfDay());
         result.put("minutes", dateTime.getMinuteOfHour());
-        result.put("temp_c", tempC> 0? "+ " + tempC:tempC);
+        result.put("temp_c", tempC> 0? "+" + tempC:tempC);
         result.put("temp_f", tempF);
         result.put("feelsLikeC", feelsLikeC > 0? "+ "+ feelsLikeC: feelsLikeC);
         result.put("feelsLikeF", feelsLikeF>0?"+ " + feelsLikeF: feelsLikeF);

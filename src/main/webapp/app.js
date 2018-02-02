@@ -162,17 +162,19 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
         event.stopPropagation();
     };
     $rootScope.selectLanguage = function (lan) {
-        var curUrl = location.pathname.split('/');
-        var url = curUrl[1].length == 2 ? window.location.href.replace(curUrl[1], lan) : "/" + lan + "/weather/" + $rootScope.selectedCity;
-        var langRequest = {
-            method: 'POST',
-            url: "/generate_custom_request_weather",
-            params: {language: lan, currentLocation: $rootScope.selectedCity},
-            headers: {'Content-Type': 'application/json; charset=utf-8'}
-        };
-        $http(langRequest).success(function () {
-            window.location.href = url;
-        })
+        if($rootScope.currentCountryCode!==lan) {
+            var curUrl = location.pathname.split('/');
+            var url = curUrl[1].length == 2 ? window.location.href.replace(curUrl[1], lan) : "/" + lan + "/weather/" + $rootScope.selectedCity;
+            var langRequest = {
+                method: 'POST',
+                url: "/generate_custom_request_weather",
+                params: {language: lan, currentLocation: $rootScope.selectedCity},
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            };
+            $http(langRequest).success(function () {
+                window.location.href = url;
+            })
+        }
     }
     $rootScope.updateTemp = function (val) {
         if (val === $cookies.get('temp_val')) {

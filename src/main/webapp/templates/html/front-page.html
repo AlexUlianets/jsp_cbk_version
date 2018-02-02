@@ -203,11 +203,11 @@
                                         <div class="v-today-wrap">
                                             <div class="today" ng-bind="pageContent.today"></div>
                                             <div class="date">{{temperature.day}} {{temperature.month}}</div>
-                                            <div style="font-size: 12px">Data at {{getTime('2:00 PM')}}</div>
+                                            <div style="font-size: 12px">{{getTime('2:00 PM')}}</div>
                                         </div>
                                     </div>
                                     <div class="btn-wrap">
-                                        <a href="{{origin}}/{{currentCountryCode}}/weather/history3/{{selectedCity}}" class="btn-theme" ng-bind="pageContent.checkPastWeather"></a>
+                                        <a href="{{origin}}/{{currentCountryCode}}/weather/history3/{{selectedCity}}" class="btn-theme" ng-bind="pageContent.pastWeather"></a>
                                     </div>
                                 </div>
                                 <div class="v-year-wrap">
