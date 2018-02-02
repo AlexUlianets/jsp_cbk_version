@@ -315,8 +315,8 @@ public class SearchService {
            Application.log.info("generated.");
            List<JSONObject> list = null;
            String langCode = "en";
-           if(Arrays.asList(validCountryCodes).contains(location.getString("country_code").toLowerCase())){
-               langCode = location.getString("country_code").toLowerCase();
+           if(Arrays.asList(validCountryCodes).contains(System.getProperty("user.language").toLowerCase())){
+               langCode = System.getProperty("user.language").toLowerCase();
            }
 
            try {
