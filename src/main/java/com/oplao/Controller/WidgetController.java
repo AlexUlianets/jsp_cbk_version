@@ -29,7 +29,9 @@ public class WidgetController {
                                   @RequestParam(value = "city") String city,
                                   @RequestParam(value = "lang", required = false) String lang){
 
-
+if(city.equals("")){
+    city = String.valueOf(searchService.findSelectedCity(request, response, currentCookieValue).get("geonameId"));
+}
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
         response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");

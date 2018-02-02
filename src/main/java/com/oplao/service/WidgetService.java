@@ -33,8 +33,12 @@ public class WidgetService {
         }
 
         String location = currentCity.getString("name")+"_" + currentCity.getString("countryCode");
-        String[] tabs = {"Outlook", "Today", "Tomorrow", "Past", "Temperature map", "3 day", "5 day", "7 day", "10 day", "14 day", "Hour by hour"};
-        String[] hrefs = {"weather/outlook/"+location, "weather/today/"+location, "weather/tomorrow/"+location,
+        String[] tabs = {LanguageService.encode(bundle.getString("today")), LanguageService.encode(bundle.getString("tomorrow")),
+                LanguageService.encode(bundle.getString("pastWeather")), LanguageService.encode(bundle.getString("weatherMap")),
+                LanguageService.encode(bundle.getString("3day")), LanguageService.encode(bundle.getString("5day")),
+                LanguageService.encode(bundle.getString("7day")), LanguageService.encode(bundle.getString("10day")),
+                LanguageService.encode(bundle.getString("14day")), LanguageService.encode(bundle.getString("hourByHour"))};
+        String[] hrefs = {"weather/today/"+location, "weather/tomorrow/"+location,
         "weather/history3/"+location, "weather/map/"+location, "weather/3/"+location, "weather/5/"+location, "weather/7/"+location,
                 "weather/10/"+location, "weather/14/"+location, "weather/hour-by-hour3/"+location};
 

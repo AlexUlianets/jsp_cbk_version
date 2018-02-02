@@ -126,6 +126,8 @@ public class WeatherService {
         List months = ((ArrayList)((HashMap)((ArrayList)map.get("ClimateAverages")).get(0)).get("month"));
         List<HashMap> result = new ArrayList<>();
         DateTime dateTime = new DateTime(DateTimeZone.forID((String)((JSONObject)city.get("timezone")).get("timeZoneId")));
+        Locale locale = new Locale(langCode, LanguageUtil.getCountryCode(langCode));
+        ResourceBundle bundle = ResourceBundle.getBundle("messages_"+langCode, locale);
         for (int i = 0; i < months.size(); i++) {
             HashMap res = new HashMap();
             HashMap elem = ((HashMap)months.get(i));
@@ -134,7 +136,7 @@ public class WeatherService {
             double minTempC = parseDouble(elem.get("avgMinTemp"));
             double minTempF = parseDouble(elem.get("avgMinTemp_F"));
             res.put("active", dateTime.getMonthOfYear() - 1 == i);
-            res.put("month", "" + String.valueOf(elem.get("name")).substring(0,3));
+            res.put("month", "" + LanguageService.encode(bundle.getString(String.valueOf(elem.get("name")).substring(0,3).toLowerCase())));
             res.put("fullMonthName", String.valueOf(elem.get("name")));
             res.put("maxtempC", maxTempC>0?"+"+maxTempC:maxTempC);
             res.put("maxtempF", maxTempF);

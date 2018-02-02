@@ -14,9 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import static com.oplao.service.SearchService.validCountryCodes;
 
 @Controller
 public class SlashController {
@@ -33,6 +36,11 @@ public class SlashController {
                        @CookieValue(value = "langCookieCode", defaultValue = "") String languageCookieCode){
 
         JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue); //is done to generate location before the page is loaded
+        if(languageCookieCode.equals("")) {
+            if (Arrays.asList(validCountryCodes).contains(System.getProperty("user.language").toLowerCase())) {
+                languageCookieCode = System.getProperty("user.language").toLowerCase();
+            }
+        }
         String reqUrl = request.getRequestURI();
         String selectedLang = searchService.selectLanguage(reqUrl, request, response, languageCookieCode, generatedCity, currentCookieValue);
         ModelAndView modelAndView = new ModelAndView("main_jsp");
