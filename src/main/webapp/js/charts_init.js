@@ -14,7 +14,6 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
             },
             title: {style: {color: '#fff', textTransform: 'uppercase', fontSize: '16px'}},
             xAxis: {
-                labels:['1','2','3'],
                 tickInterval: 0.5,
                 gridLineWidth: 1,
                 tickLength: 0,
