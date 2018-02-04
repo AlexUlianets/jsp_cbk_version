@@ -5,6 +5,7 @@ import com.oplao.service.SearchService;
 import com.oplao.service.SitemapService;
 import com.oplao.service.WeatherService;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
@@ -59,7 +60,8 @@ public class OutlookController {
             e.printStackTrace();
         }
 
-        return weatherService.getRemoteData(searchService.findSelectedCity(request, response, currentCookieValue), langCode);
+        JSONObject generatedCity = searchService.findSelectedCity(request, response, currentCookieValue);
+        return weatherService.getRemoteData(generatedCity, langCode);
     }
 
     @RequestMapping("/refresh_cookies")
