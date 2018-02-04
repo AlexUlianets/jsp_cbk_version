@@ -151,13 +151,13 @@
                            <div class="cit-block c-t-max">
                                     <span></span>
                                     <i></i>
-                                    <em>T° {{pageContent.max}}</em>
+                                    <em>{{local.typeTemp}}° {{pageContent.max}}</em>
                                     <b>{{local.typeTemp=='C'?climate.tempMaxC:climate.tempMaxF}}°{{local.typeTemp}}</b>
                                 </div>
                                 <div class="cit-block c-t-min">
                                     <span></span>
                                     <i></i>
-                                    <em>T° {{pageContent.min}}</em>
+                                    <em>{{local.typeTemp}}° {{pageContent.min}}</em>
                                     <b>{{local.typeTemp=='C'?climate.tempMinC:climate.tempMinF}}°{{local.typeTemp}}</b>
                                 </div>
                                 <div class="cit-block c-t-prec">
@@ -201,7 +201,6 @@
                                             <img src="img/calendar.svg" alt="img" class="img">
                                         </div>
                                         <div class="v-today-wrap">
-                                            <div class="today" ng-bind="pageContent.today"></div>
                                             <div class="date">{{temperature.day}} {{temperature.month}}</div>
                                             <div style="font-size: 12px">{{getTime('2:00 PM')}}</div>
                                         </div>

@@ -2354,8 +2354,9 @@ ul.tb-tabs-full li{
     display: inline-block;
 }
 .v-today-wrap{
-    margin: 0 0 3px 32px;
-}
+    position: absolute;
+    margin: 11px;
+    margin-left: 26px;}
 
 .v-today-wrap .today{
     font-size: 16px;
