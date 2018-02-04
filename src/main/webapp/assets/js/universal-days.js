@@ -61,7 +61,13 @@ app.controller('three-daysCtrl',['$scope', '$http', '$state','$stateParams','$ro
             }
             if($scope.$state.params.page === 'three-days') {
                 setTimeout(function () {
-                    readyGet($scope.dynamicTableData, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+                    var dayTimes = [];
+                    dayTimes.push($rootScope.pageContent.night);
+                    dayTimes.push($rootScope.pageContent.morning);
+                    dayTimes.push($rootScope.pageContent.day);
+                    dayTimes.push($rootScope.pageContent.evening);
+                    dayTimes.push("");
+                    readyGet($scope.dynamicTableData, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"", dayTimes);
                 }, 2000)
 
             }

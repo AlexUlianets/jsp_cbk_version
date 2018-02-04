@@ -137,7 +137,7 @@ public class WeatherService {
             double minTempF = parseDouble(elem.get("avgMinTemp_F"));
             res.put("active", dateTime.getMonthOfYear() - 1 == i);
             res.put("month", "" + LanguageService.encode(bundle.getString(String.valueOf(elem.get("name")).substring(0,3).toLowerCase())));
-            res.put("fullMonthName", String.valueOf(elem.get("name")));
+            res.put("fullMonthName", LanguageService.encode(bundle.getString(String.valueOf(elem.get("name")).toLowerCase())));
             res.put("maxtempC", maxTempC>0?"+"+maxTempC:maxTempC);
             res.put("maxtempF", maxTempF);
             res.put("mintempC", minTempC>0?"+"+minTempC:minTempC);

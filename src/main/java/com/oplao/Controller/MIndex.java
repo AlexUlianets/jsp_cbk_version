@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -106,11 +107,14 @@ public class MIndex {
 
             String pageName = reqUrl.split("/")[3];
 
+            JSONObject city =  searchService.generateUrlRequestWeather(generatedCity.getString("asciiName") + "_" + generatedCity.getString("countryCode"), currentCookieValue, request, response, reqUrl.split("/")[1]);
 
 
-            if(languageCookieCode.equals("")){
-                languageCookieCode = parsedUrl[1];
-            }
+                if (Arrays.asList(SearchService.validCountryCodes).contains(parsedUrl[1]) && !parsedUrl[1].equals("")) {
+                    languageCookieCode = parsedUrl[1];
+                } else {
+                    languageCookieCode = System.getProperty("user.language");
+                }
 
             Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
             ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
@@ -149,9 +153,11 @@ public class MIndex {
                 "/weather/hour-by-hour1/{locationRequest:.+}",
                 "/forecast/hour-by-hour3/{locationRequest:.+}",
                 "/forecast/detailed3/{locationRequest:.+}",
+                "/forecast/detailed1/{locationRequest:.+}",
                 "/weather/detailed1/{locationRequest:.+}",
                 "/weather/detailed3/{locationRequest:.+}",
                 "/weather/hour-by-hour3/{locationRequest:.+}",
+                "/weather/widgets/{locationRequest:.+}"
         })
         public ModelAndView index(@PathVariable(value = "locationRequest") String locationRequest,
                             @CookieValue(value = SearchService.cookieName, defaultValue = "") String currentCookieValue,
@@ -164,11 +170,15 @@ public class MIndex {
                 e.printStackTrace();
             }
             JSONObject generatedCity = searchService.generateUrlRequestWeather(locationRequest, currentCookieValue, request, response, reqUrl.split("/")[1]);
-//            try {
-//                sitemapService.addToSitemap(request.getRequestURI());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+//
+//            reqUrl  = reqUrl.replace(reqUrl.split("/")[reqUrl.split("/").length-1], "");
+//            System.out.println(reqUrl);
+            if(reqUrl.contains("widgets")){
+                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                reqUrl  = reqUrl.replace(reqUrl.split("/")[reqUrl.split("/").length-1], "");
+                System.out.println(reqUrl);
+                response.setHeader("Location", reqUrl.substring(0,reqUrl.length()-1));
+            }
             if(reqUrl.contains("detailed3")) {
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 reqUrl=reqUrl.replace("detailed3", "hour-by-hour3");
@@ -201,9 +211,10 @@ public class MIndex {
                 hrIndex = parsedUrl[3].charAt(parsedUrl[3].length() - 1);
             }
 
-            if(languageCookieCode.equals("")){
+            if(Arrays.asList(SearchService.validCountryCodes).contains(parsedUrl[1])) {
                 languageCookieCode = parsedUrl[1];
             }
+
             Locale locale = new Locale(languageCookieCode, LanguageUtil.getCountryCode(languageCookieCode));
             ResourceBundle resourceBundle = ResourceBundle.getBundle("messages_" + languageCookieCode, locale);
 

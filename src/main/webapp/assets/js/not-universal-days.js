@@ -50,7 +50,13 @@ app.controller('not-universal-daysCtrl',['$scope', '$http', '$state','$statePara
 
             $http(sendingTableRequest).success(function (data) {
                 setTimeout(function () {
-                    readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+                    var dayTimes = [];
+                    dayTimes.push($rootScope.pageContent.night);
+                    dayTimes.push($rootScope.pageContent.morning);
+                    dayTimes.push($rootScope.pageContent.day);
+                    dayTimes.push($rootScope.pageContent.evening);
+                    dayTimes.push("");
+                    readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange, "", dayTimes);
                 }, 2000);
             })
         }

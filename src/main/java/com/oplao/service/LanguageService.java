@@ -316,6 +316,10 @@ public class LanguageService {
         map.put("email", encode(bundle.getString("feedbackCommand.email.label")));
         map.put("send", encode(bundle.getString("send")));
         map.put("countries", encode(bundle.getString("countries")));
+        map.put("day", encode(bundle.getString("day")));
+        map.put("night", encode(bundle.getString("night")));
+        map.put("evening", encode(bundle.getString("evening")));
+        map.put("morning", encode(bundle.getString("timeOfDay.Morning")));
         return map;
     }
 
