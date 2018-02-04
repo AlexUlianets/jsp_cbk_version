@@ -1457,7 +1457,7 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
     padding-bottom: 0;
     padding-top: 0;
     flex: 1;}
-#weatherSevenIcon .wrp-icon .icon{width:170px;}
+#weatherSevenIcon .wrp-icon .icon{flex:1;}
 #weatherSevenIcon .wrp-icon,
 #weatherTenIcon .wrp-icon,
 #weatherFourteenIcon .wrp-icon{padding: 25px 0 0 0;
