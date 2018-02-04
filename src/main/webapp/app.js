@@ -48,7 +48,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
     $rootScope.searchList = [];
     $rootScope.result = 0;
     $rootScope.get_recent_cities_tabs_func = function () {
-        $.ajax({cache: true, method: "POST", url: "/get_recent_cities_tabs"}).done(function (msg) {
+        $.ajax({method: "POST", url: "/get_recent_cities_tabs"}).done(function (msg) {
             $rootScope.$apply(function () {
                 $rootScope.get_recent_cities_tabs = msg;
             });
@@ -65,7 +65,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
         });
     }
     $rootScope.get_api_weather = function () {
-        $.ajax({cache: true, method: "POST", url: "/get_api_weather"}).done(function (msg) {
+        $.ajax({method: "POST", url: "/get_api_weather"}).done(function (msg) {
             if(msg.issue){
                 window.location.href = "/api_failed";
             }
@@ -74,7 +74,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
             }
             $rootScope.temperature = msg;
             $rootScope.get_recent_cities_tabs_func();
-            $.ajax({cache: true, method: "GET", url: "/get_selected_city"}).done(function (data) {
+            $.ajax({method: "GET", url: "/get_selected_city"}).done(function (data) {
                 $rootScope.selectedCity = data;
             })
             setTimeout(function () {
@@ -119,7 +119,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
         $rootScope.el = e;
         $rootScope.el1 = e1;
         $rootScope.el2 = e2;
-        $.ajax({cache: true, method: "POST", url: "/select_city/" + e}).done(function (msg) {
+        $.ajax({method: "POST", url: "/select_city/" + e}).done(function (msg) {
             var url = document.location.pathname.split("/");
             $rootScope.selectedCity = msg.asciiName + "_" + msg.countryCode;
             if (url.length > 2) {
@@ -145,7 +145,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
         })
     };
     $rootScope.deleteCity = function (e, index, event) {
-        $.ajax({cache: true, method: "POST", url: "/deleteCity/" + e}).done(function (msg) {
+        $.ajax({method: "POST", url: "/deleteCity/" + e}).done(function (msg) {
             var $this = $(this);
             var $item = $('.weather-block-favorite')[0] ? $('.weather-block-favorite') : $('.weather-block-width');
             $this.parent().slideUp();

@@ -278,7 +278,7 @@
 <script src="assets/plugins/angularJS/angular-ui-router.min.js"></script>
 <script src="assets/plugins/angularJS/ocLazyLoad.min.js"></script>
 <script src="assets/plugins/other/angular-cookies.min.js"></script>
-<script src="app.js?n=1"></script>
+<script src="app.js"></script>
 <script type="text/javascript" src="assets/js/map.js"></script>
 <script type="text/javascript">
     window.doorbellOptions = {

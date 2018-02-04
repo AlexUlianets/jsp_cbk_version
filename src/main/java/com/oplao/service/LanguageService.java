@@ -41,7 +41,7 @@ public class LanguageService {
            return generateCountryContent(resourceBundle, city, countryName, languageCode);
         } else if (path.contains("widgets")) {
             return generateWidgetContent(resourceBundle);
-        } else if (path.equals("/") || path.equals("%2F")||path.split("/").length == 4 && !path.contains("widgets")) {
+        } else if (!path.contains("hour-by-hour") && (path.equals("/") || path.equals("%2F")|| path.split("/").length == 4 && !path.contains("widgets"))) {
             return generateFrontPageContent(resourceBundle, city, countryName, languageCode);
         } else if (path.contains("outlook")) {
             return generateOutlookContent(resourceBundle, city, countryName, languageCode);
