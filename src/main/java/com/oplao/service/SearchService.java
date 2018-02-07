@@ -603,7 +603,7 @@ public class SearchService {
 
 public List<List> getCountries(String langCode){
 
-        if(langCode == ""){
+        if(langCode.equals("")){
             langCode = "en";
         }
         langCode = LanguageUtil.validateOldCountryCodes(langCode);
@@ -620,7 +620,7 @@ public List<List> getCountries(String langCode){
         HashMap currentMap = (HashMap) data.get(i).toMap();
         for (int j = 0; j < ((ArrayList)currentMap.get("alternateNames")).size(); j++){
             HashMap elem =  ((HashMap)((ArrayList) currentMap.get("alternateNames")).get(j));
-                if (elem.get("isoLanguage").equals(langCode)) {
+                if (elem.get("isoLanguage").equals(langCode) && !((String)currentMap.get("name")).toLowerCase().equals("antarctica")) {
                     HashMap map2 = new HashMap();
                     map2.put("name", elem.get("alternateName"));
                     map2.put("asciiName", ((String)currentMap.get("name")).toLowerCase().replace(" ", "_"));

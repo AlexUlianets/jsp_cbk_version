@@ -7,10 +7,10 @@
 				</div>
 				<div class="tdb-bot">
 					<div class="tdb-min">
-						{{pageContent.min}} <em>{{local.typeTemp=='C'?elem[1].mintempC:elem[1].mintempF}}° <span>{{local.typeTemp}}</span></em>
+						{{pageContent.min}} <em>{{local.typeTemp=='C'?elem[1].mintempC:elem[1].mintempF}}<span>{{local.typeTemp}}</span></em>
 					</div>
 					<div class="tdb-max">
-						{{pageContent.max}} <em>{{local.typeTemp=='C'?elem[1].maxtempC:elem[1].maxtempF}}° <span>{{local.typeTemp}}</span></em>
+						{{pageContent.max}} <em>{{local.typeTemp=='C'?elem[1].maxtempC:elem[1].maxtempF}}<span>{{local.typeTemp}}</span></em>
 					</div>
 					<!-- <img src="images/svg-icons/cloud-sm.svg" alt=""> -->
 					<img class="green_tabs_header_icon" ng-src="svg/wicons_svg/{{elem[1].weatherCode}}_night.svg" style="   text-align: center;    margin: auto;" ng-if="elem[1].isDay== false ">
@@ -28,7 +28,7 @@
 					<div class="wb-wrap">
 						<div class="wb-left">
 							<img ng-src="svg/wicons_svg/{{elem.weatherCode}}_{{(elem.hours<=6 || elem.hours>=18)?'night':'day'}}.svg" style="width: 30px;">
-							<div class="wbl-temp">{{local.typeTemp=='C'?elem.tempC:elem.tempF}}° <span>{{local.typeTemp}}</span></div>
+							<div class="wbl-temp">{{local.typeTemp=='C'?elem.tempC:elem.tempF}}<span>{{local.typeTemp}}</span></div>
 						</div>
 						<div class="wb-right">
 							<a>
