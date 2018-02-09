@@ -9,7 +9,7 @@
 					  
 					  <nav role='navigation' class="transformer-tabs map-tabs">
 					    <ul>
-					      <li ng-repeat="tab in tabs"><a ng-click="select_tab_map(tab.time)" ng-class="{active: currentTabMap==tab.time}">{{tab.name}}</a></li>
+					      <li ng-repeat="tab in tabs"><a ng-click="currentTabMap!=tab.time && select_tab_map(tab.time)" ng-class="{active: currentTabMap==tab.time}">{{tab.name}}</a></li>
 					    </ul>
 					  </nav>
 					  
