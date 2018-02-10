@@ -647,7 +647,7 @@ public class WeatherService {
             int tempC = Integer.parseInt("" + aHourly.get("tempC"));
             int tempF = Integer.parseInt("" + aHourly.get("tempF"));
             m.put("tempC", tempC> 0?"+"+tempC:tempC);
-            m.put("tempF", aHourly.get("temp_F"));
+            m.put("tempF", tempF);
             m.put("date", date);
             m.put("precipMM", aHourly.get("precipMM"));
             m.put("precipInch", new BigDecimal(parseDouble(aHourly.get("precipMM")) * 0.0393700787).setScale(2, BigDecimal.ROUND_UP).doubleValue());
@@ -1016,7 +1016,7 @@ public class WeatherService {
                 dayMap.put("time", DateConstants.convertTimeToAmPm(parseInt(elem.get("time"))));
                 dayMap.put("weatherCode", "" + EXT_STATES.get(parseInt(elem.get("weatherCode"))));
                 dayMap.put("tempC", tempC>0?"+"+tempC:tempC);
-                dayMap.put("tempF", weather.get("temp_F"));
+                dayMap.put("tempF", tempF);
                 dayMap.put("feelsLikeC", feelsLikeC>0?"+"+feelsLikeC:feelsLikeC);
                 dayMap.put("feelsLikeF", feelsLikeF>0?"+"+feelsLikeF:feelsLikeF);
                 dayMap.put("precipChance", pastWeather?"0":elem.get("chanceofrain"));

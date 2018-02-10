@@ -1,4 +1,4 @@
-function readyGet(response, responseYear, type, page, graphTitle, timeRange, year_title, dayTimes) {
+function readyGet(response, responseYear, type, page, graphTitle, timeRange, year_title, dayTimes, inDist, mmDist) {
 
     $(document).ready(function () {
         Highcharts.createElement('link', {
@@ -132,7 +132,7 @@ function readyGet(response, responseYear, type, page, graphTitle, timeRange, yea
     var precipArray = []
     var precipDateYearArray = []
     var weatherIcons = []
-    var val_zn = type === 'C' ? 'mm' : 'inch';
+    var val_zn = type === 'C' ? mmDist : inDist;
     if (page === 'outlook' || page === 'today' || page === 'ten-days' || page === 'seven-days' || page === 'fourteen-days') {
         var dateStart = response.data[0].date
         var temp = response.data;

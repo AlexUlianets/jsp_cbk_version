@@ -703,7 +703,9 @@ map-marker.arrow_box img{display:inline-block;margin-top:6px;width: 28px;}
 .wrn-bot{height:77px;}
 .wrn-img{height:45px;text-align:center;}
 /*//*/
-.wrn-temp{text-align:center;font:400 1.6em/1 "Fira Sans", sans-serif;color:#4c4c4c;}
+.wrn-temp{text-align:center;font:400 1.6em/1 "Fira Sans", sans-serif;color:#4c4c4c;width:99%}
+.wrn-temp-seven{text-align:center;font:400 1.6em/1 "Fira Sans", sans-serif;color:#4c4c4c;width:50%!important;}
+.wrn-temp-hourly{text-align:center;font:400 1.6em/1 "Fira Sans", sans-serif;color:#4c4c4c;margin-top: 16px}
 ul.tabs{margin:0;margin-bottom:4px;padding:0;float:left;list-style:none;width:100%;}
 ul.tabs li{float:left;margin:0;cursor:pointer;position:relative;width:14.285%;}
 ul.tabs-three li{width:33.33%;}
@@ -1708,7 +1710,6 @@ header .main-menu-inner{padding-top:15px;margin-top:50px;}
 .tb-head >div{
     height: 72px;
     position: relative;
-    padding: 0 5px;
 }
 
 .tb-head >div{

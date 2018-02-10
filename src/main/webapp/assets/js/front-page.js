@@ -41,7 +41,7 @@ app.controller('front-pageCtrl', ['$scope', '$http', '$rootScope', '$element', '
         $http.post('/get_year_summary').then(function (responseYear) {
             $scope.$parent.get_year_summary = responseYear;
             $scope.getActiveClimate(-1);
-            readyGet(false, responseYear, $scope.local.typeTemp, false, false, $scope.local.timeRange, $rootScope.pageContent.weatherForYear)
+            readyGet(false, responseYear, $scope.local.typeTemp, false, false, $scope.local.timeRange, $rootScope.pageContent.weatherForYear, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist)
         });
     });
 

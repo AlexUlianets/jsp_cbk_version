@@ -67,7 +67,7 @@ app.controller('three-daysCtrl',['$scope', '$http', '$state','$stateParams','$ro
                     dayTimes.push($rootScope.pageContent.day);
                     dayTimes.push($rootScope.pageContent.evening);
                     dayTimes.push("");
-                    readyGet($scope.dynamicTableData, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"", dayTimes);
+                    readyGet($scope.dynamicTableData, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"", dayTimes, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist);
                 }, 2000)
 
             }
@@ -78,7 +78,7 @@ app.controller('three-daysCtrl',['$scope', '$http', '$state','$stateParams','$ro
 
     if($scope.$state.params.page === 'seven-days' || $scope.$state.params.page === 'fourteen-days') {
         $http.post('/get_detailed_forecast').then(function (response) {
-            readyGet(response, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+            readyGet(response, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"",undefined, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist)
         });
     }
     $scope.selectTab = function (index) {
