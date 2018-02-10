@@ -59,7 +59,7 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', '$cookies', function (
                 if ($stateParams.day === "front-page") {
                     $('#top-main').animate({height: '580px'});
                 } else {
-                    $('#top-page').animate({height: (300 + ((ln) * 60)) + 'px'});
+                    $('#top-page').animate({height: (350 + ((ln) * 60)) + 'px'});
                 }
             }
         });
@@ -235,7 +235,8 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
         }
     }).state('widgets', {
         url: "/:lang/weather/widgets",
-        params: {lang: {squash: true, value: null}},
+        params: {lang: {squash: true, value: null},
+            "day": "Widgets"},
         views: {"": {templateUrl: "templates/html/widgets.html"}},
         resolve: {
             loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -303,7 +304,8 @@ app.config(['$ocLazyLoadProvider', '$stateProvider', '$urlRouterProvider', '$loc
         url: "/:lang/countries/:city",
         params: {
             city: {squash: true, value: null},
-            lang: {squash: true, value: null}
+            lang: {squash: true, value: null},
+            "day": "Countries"
             },
         views: {"": {templateUrl: "templates/html/country.html"}},
         resolve: {
