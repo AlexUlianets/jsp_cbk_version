@@ -74,7 +74,7 @@ app.controller('past-weatherCtrl', ['$scope', '$http', '$rootScope', function($s
             $rootScope.updateLang();
         }
         setTimeout(function () {
-            readyGet(response, [], $scope.local.typeTemp, 'today', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange);
+            readyGet(response, [], $scope.local.typeTemp, 'today', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"", undefined, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist);
         },300);
     })
 
@@ -118,7 +118,7 @@ app.controller('past-weatherCtrl', ['$scope', '$http', '$rootScope', function($s
                 $rootScope.updateLang();
             }
             setTimeout(function () {
-                readyGet(response, [], $scope.local.typeTemp, 'today', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange);
+                readyGet(response, [], $scope.local.typeTemp, 'today', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist);
             },300);
         })
 

@@ -23,7 +23,7 @@ var app = angular.module('main', ['ui.router', 'oc.lazyLoad']);
               $rootScope.updateLang();
           }
           setTimeout(function () {
-              readyGet(response, [], $scope.local.typeTemp, 'today', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange);
+              readyGet(response, [], $scope.local.typeTemp, 'today', $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"",undefined, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist);
           },300);
 
       });

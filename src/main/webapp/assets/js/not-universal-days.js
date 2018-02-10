@@ -56,13 +56,13 @@ app.controller('not-universal-daysCtrl',['$scope', '$http', '$state','$statePara
                     dayTimes.push($rootScope.pageContent.day);
                     dayTimes.push($rootScope.pageContent.evening);
                     dayTimes.push("");
-                    readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange, "", dayTimes);
+                    readyGet(data, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange, "", dayTimes, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist);
                 }, 2000);
             })
         }
     } else if($scope.$state.params.page === 'ten-days') {
         $http.post('/get_detailed_forecast').then(function (response) {
-            readyGet(response, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange)
+            readyGet(response, [], $scope.local.typeTemp, $scope.$state.params.page, $rootScope.pageContent.inGraphTitle, $scope.local.timeRange,"",undefined, $rootScope.pageContent.inDist, $rootScope.pageContent.mmDist)
         });
     }
 
